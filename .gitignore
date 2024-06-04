@@ -1,0 +1,4 @@
+.env
+.ruby-gemset
+.DS_Store
+*.sqlite3

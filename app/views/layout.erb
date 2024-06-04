@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/application.css?t=<%= Time.now.to_i %>" type="text/css" />
+
+    <!-- Custom JS -->
+    <script src="/js/index.js?t=<%= Time.now.to_i %>"></script>
+
+    <!-- Font -->
+    <!-- https://fonts.google.com/share?selection.family=Ubuntu+Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu+Sans:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+
+    <title>Example Application</title>
+  </head>
+  <body>
+    <% if flash[:error] %>
+      <div class="flash alert alert-danger" role="alert">
+        <%= flash[:error] %>
+      </div>
+    <% end %>
+    <% if flash[:success] %>
+      <div class="flash alert alert-success" role="alert">
+        <%= flash[:success] %>
+      </div>
+    <% end %>
+    <% if flash[:notice] %>
+      <div class="flash alert alert-primary" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+<div class="content">
+  <%= erb(:"shared/nav") %>
+
+  <div class="recipe-title-bar">
+    <h1><%= @recipe.name %></h1>
+    <button>Edit</button>
+  </div>
+
+  <section id="recipe-header-bar">
+    <div class="recipe-header-image">
+      <img src="data:<%= @recipe.image %>">
+    </div>
+    <button class="btn--hollow recipe-header-icon--share">
+      share&nbsp;<%= svg_icon(:share) %>
+    </button>
+    <button class="btn--hollow recipe-header-icon--trash">
+      delete&nbsp;<%= svg_icon(:trash) %>
+    </button>
+  </section>
+
+  <p>lorem ipsum</p>
+
+</div>

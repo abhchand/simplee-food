@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Exit on script error
+set -e
+
+case "$1" in
+  console)
+    bundle exec pry -I . -r app/app.rb
+    ;;
+
+  setup)
+    echo '== running bundle install...'
+    bundle check || bundle install
+    echo '== running rake db:create...'
+    bundle exec rake db:create
+    echo '== running rake db:migrate...'
+    bundle exec rake db:migrate
+    echo '== running rake db:seed...'
+    bundle exec rake db:seed
+    ;;
+
+  start)
+    rerun rackup config.ru -s webrick
+    ;;
+
+  *)
+    echo 'Usage:  bin/app COMMAND [ARGS]'
+    echo ''
+    echo 'Commands:'
+    echo '  console       Enter the Sinatra console'
+    echo '  setup         Setup and migrate the application'
+    echo '  start         Start the application'
+    echo ''
+    ;;
+esac

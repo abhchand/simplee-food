@@ -1,0 +1,26 @@
+<div class="content">
+  <%= erb(:"shared/nav") %>
+
+  <div class="recipe-title-bar">
+    <h1>Recipes</h1>
+  </div>
+
+  <span id="flash"></span>
+
+  <input
+    id="recipe-search"
+    placeholder="search recipes"
+    type = "text"
+    onkeyup = "onRecipeSearch(event);"
+    />
+
+  <%=
+    erb(
+      :"recipes/recipe-item",
+      {},
+      recipes: @recipes,
+      sort_by: @sort_by,
+      pagination: @pagination
+    )
+  %>
+</div>

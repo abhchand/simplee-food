@@ -1,0 +1,233 @@
+/* Override Bootstrap styles here */
+
+body {
+  font-family: "Ubuntu Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: blue;
+}
+
+button {
+  width: 130px;
+  height: 36px;
+  font-weight: 600;
+
+  /*  CSS magic: 1px keeps the text vertically aligned in the button  */
+  line-height: 1px;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
+nav {
+  margin-bottom: 40px;
+}
+
+input {
+  box-sizing: border-box;
+  width: 300px;
+  height: 36px;
+  margin: 10px 0;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 48px;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+}
+
+.btn--hollow {
+  border: 1px black solid;
+  background-color: white;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav--user {
+  margin-left: auto;
+}
+
+.content {
+  width: 980px;
+  margin: 0 auto;
+  padding: 40px 0;
+}
+#flash {
+  margin: 10px 0;
+}
+#flash > span {
+  color: red;
+  margin-right: 5px;
+}
+.recipe-title-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+.recipe-title-bar button {
+  margin-left: auto;
+}
+
+
+#recipe-search {
+  width: 100%;
+  margin-bottom: 20px;
+}
+.recipe-action-bar {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 20px;
+}
+#recipe-sort-by button {
+  height: 36px;
+  margin: 0;
+  border: 1px solid gray;
+  border-radius: 0;
+  background-color: white;
+  font-weight: 400;
+}
+#recipe-sort-by button.selected {
+  color: white;
+  background-color: gray;
+}
+#recipe-pagination {
+  margin-left: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+#recipe-pagination .nav-arrow {
+  height: 28px;
+  width: 28px;
+}
+#recipe-pagination svg {
+  height: 100%;
+  width: 100%;
+}
+#recipe-pagination span {
+  /* matches height of action bar */
+  line-height: 36px;
+  margin: 0 5px;
+}
+#recipe-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.recipe-item {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 15px;
+  height: 100px;
+  margin-bottom: 15px;
+}
+.recipe-item--image {
+  height: 100px;
+  min-width: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.recipe-item img {
+  height: 100%;
+  width: auto;
+}
+.recipe-item--details {
+  flex-grow: 1;
+  padding: 15px 30px;
+  font-size: 30px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.recipe-item--details a {
+  text-decoration: none;
+  color: black;
+}
+.recipe-item--actions {
+  /* required for copy confirmation to be absolutely positioned */
+  position: relative;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.recipe-item--actions svg {
+  height: 35px;
+  width: 35px;
+  cursor: pointer;
+}
+.recipe-item--copied {
+  position: absolute;
+  top: 75px;
+  padding: 5px 8px;
+  background-color: #FBDB65;
+  color: black;
+  border-radius: 4px;
+}
+
+/* show page  */
+#recipe-header-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+}
+#recipe-header-bar img {
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+}
+#recipe-header-bar button {
+  padding: 5px 0;
+  font-size: 16px;
+  font-weight: 400;
+  width: 120px;
+}
+#recipe-header-bar svg {
+  height: 25px;
+  width: 25px;
+  margin-left: 4px;
+}
+.recipe-header-image {
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+}
+.recipe-header-icon--share {
+  margin-left: auto;
+  margin-right: 10px;
+}
