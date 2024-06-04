@@ -13,3 +13,11 @@ gem "sinatra-activerecord", "~> 2.0.27"
 gem "sinatra-flash", "~> 0.3.0"
 gem "sqlite3", "~> 1.7"
 gem "webrick", "~> 1.8", ">= 1.8.1"
+
+group :development, :test do
+  # Prettier docs suggest to _not_ install `prettier` any more, and directly
+  # install the dependencies it depends on. But... it works so far
+  # https://github.com/prettier/plugin-ruby#getting-started
+  gem "prettier", "~> 3.2", ">= 3.2.2"
+  gem "prettier_print", "~> 1.2"
+end
