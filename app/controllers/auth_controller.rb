@@ -4,8 +4,8 @@ register do
   def auth(type)
     condition do
       unless send("is_#{type}?")
-        flash[:notice] = "You must sign in first"
-        redirect "/login"
+        flash[:notice] = 'You must sign in first'
+        redirect '/login'
       end
     end
   end
@@ -23,35 +23,35 @@ before do
   end
 end
 
-get "/login" do
-  erb :"auth/login"
+get '/login' do
+  erb :'auth/login'
 end
 
-post "/login" do
-  username = params["login"]["username"]
-  password = params["login"]["password"]
+post '/login' do
+  username = params['login']['username']
+  password = params['login']['password']
 
   user = User.find_by_name(username)
   if user.nil?
-    flash[:error] = "Invalid credentials"
-    redirect "/login"
+    flash[:error] = 'Invalid credentials'
+    redirect '/login'
   end
 
   if user.password != password
-    flash[:error] = "Invalid credentials"
-    redirect "/login"
+    flash[:error] = 'Invalid credentials'
+    redirect '/login'
   end
 
   session[:user_id] = user.id
-  session[:expires_at] = (Time.now + (60*60*24)*7).to_i # 7 days from now
-  redirect to("/")
+  session[:expires_at] = (Time.now + (60 * 60 * 24) * 7).to_i # 7 days from now
+  redirect to('/')
 end
 
-get "/logout" do
+get '/logout' do
   session[:user_id] = nil
   session[:expires_at] = nil
 
-  flash[:notice] = "You have been logged out"
+  flash[:notice] = 'You have been logged out'
 
-  redirect to("/login")
+  redirect to('/login')
 end

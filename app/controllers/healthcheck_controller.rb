@@ -1,8 +1,8 @@
-get "/health-check" do
+get '/health-check' do
   db_ok =
     begin
       ActiveRecord::Base.connection.active?
-    rescue
+    rescue StandardError
       false
     end
 

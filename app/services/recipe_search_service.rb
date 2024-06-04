@@ -46,8 +46,10 @@ class RecipeSearchService
         req_page = (@params['page'] || 1).to_i
 
         case
-        when req_page <= 0        then 1
-        when req_page > max_page  then max_page
+        when req_page <= 0
+          1
+        when req_page > max_page
+          max_page
         else
           req_page
         end
@@ -93,9 +95,11 @@ class RecipeSearchService
   def search!
     return if @params['search'].nil? || @params['search'].length == 0
 
-    @params['search'].split(' ').each do |token|
-      @recipes = @recipes.where("LOWER(name) LIKE '%#{token.downcase}%'")
-    end
+    @params['search']
+      .split(' ')
+      .each do |token|
+        @recipes = @recipes.where("LOWER(name) LIKE '%#{token.downcase}%'")
+      end
   end
 
   def sort!
@@ -103,9 +107,9 @@ class RecipeSearchService
     # as a default.
     field, direction =
       if @params['sort_by']&.downcase == 'name'
-        [:name, :asc]
+        %i[name asc]
       else
-        [:created_at, :desc]
+        %i[created_at desc]
       end
 
     @recipes = @recipes.order("#{field} #{direction}")

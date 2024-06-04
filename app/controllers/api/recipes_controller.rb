@@ -1,4 +1,4 @@
-get "/api/recipes" do
+get '/api/recipes' do
   content_type :json
 
   begin
@@ -10,18 +10,18 @@ get "/api/recipes" do
   end
 
   locals = {
-    recipes: response["items"],
+    recipes: response['items'],
     sort_by: params['sort_by'],
     pagination: {
-      first_item: response["first_item"],
-      last_item: response["last_item"],
-      total_items: response["total_items"],
-      current_page: response["current_page"],
-      last_page: response["last_page"]
+      first_item: response['first_item'],
+      last_item: response['last_item'],
+      total_items: response['total_items'],
+      current_page: response['current_page'],
+      last_page: response['last_page']
     }
   }
   options = { layout: false }
-  html = erb(:"recipes/recipe-item", options, locals)
+  html = erb(:'recipes/recipe-item', options, locals)
 
   status 200
   { html: html }.to_json

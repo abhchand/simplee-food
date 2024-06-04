@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "lint:css": "stylelint public/application.css --fix",
-    "lint": "prettier --write --config .prettierrc.json '**/*'",
+    "lint": "prettier --write --config .prettierrc.json '**/*'"
   },
   "author": "Abhishek Chandrasekhar <me@abhchand.me>",
   "engines": {

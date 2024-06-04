@@ -15,7 +15,7 @@ class Recipe < ActiveRecord::Base
 
     # source_url
     if recipe.source_url.present?
-      is_valid = recipe.source_url =~ /\A#{URI::regexp(['http', 'https'])}\z/
+      is_valid = recipe.source_url =~ /\A#{URI.regexp(%w[http https])}\z/
       errors.add(:source_url, 'Invalid URL') if !is_valid
     end
   end
@@ -53,13 +53,13 @@ class Recipe < ActiveRecord::Base
     # If we're updating and name didn't change - don't do anything
     return if persisted? && !name_changed?
 
-    stem = name.downcase.strip.gsub(/\s+/, "-")
+    stem = name.downcase.strip.gsub(/\s+/, '-')
     suffix = 1
 
     # Keep looping till we find a valid slug name we can use
     loop do
       # We never use `-1` as a suffix. We start with `-2`, if needed
-      slug = [stem, suffix == 1 ? nil : suffix].compact.join("-")
+      slug = [stem, suffix == 1 ? nil : suffix].compact.join('-')
       recipe = Recipe.find_by_slug(slug)
 
       if recipe.nil?
