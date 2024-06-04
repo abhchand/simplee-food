@@ -1,0 +1,8 @@
+{
+  "name": "simplee-food",
+  "version": "1.0.0",
+  "author": "Abhishek Chandrasekhar <me@abhchand.me>",
+  "engines": {
+    "node": "14.17.5"
+  }
+}
