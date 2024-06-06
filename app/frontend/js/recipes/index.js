@@ -121,3 +121,11 @@ function setFlashError(text) {
 function clearFlashError() {
   document.getElementById("flash").innerHTML = "";
 }
+
+export {
+  onPaginationNext,
+  onPaginationPrev,
+  onRecipeSearch,
+  onRecipeShare,
+  onRecipeSort
+}
