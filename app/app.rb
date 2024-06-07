@@ -6,6 +6,8 @@ require 'active_support'
 
 require 'pathname'
 
+require_relative 'session_secret_manager'
+
 ENV['RACK_ENV'] ||= 'development'
 
 APP_ROOT = Pathname.new(File.expand_path('..', __dir__))
@@ -19,7 +21,7 @@ set :database,
 set :public_folder, APP_ROOT.join('public')
 
 enable :sessions
-set :session_secret, ENV.fetch('SESSION_SECRET')
+set :session_secret, SessionSecretManager.fetch_or_create!
 
 Time.zone = 'UTC'
 
