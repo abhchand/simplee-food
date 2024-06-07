@@ -1,0 +1,39 @@
+body {
+  font-weight: 400;
+  font-family: "Ubuntu Sans", sans-serif;
+  font-style: normal;
+  font-optical-sizing: auto;
+  font-variation-settings: "wdth" 100;
+}
+
+a:link, a:visited, a:hover, a:active {
+  color: blue;
+}
+
+button {
+  width: 130px;
+  height: 36px;
+  font-weight: 600;
+
+  /*  CSS magic: 1px keeps the text vertically aligned in the button  */
+  line-height: 1px;
+  border: none;
+  border-radius: 5px;
+
+  cursor: pointer;
+
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
+input {
+  box-sizing: border-box;
+  width: 300px;
+  height: 36px;
+  margin: 10px 0;
+  padding: 10px 15px;
+  font-size: 16px;
+  line-height: 48px;
+}

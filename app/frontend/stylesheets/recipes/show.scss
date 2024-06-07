@@ -1,0 +1,38 @@
+#recipe-header-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin-top: 20px;
+
+  img {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+  }
+
+  button {
+    width: 120px;
+    padding: 5px 0;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  svg {
+    width: 25px;
+    height: 25px;
+    margin-left: 4px;
+  }
+}
+
+.recipe-header-image {
+  height: 250px;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.recipe-header-icon--share {
+  margin-right: 10px;
+  margin-left: auto;
+}
