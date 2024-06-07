@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_04_20_040511) do
+ActiveRecord::Schema.define(version: 2024_06_07_121525) do
+
+  create_table "configs", id: false, force: :cascade do |t|
+    t.string "key", null: false
+    t.string "value", null: false
+    t.index ["key"], name: "index_configs_on_key", unique: true
+  end
 
   create_table "recipes", force: :cascade do |t|
     t.datetime "created_at", null: false
