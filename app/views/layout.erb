@@ -5,11 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/application.css?t=<%= Time.now.to_i %>" type="text/css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="<%= css_asset_path(:application) %>" type="text/css" />
 
-    <!-- Custom JS -->
-    <script src="/js/index.js?t=<%= Time.now.to_i %>"></script>
+    <!-- JS -->
+    <script src="<%= js_asset_path(:index) %>"></script>
 
     <!-- Font -->
     <!-- https://fonts.google.com/share?selection.family=Ubuntu+Sans -->
