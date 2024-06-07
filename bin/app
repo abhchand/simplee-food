@@ -4,6 +4,10 @@
 set -e
 
 case "$1" in
+  backend)
+    rerun rackup config.ru -s webrick
+    ;;
+
   console)
     bundle exec pry -I . -r app/app.rb
     ;;
@@ -19,17 +23,18 @@ case "$1" in
     bundle exec rake db:seed
     ;;
 
-  start)
-    rerun rackup config.ru -s webrick
+  frontend)
+    yarn run build:dev
     ;;
 
   *)
     echo 'Usage:  bin/app COMMAND [ARGS]'
     echo ''
     echo 'Commands:'
+    echo '  backend       Start the application server (Sinatra)'
     echo '  console       Enter the Sinatra console'
+    echo '  frontend      Start the asset server (RollupJS)'
     echo '  setup         Setup and migrate the application'
-    echo '  start         Start the application'
     echo ''
     ;;
 esac

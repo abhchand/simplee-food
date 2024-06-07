@@ -11,7 +11,8 @@ bin/app setup
 Run:
 
 ```shell
-bin/app start
+bin/app backend
+bin/app frontend
 ```
 
 Sinatra console:
