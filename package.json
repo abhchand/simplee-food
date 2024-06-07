@@ -2,6 +2,8 @@
   "name": "simplee-food",
   "version": "1.0.0",
   "scripts": {
+    "build:dev": "rollup --config rollup.config.js --watch",
+    "build:prod": "NODE_ENV=production rollup --config rollup.config.js",
     "lint:css": "stylelint public/application.css --fix",
     "lint": "prettier --write --config .prettierrc.json '**/*'"
   },
