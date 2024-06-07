@@ -5,7 +5,7 @@ set -e
 
 case "$1" in
   backend)
-    rerun rackup config.ru -s webrick
+    rerun --pattern 'app/**/*.rb' -- rackup config.ru -s webrick
     ;;
 
   console)
