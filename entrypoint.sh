@@ -20,6 +20,9 @@ if [[ $? != 0 ]]; then
   exit 1
 fi
 
+# Build frontend assets
+yarn run build:prod
+
 # Run what's set in CMD in Dockerfile
 echo "ready for takeoff 🚀🚀🚀"
 if [ $# -gt 0 ]; then
