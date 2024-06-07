@@ -67,8 +67,8 @@ function renderRecipeList({ page }) {
 }
 
 function onSuccess(json) {
-  curNode = document.getElementById("recipe-content");
-  newNode = fromHTML(json['html'])
+  let curNode = document.getElementById("recipe-content");
+  let newNode = fromHTML(json['html'])
 
   curNode.replaceWith(newNode);
 }
