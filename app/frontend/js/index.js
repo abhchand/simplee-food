@@ -4,9 +4,9 @@ import {
   onRecipeSearch,
   onRecipeShare,
   onRecipeSort
-} from "./recipes/index"
+} from './recipes/index';
 
-import "../stylesheets/index.scss"
+import '../stylesheets/index.scss';
 
 export {
   onPaginationNext,
@@ -14,4 +14,4 @@ export {
   onRecipeSearch,
   onRecipeShare,
   onRecipeSort
-}
+};
