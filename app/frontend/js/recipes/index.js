@@ -1,28 +1,8 @@
-import { copyToClipboard } from '../shared/clipboard';
 import { fromHTML } from '../shared/html';
 
 function onRecipeSearch(_event) {
   // Reset the page to the first each time we search
   renderRecipeList({ page: 1 });
-}
-
-function onRecipeShare(event) {
-  const clicked = event.currentTarget;
-  const item = clicked.closest('.recipe-item');
-
-  // Copy to clipboard
-  const url = window.location.origin + '/recipes/' + item.dataset.id;
-  if (!copyToClipboard(url)) {
-    return;
-  }
-
-  // Create tool tip
-  const span = document.createElement('span');
-  span.setAttribute('class', 'recipe-item--copied');
-  span.textContent = 'copied!';
-  clicked.appendChild(span);
-
-  setTimeout(() => clicked.removeChild(clicked.lastChild), 1000);
 }
 
 function onRecipeSort(_event) {
@@ -89,10 +69,4 @@ function getCurrentSortBy() {
   return document.querySelector('button.selected').dataset.id;
 }
 
-export {
-  onPaginationNext,
-  onPaginationPrev,
-  onRecipeSearch,
-  onRecipeShare,
-  onRecipeSort
-};
+export { onPaginationNext, onPaginationPrev, onRecipeSearch, onRecipeSort };

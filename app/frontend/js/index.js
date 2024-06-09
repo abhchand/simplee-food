@@ -2,10 +2,11 @@ import {
   onPaginationNext,
   onPaginationPrev,
   onRecipeSearch,
-  onRecipeShare,
   onRecipeSort
 } from './recipes/index';
 import { clearFlashError } from './shared/flash';
+
+import { onRecipeShare } from './shared/recipe-share';
 
 import '../stylesheets/index.scss';
 

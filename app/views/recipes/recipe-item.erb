@@ -19,7 +19,7 @@
 
   <div id="recipe-list">
   <% recipes.each do |recipe| %>
-    <div class="recipe-item" data-id="<%= recipe.id %>">
+    <div class="recipe-item shareable" data-name="<%= recipe.slug %>">
       <div class="recipe-item--image">
         <a href="/recipes/<%= recipe.slug %>">
           <img src="/images/avocado-toast.jpg" />
