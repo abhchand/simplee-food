@@ -23,6 +23,8 @@ const config = {
   },
   watch: {
     chokidar: {
+      // `--watch` only watches for JS files under this path. To watch for
+      // scss changes we need to configure the same dirs under the `scss` plugin
       paths: 'app/frontend/**/*'
     }
   },
@@ -31,7 +33,9 @@ const config = {
       // The name of the output CSS file, but it will be transformed to fit
       // the pattern specified by `assetFileNames` above
       name: 'application.css',
-      outputStyle: isProduction ? 'compressed' : null
+      outputStyle: isProduction ? 'compressed' : null,
+      // Tells `--watch` to also watch the below dirs for SCSS file changes
+      watch: ['app/frontend/stylesheets']
     }),
     copy({
       targets: [{ src: 'app/frontend/images/**/*', dest: 'public/images' }]
