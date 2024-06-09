@@ -1,7 +1,48 @@
+button {
+  width: 130px;
+  height: 36px;
+  font-weight: 600;
+
+  /*  CSS magic: 1px keeps the text vertically aligned in the button  */
+  line-height: 1px;
+  border: none;
+  border-radius: 3px;
+
+  cursor: pointer;
+
+  -webkit-transition: 0.15s ease-in-out;
+  -moz-transition: 0.15s ease-in-out;
+  -o-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+
 .btn--hollow {
+  font-size: 16px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  font-weight: 400;
   background-color: white;
   border: 1px black solid;
+  border-bottom-width: 2px;
+  border-right-width: 2px;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    margin-left: 4px;
+  }
+}
+
+.btn--as-link {
+  display: flex;
+
+  svg {
+    width: 22px;
+    height: 22px;
+  }
 }

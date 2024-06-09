@@ -10,24 +10,6 @@ a:link, a:visited, a:hover, a:active {
   color: blue;
 }
 
-button {
-  width: 130px;
-  height: 36px;
-  font-weight: 600;
-
-  /*  CSS magic: 1px keeps the text vertically aligned in the button  */
-  line-height: 1px;
-  border: none;
-  border-radius: 5px;
-
-  cursor: pointer;
-
-  -webkit-transition: 0.15s ease-in-out;
-  -moz-transition: 0.15s ease-in-out;
-  -o-transition: 0.15s ease-in-out;
-  transition: 0.15s ease-in-out;
-}
-
 input {
   box-sizing: border-box;
   width: 300px;

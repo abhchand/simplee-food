@@ -1,35 +1,129 @@
-#recipe-header-bar {
+.recipe-show__edit-btn {
+  width: 100px;
+}
+
+.recipe-show__header-bar {
   display: flex;
   align-items: flex-start;
   margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.recipe-show__header-image {
+  height: 300px;
+  overflow: hidden;
+  border-radius: 3px;
+  border: 2px black solid;
+  border-bottom-width: 4px;
+  border-right-width: 4px;
 
   img {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     object-fit: cover;
   }
+}
 
-  button {
-    width: 120px;
-    padding: 5px 0;
-    font-weight: 400;
-    font-size: 16px;
-  }
+.recipe-show__header-toolbar {
+  padding: 5px 30px;
+}
 
-  svg {
-    width: 25px;
-    height: 25px;
-    margin-left: 4px;
+.recipe-show__header-share-link {
+  position: relative;
+  margin-right: 20px;
+  margin-bottom: 20px;
+
+  .floating-tooltip {
+    left: 75px;
   }
 }
 
-.recipe-header-image {
-  height: 250px;
-  overflow: hidden;
-  border-radius: 10px;
+.recipe-show__header-source-url {
 }
 
-.recipe-header-icon--share {
-  margin-right: 10px;
-  margin-left: auto;
+.recipe-show__serving-size {
+  border-width: 1px;
+  font-weight: 700;
+  background-color: #EA9999;
+  font-size: 16px;
+  text-align: center;
+  padding: 7px 15px;
+  display: inline-block;
+  border-radius: 3px;
+  margin-bottom: 20px;
+}
+
+.recipe-show__instructions {
+  display: flex;
+}
+
+.recipe-show__ingredients {
+  width: 350px;
+  min-width: 350px;
+  border-right: 1px silver solid;
+
+  input[type='checkbox'] {
+    display: inline;
+    vertical-align: middle;
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+  }
+  label {
+    display: inline;
+    vertical-align: middle;
+    line-height: 50px;
+    font-size: 18px;
+  }
+  input[type='checkbox']:checked + label {
+    text-decoration: line-through;
+  }
+}
+
+.recipe-show__steps {
+  padding-left: 30px;
+
+  ul {
+    padding: 0;
+  }
+}
+
+.recipe-show__step-item {
+  display: flex;
+  margin-bottom: 30px;
+
+  &.selected {
+    opacity: 0.5;
+  }
+}
+
+.recipe-show__step-number {
+  width: 50px;
+  min-width: 50px;
+  height: 50px;
+  background-color: black;
+  color: white;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  margin-right: 25px;
+  cursor: pointer;
+}
+
+.recipe-show__step-text {
+  margin: 0;
+  font-size: 18px;
+}
+
+.recipe-show__created-at {
+  margin-top: 20px;
+}
+
+.recipe-show__delete-btn {
+  margin-top: 75px;
+
+  & a {
+    color: red;
+  }
 }

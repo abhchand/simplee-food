@@ -4,6 +4,9 @@ import {
   onRecipeSearch,
   onRecipeSort
 } from './recipes/index';
+
+import { onRecipeStepClick } from './recipes/show';
+
 import { clearFlashError } from './shared/flash';
 
 import { onRecipeShare } from './shared/recipe-share';
@@ -16,5 +19,6 @@ export {
   onPaginationPrev,
   onRecipeSearch,
   onRecipeShare,
-  onRecipeSort
+  onRecipeSort,
+  onRecipeStepClick
 };

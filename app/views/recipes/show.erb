@@ -3,21 +3,64 @@
 
   <div class="recipe-title-bar">
     <h1><%= @recipe.name %></h1>
-    <button>Edit</button>
+    <button class="recipe-show__edit-btn btn--hollow">Edit&nbsp;<%= svg_icon(:pencil) %></button>
   </div>
 
-  <section id="recipe-header-bar">
-    <div class="recipe-header-image">
+  <span id="flash"></span>
+
+  <section class="recipe-show__header-bar">
+    <div class="recipe-show__header-image">
       <img src="data:<%= @recipe.image %>">
     </div>
-    <button class="btn--hollow recipe-header-icon--share">
-      share&nbsp;<%= svg_icon(:share) %>
-    </button>
-    <button class="btn--hollow recipe-header-icon--trash">
-      delete&nbsp;<%= svg_icon(:trash) %>
-    </button>
+    <div class="recipe-show__header-toolbar">
+      <div class="recipe-show__header-share-link btn--as-link shareable" data-name="<%= @recipe.slug %>" >
+        <a href="" onclick="SimpleeFood.onRecipeShare(event)">
+          share
+        </a>&nbsp;<%= svg_icon(:share) %>
+      </div>
+      <% if @recipe.source_url %>
+      <div class="recipe-show__header-source-url btn--as-link">
+        <a target="_blank" href="<%= @recipe.source_url %>">original url</a>&nbsp;<%= svg_icon(:arrow_top_right) %>
+      </div>
+      <% end %>
+    </div>
   </section>
 
-  <p>lorem ipsum</p>
+  <div class="recipe-show__serving-size">
+    <%= @recipe.serving_size %>
+  </div>
 
+  <div class="recipe-show__instructions">
+    <section class="recipe-show__ingredients">
+      <h2>Ingredients</h2>
+
+      <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
+      <input type="checkbox" id="ingredient_<%= idx %>" name="ingredient_<%= idx %>" value="<%= ingredient %>">
+      <label for="ingredient_<%= idx %>"> <%= ingredient %></label>
+      <br>
+      <% end %>
+    </section>
+
+    <section class="recipe-show__steps">
+      <h2>Steps</h2>
+      <ul>
+        <% @recipe.steps.each_with_index do |step, idx| %>
+        <li class="recipe-show__step-item" data-id="<%= idx + 1 %>" onclick="SimpleeFood.onRecipeStepClick(event)">
+          <div class="recipe-show__step-number"><%= idx + 1 %></div>
+          <p class="recipe-show__step-text"><%= step %></p>
+        </li>
+        <% end %>
+      </ul>
+    </section>
+  </div>
+
+  <div class="recipe-show__delete-btn btn--as-link">
+    <a href="">
+      delete this recipe
+    </a>
+  </div>
+
+  <div class="recipe-show__created-at">
+    created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
+  </div>
 </div>
