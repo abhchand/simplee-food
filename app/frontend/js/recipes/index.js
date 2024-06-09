@@ -1,3 +1,6 @@
+import { copyToClipboard } from '../shared/clipboard';
+import { fromHTML } from '../shared/html';
+
 function onRecipeSearch(_event) {
   // Reset the page to the first each time we search
   renderRecipeList({ page: 1 });
@@ -8,17 +11,10 @@ function onRecipeShare(event) {
   const item = clicked.closest('.recipe-item');
 
   // Copy to clipboard
-  if (location.protocol !== 'https:') {
-    setFlashError('https is required to copy to clipboard');
+  const url = window.location.origin + '/recipes/' + item.dataset.id;
+  if (!copyToClipboard(url)) {
     return;
   }
-  if (!navigator.clipboard) {
-    setFlashError('copying to clipboard is not supported in your browser.');
-    return;
-  }
-  navigator.clipboard
-    .writeText(window.location.origin + '/recipes/' + item.dataset.id)
-    .catch(() => setFlashError('could not copy to clipboard'));
 
   // Create tool tip
   const span = document.createElement('span');
@@ -79,23 +75,6 @@ function onFailure(_error) {
   curNode.replaceWith(newNode);
 }
 
-// Source: https://stackoverflow.com/a/35385518/2490003
-function fromHTML(html, trim = true) {
-  // Process the HTML string.
-  html = trim ? html.trim() : html;
-  if (!html) return null;
-
-  // Then set up a new template element.
-  const template = document.createElement('template');
-  template.innerHTML = html;
-  const result = template.content.children;
-
-  // Then return either an HTMLElement or HTMLCollection,
-  // based on whether the input HTML had one or more roots.
-  if (result.length === 1) return result[0];
-  return result;
-}
-
 function getCurrentPage() {
   return parseInt(
     document.getElementById('recipe-content').dataset.currentPage
@@ -108,21 +87,6 @@ function getCurrentSearch() {
 
 function getCurrentSortBy() {
   return document.querySelector('button.selected').dataset.id;
-}
-
-function setFlashError(text) {
-  const span = fromHTML(`<span>${text}</span>`);
-  const dismiss = fromHTML(
-    `<a href="" onclick="clearFlashError()">(dismiss)</a>`
-  );
-
-  const flash = document.getElementById('flash');
-  flash.appendChild(span);
-  flash.appendChild(dismiss);
-}
-
-function clearFlashError() {
-  document.getElementById('flash').innerHTML = '';
 }
 
 export {
