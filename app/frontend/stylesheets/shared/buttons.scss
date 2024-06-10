@@ -17,15 +17,15 @@ button {
 }
 
 .btn--hollow {
-  font-size: 16px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   font-weight: 400;
+  font-size: 16px;
   background-color: white;
   border: 1px black solid;
-  border-bottom-width: 2px;
   border-right-width: 2px;
+  border-bottom-width: 2px;
 
   &:hover {
     opacity: 0.85;
