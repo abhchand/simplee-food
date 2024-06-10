@@ -3,10 +3,23 @@
   margin: 0 auto;
   padding: 40px 0;
 }
+@media screen and (max-width: 980px) {
+  .content {
+    width: 100%;
+  }
+}
 
 .recipe-title-bar {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  // Replace the default margin on h1
+  margin: 40px 0;
+
+  h1 {
+    // Remove the default margin on `h1`
+    margin: 0;
+    margin-right: 10px;
+  }
 
   button {
     margin-left: auto;
