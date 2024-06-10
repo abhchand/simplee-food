@@ -1,9 +1,9 @@
-.recipe-show__edit-btn {
+.recipes-show__edit-btn {
   width: 100px;
   min-width: 100px;
 }
 
-.recipe-show__header-bar {
+.recipes-show__header-bar {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -11,7 +11,7 @@
   margin-bottom: 50px;
 }
 
-.recipe-show__header-image {
+.recipes-show__header-image {
   width: 100%;
   height: 300px;
   overflow: hidden;
@@ -24,12 +24,12 @@
   }
 }
 
-.recipe-show__header-toolbar {
+.recipes-show__header-toolbar {
   display: flex;
   padding: 10px 0 0 0;
 }
 
-.recipe-show__header-share-link {
+.recipes-show__header-share-link {
   position: relative;
   margin-right: 20px;
   margin-bottom: 20px;
@@ -39,10 +39,10 @@
   }
 }
 
-.recipe-show__header-source-url {
+.recipes-show__header-source-url {
 }
 
-.recipe-show__serving-size {
+.recipes-show__serving-size {
   display: inline-block;
   margin-bottom: 20px;
   padding: 7px 15px;
@@ -54,11 +54,11 @@
   border-radius: 3px;
 }
 
-.recipe-show__instructions {
+.recipes-show__instructions {
   display: flex;
 }
 
-.recipe-show__ingredients {
+.recipes-show__ingredients {
   width: 350px;
   min-width: 350px;
   border-right: 1px silver solid;
@@ -81,7 +81,7 @@
   }
 }
 
-.recipe-show__steps {
+.recipes-show__steps {
   padding-left: 30px;
 
   ul {
@@ -90,7 +90,7 @@
   }
 }
 
-.recipe-show__step-item {
+.recipes-show__step-item {
   display: flex;
   margin-bottom: 30px;
 
@@ -99,7 +99,7 @@
   }
 }
 
-.recipe-show__step-number {
+.recipes-show__step-number {
   width: 50px;
   min-width: 50px;
   height: 50px;
@@ -113,16 +113,16 @@
   cursor: pointer;
 }
 
-.recipe-show__step-text {
+.recipes-show__step-text {
   margin: 0;
   font-size: 18px;
 }
 
-.recipe-show__created-at {
+.recipes-show__created-at {
   margin-top: 20px;
 }
 
-.recipe-show__delete-btn {
+.recipes-show__delete-btn {
   margin-top: 75px;
 
   & a {
@@ -131,18 +131,18 @@
 }
 
 @media screen and (max-width: 980px) {
-  .recipe-show__instructions {
+  .recipes-show__instructions {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .recipe-show__ingredients {
+  .recipes-show__ingredients {
     width: 100%;
     padding: 0 20px;
     border-right: none;
   }
 
-  .recipe-show__steps {
+  .recipes-show__steps {
     margin-top: 20px;
     padding: 0 20px;
   }
