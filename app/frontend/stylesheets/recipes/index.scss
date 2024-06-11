@@ -1,6 +1,7 @@
 .recipes-index__search {
   width: 100%;
   margin-bottom: 20px;
+  border: 1px black solid;
 }
 
 .recipes-index__action-bar {
@@ -15,7 +16,7 @@
     margin: 0;
     font-weight: 400;
     background-color: white;
-    border: 1px solid gray;
+    border: 1px solid black;
     border-radius: 0;
   }
 }
@@ -23,7 +24,7 @@
 .recipes-index__sort-by {
   button.selected {
     color: white;
-    background-color: gray;
+    background-color: black;
   }
 }
 
@@ -62,7 +63,7 @@
   height: 100px;
   margin-bottom: 15px;
   padding: 15px;
-  border: 1px solid darkgrey;
+  border: 1px solid black;
   border-radius: 5px;
 
   img {
