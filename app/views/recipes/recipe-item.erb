@@ -17,6 +17,11 @@
     </div>
   </div>
 
+  <% if recipes.size == 0 %>
+  <span class="recipes-index__empty-state">
+    No results found
+  </span>
+  <% else %>
   <div class="recipes-index__list">
   <% recipes.each do |recipe| %>
     <div class="recipes-index__item shareable" data-name="<%= recipe.slug %>">
@@ -40,4 +45,5 @@
     </div>
   <% end %>
   </div>
+  <% end %>
 </div>
