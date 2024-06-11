@@ -19,3 +19,10 @@ get '/recipes/:slug' do
 
   erb :'recipes/show'
 end
+
+delete '/recipes/:slug' do
+  @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+  @recipe.destroy! if @recipe
+
+  redirect '/recipes'
+end

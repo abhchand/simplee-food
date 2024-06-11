@@ -1,3 +1,5 @@
+import { setFlashError } from '../shared/flash';
+
 function onRecipeStepClick(event) {
   const el = event.currentTarget;
 
@@ -8,4 +10,14 @@ function onRecipeStepClick(event) {
   }
 }
 
-export { onRecipeStepClick };
+function onRecipeDelete(url) {
+  if (!confirm('Are you sure you want to delete this recipe?')) {
+    return;
+  }
+
+  fetch(url, { method: 'DELETE' })
+    .then(() => (window.location.href = '/recipes'))
+    .catch(() => setFlashError('Unable to delete Recipe'));
+}
+
+export { onRecipeStepClick, onRecipeDelete };

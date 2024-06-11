@@ -5,7 +5,7 @@ import {
   onRecipeSort
 } from './recipes/index';
 
-import { onRecipeStepClick } from './recipes/show';
+import { onRecipeStepClick, onRecipeDelete } from './recipes/show';
 
 import { clearFlashError } from './shared/flash';
 
@@ -20,5 +20,6 @@ export {
   onRecipeSearch,
   onRecipeShare,
   onRecipeSort,
-  onRecipeStepClick
+  onRecipeStepClick,
+  onRecipeDelete
 };
