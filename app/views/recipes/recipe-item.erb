@@ -31,9 +31,11 @@
             <%= recipe.name %>
           </a>
         </span>
-      </div>
-      <div class="recipes-index__item--actions" onclick="SimpleeFood.onRecipeShare(event)">
-        <%= svg_icon(:share) %>
+        <div class="recipes-index__share-link btn--as-link shareable" data-name="<%= recipe.slug %>" >
+          <a href="" onclick="SimpleeFood.onRecipeShare(event)">
+            share
+          </a>&nbsp;<%= svg_icon(:share) %>
+        </div>
       </div>
     </div>
   <% end %>

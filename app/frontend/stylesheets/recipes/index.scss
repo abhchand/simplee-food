@@ -81,36 +81,28 @@
 
 .recipes-index__item--details {
   flex-grow: 1;
-  padding: 15px 30px;
-  overflow: hidden;
-  font-weight: 700;
-  font-size: 22px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  margin-left: 10px;
 
-  a {
-    color: black;
-    text-decoration: none;
+  span:first-child {
+    overflow: hidden;
+    font-weight: 700;
+    font-size: 22px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    a {
+      color: black;
+      text-decoration: none;
+    }
   }
 }
 
-.recipes-index__item--actions {
-  /* required for copy confirmation to be absolutely positioned */
+.recipes-index__share-link {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  height: 100%;
+  margin-top: 10px;
 
   .floating-tooltip {
-    top: 75px;
-  }
-
-  svg {
-    width: 35px;
-    height: 35px;
-    cursor: pointer;
+    top: 25px;
   }
 }
 
