@@ -4,6 +4,12 @@
   border: 1px black solid;
 }
 
+.recipes-index__empty-state {
+  margin: 10px 0;
+  color: darkgrey;
+  font-style: italic;
+}
+
 .recipes-index__action-bar {
   display: flex;
   align-items: center;
