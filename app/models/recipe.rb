@@ -1,4 +1,6 @@
 class Recipe < ActiveRecord::Base
+  include SlugHelper
+
   validates :name, presence: true
   validates :slug, presence: true
 
@@ -53,13 +55,13 @@ class Recipe < ActiveRecord::Base
     # If we're updating and name didn't change - don't do anything
     return if persisted? && !name_changed?
 
-    stem = name.downcase.strip.gsub(/\s+/, '-')
+    slug = to_slug(name)
     suffix = 1
 
     # Keep looping till we find a valid slug name we can use
     loop do
       # We never use `-1` as a suffix. We start with `-2`, if needed
-      slug = [stem, suffix == 1 ? nil : suffix].compact.join('-')
+      slug = [slug, suffix == 1 ? nil : suffix].compact.join('-')
       recipe = Recipe.find_by_slug(slug)
 
       if recipe.nil?
