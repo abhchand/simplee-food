@@ -44,7 +44,7 @@ post '/login' do
 
   session[:user_id] = user.id
   session[:expires_at] = (Time.now + (60 * 60 * 24) * 7).to_i # 7 days from now
-  redirect to('/')
+  redirect to('/recipes')
 end
 
 get '/logout' do
