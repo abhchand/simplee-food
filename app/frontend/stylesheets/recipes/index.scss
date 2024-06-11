@@ -1,9 +1,9 @@
-#recipe-search {
+.recipes-index__search {
   width: 100%;
   margin-bottom: 20px;
 }
 
-.recipe-action-bar {
+.recipes-index__action-bar {
   display: flex;
   align-items: center;
   width: 100%;
@@ -17,15 +17,17 @@
     background-color: white;
     border: 1px solid gray;
     border-radius: 0;
-
-    &.selected {
-      color: white;
-      background-color: gray;
-    }
   }
 }
 
-#recipe-pagination {
+.recipes-index__sort-by {
+  button.selected {
+    color: white;
+    background-color: gray;
+  }
+}
+
+.recipes-index__pagination {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,19 +51,19 @@
   }
 }
 
-#recipe-list {
+.recipes-index__list {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.recipe-item {
+.recipes-index__item {
   display: flex;
   height: 100px;
   margin-bottom: 15px;
   padding: 15px;
-  border: 1px solid lightgray;
-  border-radius: 10px;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
 
   img {
     width: auto;
@@ -69,19 +71,19 @@
   }
 }
 
-.recipe-item--image {
+.recipes-index__item--image {
   min-width: 100px;
   height: 100px;
   overflow: hidden;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
-.recipe-item--details {
+.recipes-index__item--details {
   flex-grow: 1;
   padding: 15px 30px;
   overflow: hidden;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 22px;
   white-space: nowrap;
   text-overflow: ellipsis;
 
@@ -91,7 +93,7 @@
   }
 }
 
-.recipe-item--actions {
+.recipes-index__item--actions {
   /* required for copy confirmation to be absolutely positioned */
   position: relative;
   display: flex;
@@ -108,5 +110,19 @@
     width: 35px;
     height: 35px;
     cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .recipes-index__action-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    height: initial;
+  }
+  .recipes-index__sort-by {
+    margin-bottom: 10px;
+  }
+  .recipes-index__pagination {
+    margin-left: 0;
   }
 }

@@ -1,10 +1,10 @@
-<div id="recipe-content" data-current-page=<%= pagination[:current_page] %>>
-  <div class="recipe-action-bar">
-    <div id="recipe-sort-by">
-      <button data-id="created_at" onclick="SimpleeFood.onRecipeSort(event)" class="recipe-sort-by--recent<%= ' selected' if sort_by == "created_at" %>">Sort By Recent</button><button data-id="name" onclick="SimpleeFood.onRecipeSort(event)" class="recipe-sort-by--name<%= ' selected' if sort_by == "name" %>">Sort By Name</button>
+<div class="recipes-index__content" data-current-page=<%= pagination[:current_page] %>>
+  <div class="recipes-index__action-bar">
+    <div class="recipes-index__sort-by">
+      <button data-id="created_at" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--recent<%= ' selected' if sort_by == "created_at" %>">Sort By Recent</button><button data-id="name" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--name<%= ' selected' if sort_by == "name" %>">Sort By Name</button>
     </div>
 
-    <div id="recipe-pagination">
+    <div class="recipes-index__pagination">
       <button class="nav-arrow" onclick="SimpleeFood.onPaginationPrev()">
         <%= svg_icon(:left_arrow) %>
       </button>
@@ -17,22 +17,22 @@
     </div>
   </div>
 
-  <div id="recipe-list">
+  <div class="recipes-index__list">
   <% recipes.each do |recipe| %>
-    <div class="recipe-item shareable" data-name="<%= recipe.slug %>">
-      <div class="recipe-item--image">
+    <div class="recipes-index__item shareable" data-name="<%= recipe.slug %>">
+      <div class="recipes-index__item--image">
         <a href="/recipes/<%= recipe.slug %>">
           <img src="/images/avocado-toast.jpg" />
         </a>
       </div>
-      <div class="recipe-item--details">
+      <div class="recipes-index__item--details">
         <span>
           <a href="/recipes/<%= recipe.slug %>">
             <%= recipe.name %>
           </a>
         </span>
       </div>
-      <div class="recipe-item--actions" onclick="SimpleeFood.onRecipeShare(event)">
+      <div class="recipes-index__item--actions" onclick="SimpleeFood.onRecipeShare(event)">
         <%= svg_icon(:share) %>
       </div>
     </div>

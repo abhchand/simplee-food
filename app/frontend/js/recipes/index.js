@@ -42,14 +42,14 @@ function renderRecipeList({ page }) {
 }
 
 function onSuccess(json) {
-  let curNode = document.getElementById('recipe-content');
+  let curNode = document.querySelector('.recipes-index__content');
   let newNode = fromHTML(json['html']);
 
   curNode.replaceWith(newNode);
 }
 
 function onFailure(_error) {
-  curNode = document.getElementById('recipe-list');
+  curNode = document.querySelector('.recipes-index__list');
   newNode = fromHTML('<span>oops, something went wrong!</span>');
 
   curNode.replaceWith(newNode);
@@ -57,12 +57,12 @@ function onFailure(_error) {
 
 function getCurrentPage() {
   return parseInt(
-    document.getElementById('recipe-content').dataset.currentPage
+    document.querySelector('.recipes-index__content').dataset.currentPage
   );
 }
 
 function getCurrentSearch() {
-  return document.getElementById('recipe-search').value;
+  return document.querySelector('.recipes-index__search').value;
 }
 
 function getCurrentSortBy() {
