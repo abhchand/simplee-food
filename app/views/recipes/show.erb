@@ -26,9 +26,11 @@
     </div>
   </section>
 
+  <% if @recipe.serving_size %>
   <div class="recipes-show__serving-size">
     <%= @recipe.serving_size %>
   </div>
+  <% end %>
 
   <div class="recipes-show__instructions">
     <section class="recipes-show__ingredients">
