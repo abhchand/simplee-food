@@ -124,8 +124,9 @@
 
 .recipes-show__delete-btn {
   margin-top: 75px;
+  color: red;
 
-  & a {
+  a:hover {
     color: red;
   }
 }
