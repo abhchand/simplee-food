@@ -1,6 +1,9 @@
 class Recipe < ActiveRecord::Base
   include SlugHelper
 
+  has_many :recipe_tags, dependent: :destroy
+  has_many :tags, through: :recipe_tags, source: :tag, inverse_of: :recipes
+
   validates :name, presence: true
   validates :slug, presence: true
 
