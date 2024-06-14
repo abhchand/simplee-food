@@ -60,8 +60,7 @@
   <% if @recipe.tags.any? %>
     tags:&nbsp;
     <% @recipe.tags.each_with_index do |tag, idx| %>
-    <a href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a>
-    <% if idx < @recipe.tags.count - 1 %>,&nbsp;<% end %>
+    <a href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a><% if idx < @recipe.tags.count - 1 %>,&nbsp;<% end %>
     <% end %>
   <% else %>
     tags:&nbsp;none
