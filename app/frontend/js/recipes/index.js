@@ -49,8 +49,8 @@ function onSuccess(json) {
 }
 
 function onFailure(_error) {
-  curNode = document.querySelector('.recipes-index__list');
-  newNode = fromHTML('<span>oops, something went wrong!</span>');
+  let curNode = document.querySelector('.recipes-index__list');
+  let newNode = fromHTML('<span>oops, something went wrong!</span>');
 
   curNode.replaceWith(newNode);
 }
