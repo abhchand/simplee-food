@@ -9,6 +9,7 @@ class RecipeSearchService
   #   'search'    => (string)  # Optional. Ignored if blank.
   #   'sort_by'   => (string)  # Optional. Sorts by 'name ASC' if specified as "name",
   #                            # defaults to `created_at DESC` otherwise.
+  #   'tag'       => (string)  # Optional. The *slug* of the `Tag` to scope all searches by.
   # }
   def initialize(params = {})
     @params = params
@@ -17,6 +18,7 @@ class RecipeSearchService
   def call
     @recipes = Recipe.all
 
+    scope_to_tag!
     search!
     sort!
 
@@ -30,7 +32,8 @@ class RecipeSearchService
       'last_item' => @last_item,
       'total_items' => @total,
       'current_page' => page,
-      'last_page' => max_page
+      'last_page' => max_page,
+      'tag' => @tag
     }
   end
 
@@ -92,13 +95,21 @@ class RecipeSearchService
     @last_item = @total if @last_item > @total
   end
 
+  def scope_to_tag!
+    return unless @params['tag']
+
+    @tag = Tag.find_by_slug(@params['tag'])
+    @recipes = @recipes.joins(:tags).where('tags.id = ?', @tag.id)
+  end
+
   def search!
     return if @params['search'].nil? || @params['search'].length == 0
 
     @params['search']
       .split(' ')
       .each do |token|
-        @recipes = @recipes.where("LOWER(name) LIKE '%#{token.downcase}%'")
+        @recipes =
+          @recipes.where("LOWER(recipes.name) LIKE '%#{token.downcase}%'")
       end
   end
 
@@ -107,9 +118,9 @@ class RecipeSearchService
     # as a default.
     field, direction =
       if @params['sort_by']&.downcase == 'name'
-        %i[name asc]
+        %w[recipes.name asc]
       else
-        %i[created_at desc]
+        %w[recipes.created_at desc]
       end
 
     @recipes = @recipes.order("#{field} #{direction}")

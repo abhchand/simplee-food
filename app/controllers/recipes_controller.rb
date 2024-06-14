@@ -3,6 +3,7 @@ get '/recipes', auth: :user do
 
   @recipes = response['items']
   @sort_by = 'created_at'
+  @tag = response['tag']
   @pagination = {
     first_item: response['first_item'],
     last_item: response['last_item'],

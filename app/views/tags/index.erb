@@ -9,7 +9,7 @@
   <ul class="tags-index__list">
     <% @tag_counts.each do |(name, slug), count| %>
     <li class="tags-index__list-item">
-      <a href="/tags/<%= slug %>"><%= name.downcase %></a>&nbsp;(<%= count %>)
+      <a href="/recipes?tag=<%= slug %>"><%= name.downcase %></a>&nbsp;(<%= count %>)
     </li>
     <% end %>
   </ul>

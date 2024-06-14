@@ -1,4 +1,7 @@
-<div class="recipes-index__content" data-current-page=<%= pagination[:current_page] %>>
+<div
+  class="recipes-index__content"
+  data-current-page=<%= pagination[:current_page] %>
+  data-tag-scope=<%= tag&.slug %>>
   <div class="recipes-index__action-bar">
     <div class="recipes-index__sort-by">
       <button data-id="created_at" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--recent<%= ' selected' if sort_by == "created_at" %>">Sort By Recent</button><button data-id="name" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--name<%= ' selected' if sort_by == "name" %>">Sort By Name</button>
@@ -16,6 +19,12 @@
       </button>
     </div>
   </div>
+
+  <% if tag %>
+  <div class="recipes-index__tag-filter">
+    showing only recipes tagged <span class="tag"><%= tag.slug %></span>.&nbsp;&nbsp;<a href="/recipes">show all</a>
+  </div>
+  <% end %>
 
   <% if recipes.size == 0 %>
   <span class="recipes-index__empty-state">
@@ -44,7 +53,7 @@
         <% if recipe.tags.any? %>
         <div class="recipes-index__tags">
           <% recipe.tags.each_with_index do |tag| %>
-          <a class="tag" href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a>
+          <a class="tag" href="/recipes?tag=<%= tag.slug %>"><%= tag.name.downcase %></a>
           <% end %>
         </div>
         <% end %>

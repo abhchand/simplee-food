@@ -12,6 +12,7 @@ get '/api/recipes' do
   locals = {
     recipes: response['items'],
     sort_by: params['sort_by'],
+    tag: response['tag'],
     pagination: {
       first_item: response['first_item'],
       last_item: response['last_item'],

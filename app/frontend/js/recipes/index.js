@@ -30,7 +30,8 @@ function renderRecipeList({ page }) {
   const params = new URLSearchParams({
     page: page || getCurrentPage(),
     search: getCurrentSearch(),
-    sort_by: getCurrentSortBy()
+    sort_by: getCurrentSortBy(),
+    tag: getCurrentTag()
   });
 
   const url = `/api/recipes?${params.toString()}`;
@@ -67,6 +68,10 @@ function getCurrentSearch() {
 
 function getCurrentSortBy() {
   return document.querySelector('button.selected').dataset.id;
+}
+
+function getCurrentTag() {
+  return document.querySelector('.recipes-index__content').dataset.tagScope;
 }
 
 export { onPaginationNext, onPaginationPrev, onRecipeSearch, onRecipeSort };

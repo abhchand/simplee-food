@@ -60,6 +60,15 @@
   }
 }
 
+.recipes-index__tag-filter {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 6px 10px;
+  background-color: #E7F78D;
+  border-radius: 5px;
+  opacity: 0.85;
+}
+
 .recipes-index__list {
   display: flex;
   flex-direction: column;
