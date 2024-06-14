@@ -56,6 +56,18 @@
     </section>
   </div>
 
+  <div class="recipes-show__tags">
+  <% if @recipe.tags.any? %>
+    tags:&nbsp;
+    <% @recipe.tags.each_with_index do |tag, idx| %>
+    <a href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a>
+    <% if idx < @recipe.tags.count - 1 %>,&nbsp;<% end %>
+    <% end %>
+  <% else %>
+    tags:&nbsp;none
+  <% end %>
+  </div>
+
   <div class="recipes-show__delete-btn btn--as-link">
     <a onclick="SimpleeFood.onRecipeDelete('/recipes/<%= @recipe.slug %>'); return false;">
       delete this recipe

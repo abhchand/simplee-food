@@ -56,6 +56,7 @@
 
 .recipes-show__instructions {
   display: flex;
+  margin-bottom: 75px;
 }
 
 .recipes-show__ingredients {
@@ -118,17 +119,20 @@
   font-size: 18px;
 }
 
-.recipes-show__created-at {
-  margin-top: 20px;
+.recipes-show__tags {
+  margin-bottom: 20px;
 }
 
 .recipes-show__delete-btn {
-  margin-top: 75px;
   color: red;
+  margin-bottom: 20px;
 
   a:hover {
     color: red;
   }
+}
+
+.recipes-show__created-at {
 }
 
 @media screen and (max-width: 980px) {
