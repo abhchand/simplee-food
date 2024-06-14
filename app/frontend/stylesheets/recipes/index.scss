@@ -91,14 +91,21 @@
 
 .recipes-index__item--image {
   min-width: 100px;
+  width: 100px;
   height: 100px;
   overflow: hidden;
   border-radius: 5px;
+
+  img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+  }
 }
 
 .recipes-index__item--details {
   flex-grow: 1;
-  margin-left: 10px;
+  margin-left: 15px;
 
   span:first-child {
     overflow: hidden;

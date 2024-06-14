@@ -14,6 +14,13 @@ helpers do
     '/' + asset_manifest[name.to_s + '.js']
   end
 
+  def recipe_image_placeholder
+    @recipe_image_placeholder ||= begin
+      img_data = File.read(APP_ROOT.join('public', 'images', 'no-image.jpg'))
+      "image/jpeg;base64," + Base64.encode64(img_data)
+    end
+  end
+
   def svg_icon(name)
     @svg_icons ||= {}
     @svg_icons[name.to_sym] ||= APP_ROOT.join(

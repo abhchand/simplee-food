@@ -10,7 +10,7 @@
 
   <section class="recipes-show__header-bar">
     <div class="recipes-show__header-image">
-      <img src="data:<%= @recipe.image %>">
+      <img src="data:<%= @recipe.image || recipe_image_placeholder %>">
     </div>
     <div class="recipes-show__header-toolbar">
       <div class="recipes-show__header-share-link btn--as-link shareable" data-name="<%= @recipe.slug %>" >
