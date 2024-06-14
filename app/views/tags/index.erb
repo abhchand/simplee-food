@@ -1,0 +1,22 @@
+<div class="content">
+  <%= erb(:"shared/nav") %>
+
+  <div class="recipe-title-bar">
+    <h1>Tags</h1>
+  </div>
+
+  <% if @tag_counts.any? %>
+  <ul class="tags-index__list">
+    <% @tag_counts.each do |(name, slug), count| %>
+    <li class="tags-index__list-item">
+      <a href="/tags/<%= slug %>"><%= name.downcase %></a>&nbsp;(<%= count %>)
+    </li>
+    <% end %>
+  </ul>
+  <% else %>
+  <div class="tags-index__empty-state">
+    <p>You don't have any tags</p>
+    <p>Any tags you add to recipes will appear here</p>
+  </div>
+  <% end %>
+</div>
