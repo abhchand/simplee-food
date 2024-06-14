@@ -120,19 +120,19 @@
 }
 
 .recipes-show__tags {
-  margin-bottom: 20px;
+}
+
+.recipes-show__created-at {
+  margin-top: 20px;
 }
 
 .recipes-show__delete-btn {
   color: red;
-  margin-bottom: 20px;
+  margin-top: 40px;
 
   a:hover {
     color: red;
   }
-}
-
-.recipes-show__created-at {
 }
 
 @media screen and (max-width: 980px) {

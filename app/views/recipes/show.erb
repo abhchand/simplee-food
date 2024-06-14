@@ -68,13 +68,13 @@
   <% end %>
   </div>
 
+  <div class="recipes-show__created-at">
+    created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
+  </div>
+
   <div class="recipes-show__delete-btn btn--as-link">
     <a onclick="SimpleeFood.onRecipeDelete('/recipes/<%= @recipe.slug %>'); return false;">
       delete this recipe
     </a>
-  </div>
-
-  <div class="recipes-show__created-at">
-    created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
   </div>
 </div>
