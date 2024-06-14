@@ -112,6 +112,10 @@
   }
 }
 
+.recipes-index__tags {
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 600px) {
   .recipes-index__action-bar {
     flex-direction: column;

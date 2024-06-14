@@ -41,6 +41,14 @@
             share
           </a>&nbsp;<%= svg_icon(:share) %>
         </div>
+        <% if recipe.tags.any? %>
+        <div class="recipes-index__tags">
+          tags:&nbsp;
+          <% recipe.tags.each_with_index do |tag, idx| %>
+          <a href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a><% if idx < recipe.tags.count - 1 %>,&nbsp;<% end %>
+          <% end %>
+        </div>
+        <% end %>
       </div>
     </div>
   <% end %>
