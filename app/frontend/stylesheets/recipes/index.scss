@@ -63,10 +63,13 @@
 .recipes-index__tag-filter {
   display: inline-block;
   margin-bottom: 20px;
-  padding: 6px 10px;
-  background-color: #E7F78D;
+  padding: 6px 10px 6px 0;
   border-radius: 5px;
-  opacity: 0.85;
+
+  .tag {
+    margin-right: 0;
+    background-color: #E9D502;
+  }
 }
 
 .recipes-index__list {
@@ -90,8 +93,8 @@
 }
 
 .recipes-index__item--image {
-  min-width: 100px;
   width: 100px;
+  min-width: 100px;
   height: 100px;
   overflow: hidden;
   border-radius: 5px;
