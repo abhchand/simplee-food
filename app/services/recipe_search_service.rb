@@ -96,7 +96,7 @@ class RecipeSearchService
   end
 
   def scope_to_tag!
-    return unless @params['tag']
+    return if @params['tag'].blank?
 
     @tag = Tag.find_by_slug(@params['tag'])
     @recipes = @recipes.joins(:tags).where('tags.id = ?', @tag.id)
