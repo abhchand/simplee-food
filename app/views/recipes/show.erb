@@ -3,7 +3,9 @@
 
   <div class="recipe-title-bar">
     <h1><%= @recipe.name %></h1>
-    <button class="recipes-show__edit-btn btn--hollow">Edit&nbsp;<%= svg_icon(:pencil) %></button>
+    <a href="/recipes/<%= @recipe.slug %>/edit">
+      <button class="recipes-show__edit-btn btn--hollow">Edit&nbsp;<%= svg_icon(:pencil) %></button>
+    </a>
   </div>
 
   <span id="flash"></span>
