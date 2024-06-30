@@ -1,6 +1,6 @@
 import { fromHTML } from './html';
 
-function setFlashError(text) {
+function setFlashError(text, autoscroll = false) {
   const span = fromHTML(`<span>${text}</span>`);
   const dismiss = fromHTML(
     `<a href="#" onclick="SimpleeFood.clearFlashError()">(dismiss)</a>`
@@ -9,6 +9,10 @@ function setFlashError(text) {
   const flash = document.getElementById('flash');
   flash.appendChild(span);
   flash.appendChild(dismiss);
+
+  if (autoscroll) {
+    flash.scrollIntoView(true, { behavior: 'smooth' });
+  }
 }
 
 function clearFlashError() {
