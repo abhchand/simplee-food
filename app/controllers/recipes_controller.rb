@@ -15,7 +15,7 @@ get '/recipes', auth: :user do
   erb :'recipes/index'
 end
 
-get '/recipes/:slug' do
+get '/recipes/:slug', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
 
   erb :'recipes/show'
