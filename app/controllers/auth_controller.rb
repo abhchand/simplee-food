@@ -6,11 +6,11 @@ register do
       raise "Unknown authentication type '#{type}'"
     end
 
-    require_auth = Config.find_by_key('ENFORCE_AUTH')&.value == '1'
-    should_auth =
-      type.to_s == 'always' || (type.to_s == 'conditionally' && require_auth)
-
     condition do
+      require_auth = Config.find_by_key('ENFORCE_AUTH')&.value == '1'
+      should_auth =
+        type.to_s == 'always' || (type.to_s == 'conditionally' && require_auth)
+
       if should_auth && @user.nil?
         flash[:notice] = 'You must sign in first'
         redirect '/login'
