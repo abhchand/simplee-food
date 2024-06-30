@@ -7,7 +7,7 @@ register do
     end
 
     condition do
-      require_auth = Config.find_by_key('ENFORCE_AUTH')&.value == '1'
+      require_auth = Config.lookup('ENFORCE_AUTH') == '1'
       should_auth =
         type.to_s == 'always' || (type.to_s == 'conditionally' && require_auth)
 

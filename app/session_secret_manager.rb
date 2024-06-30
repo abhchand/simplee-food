@@ -45,7 +45,7 @@ class SessionSecretManager
     end
 
     def fetch_secret
-      Config.find_by_key('SESSION_SECRET')&.value
+      Config.lookup('SESSION_SECRET')
     end
 
     def running_migration_tasks?
