@@ -1,21 +1,19 @@
-<div class="container">
-  <%= erb(:"shared/flash") %>
-
-  <form style="margin-top: 50px;" class="w-25" method="post" action="/login">
+<div class="content">
+  <form class="auth__form" method="post" action="/login">
     <h1>Log In</h1>
 
-    <div class="form-outline mb-4">
+    <%= erb(:"shared/flash") %>
+
+    <div class="auth__form-block">
+      <label class="" for="login-username">username</label>
       <input type="text" name="login[username]" id="login-username" class="form-control" />
-      <label class="form-label" for="login-username">username</label>
     </div>
 
-    <!-- Password input -->
-    <div class="form-outline mb-4">
+    <div class="auth__form-block">
+      <label class="" for="login-password">password</label>
       <input type="password" name="login[password]" id="login-password" class="form-control" />
-      <label class="form-label" for="login-password">password</label>
     </div>
 
-    <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">log in</button>
+    <button type="submit" class="auth__form-submit-btn btn--hollow">log in</button>
   </form>
 </div>
