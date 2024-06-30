@@ -1,4 +1,5 @@
 require 'securerandom'
+require_relative 'models/config'
 
 # Sinatra takes a `:session_secret` config, which is a secret that it uses to
 # verify all of its sessions. This is typically set via an ENV var, but that
@@ -40,16 +41,11 @@ class SessionSecretManager
     def create_secret!
       SecureRandom
         .hex(32)
-        .tap { |sekrit| ActiveRecord::Base.connection.execute(<<-SQL) }
-          INSERT INTO configs VALUES ('SESSION_SECRET', '#{sekrit}');
-          SQL
+        .tap { |sekrit| Config.create!(key: 'SESSION_SECRET', value: sekrit) }
     end
 
     def fetch_secret
-      result = ActiveRecord::Base.connection.execute(<<-SQL)
-        SELECT * FROM configs WHERE key = 'SESSION_SECRET';
-        SQL
-      return result[0]['value'] if result.any?
+      Config.find_by_key('SESSION_SECRET')&.value
     end
 
     def running_migration_tasks?
