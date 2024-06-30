@@ -24,6 +24,7 @@ end
 
 get '/recipes/:slug', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+  return(status 404) unless @recipe
 
   erb :'recipes/show'
 end
@@ -32,11 +33,15 @@ get '/recipes/:slug/edit', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
   @tags = Tag.all.order(:name)
 
+  return(status 404) unless @recipe
+
   erb :'recipes/edit'
 end
 
 delete '/recipes/:slug', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+  return(status 404) unless @recipe
+
   @recipe.destroy! if @recipe
 
   redirect '/recipes'
