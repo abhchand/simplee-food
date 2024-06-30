@@ -2,8 +2,10 @@
   <a href="/recipes">recipes</a>
   <span>&nbsp;|&nbsp;</span>
   <a href="/tags">tags</a>
+  <% if @user %>
   <span>&nbsp;|&nbsp;</span>
   <a href="/settings">settings</a>
+  <% end %>
 
   <% if @user %>
   <span class="nav--auth"><b>👤 <%= @user.name %></b></span>
