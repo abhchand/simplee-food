@@ -28,7 +28,7 @@ get '/api/recipes' do
   { html: html }.to_json
 end
 
-post '/api/recipes/:slug' do
+put '/api/recipes/:slug' do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
 
   begin

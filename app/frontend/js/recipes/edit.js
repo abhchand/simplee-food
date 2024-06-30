@@ -60,7 +60,7 @@ function onEditRecipeSubmit(event) {
   const headers = { Accept: 'application/json' };
   const url = `/api/recipes/${form.dataset.recipeSlug}`;
 
-  fetch(url, { method: 'POST', headers, body: formData })
+  fetch(url, { method: 'PUT', headers, body: formData })
     .then((response) => {
       return response.ok ? response.json() : Promise.reject(response);
     })
