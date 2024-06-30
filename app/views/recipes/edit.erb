@@ -1,8 +1,14 @@
+<%#
+  This template is used by both the "edit" and "new" actions.
+
+  In the case of the "new" action, `@recipe` will be a newly instantiated
+  `Recipe` object that is not yet persisted
+%>
 <div class="content">
   <%= erb(:"shared/nav") %>
 
   <div class="recipe-title-bar">
-    <h1>Edit Recipe</h1>
+    <h1><%= @recipe.persisted? ? 'Edit Recipe' : 'New Recipe' %></h1>
     <button onClick="SimpleeFood.onEditRecipeSubmit(event)" class="recipes-edit__save-btn btn--hollow">
       Save
     </button>
@@ -201,7 +207,7 @@
       Save
     </button>
 
-    <a href="/recipes/<%= @recipe.slug %>">
+    <a href="<%= @recipe.persisted? ? "/recipes/#{@recipe.slug}" : '/recipes' %>">
       <button type="button" class="recipes-edit__cancel-btn btn--hollow">
         cancel
       </button>

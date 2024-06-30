@@ -15,6 +15,13 @@ get '/recipes', auth: :user do
   erb :'recipes/index'
 end
 
+get '/recipes/new', auth: :user do
+  @recipe = Recipe.new
+  @tags = Tag.all.order(:name)
+
+  erb :'recipes/edit'
+end
+
 get '/recipes/:slug', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
 
