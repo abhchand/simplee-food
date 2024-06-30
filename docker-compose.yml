@@ -2,7 +2,7 @@ version: '3'
 
 services:
   girder:
-    image: girder/girder:${DOCKER_TAG:-latest}
+    image: girder/girder:${SIMPLEE_FOOD_DOCKER_TAG:-latest}
     build:
       context: .
     environment:
@@ -12,6 +12,6 @@ services:
       - host.docker.internal:host-gateway
     ports:
       # HOST:CONTAINER
-      - ${APP_PORT:-8080}:8080
+      - ${SIMPLEE_FOOD_APP_PORT:-8080}:8080
     volumes:
       - ./sqlite:/server/sqlite
