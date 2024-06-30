@@ -23,6 +23,8 @@ set :public_folder, APP_ROOT.join('public')
 enable :sessions
 set :session_secret, SessionSecretManager.fetch_or_create!
 
+set :strict_paths, false
+
 Time.zone = 'UTC'
 
 # Application Resources
