@@ -3,7 +3,7 @@ import { fromHTML } from './html';
 function setFlashError(text) {
   const span = fromHTML(`<span>${text}</span>`);
   const dismiss = fromHTML(
-    `<a href="" onclick="SimpleeFood.clearFlashError()">(dismiss)</a>`
+    `<a href="#" onclick="SimpleeFood.clearFlashError()">(dismiss)</a>`
   );
 
   const flash = document.getElementById('flash');
