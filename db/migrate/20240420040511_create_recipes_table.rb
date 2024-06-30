@@ -6,8 +6,8 @@ class CreateRecipesTable < ActiveRecord::Migration[5.0]
       t.string :slug, null: false
       t.binary :image
       t.string :serving_size
-      t.json :ingredients, default: '[]'
-      t.json :steps, default: '[]'
+      t.string :ingredients
+      t.string :steps
       t.string :source_url
     end
   end

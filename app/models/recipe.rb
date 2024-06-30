@@ -22,7 +22,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def ingredients
-    return if self[:ingredients].nil?
+    return [] if self[:ingredients].nil?
 
     JSON.parse(self[:ingredients])
   end
@@ -32,7 +32,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def steps
-    return if self[:steps].nil?
+    return [] if self[:steps].nil?
 
     JSON.parse(self[:steps])
   end
