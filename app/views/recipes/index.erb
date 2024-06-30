@@ -2,7 +2,13 @@
   <%= erb(:"shared/nav") %>
 
   <div class="recipe-title-bar">
+    <% if @tag %>
+    <h1>Recipes Tagged <span class="tag"><%= @tag.name %></span></h1>
+    <% else %>
     <h1>Recipes</h1>
+    <% end %>
+    </h1>
+
     <% if @user %>
     <a href="/recipes/new">
       <button class="recipes-index__create-btn btn--hollow">

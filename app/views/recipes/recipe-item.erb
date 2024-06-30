@@ -20,12 +20,6 @@
     </div>
   </div>
 
-  <% if tag %>
-  <div class="recipes-index__tag-filter">
-    showing only recipes tagged <span class="tag"><%= tag.slug %></span>.&nbsp;&nbsp;<a href="/recipes">show all</a>
-  </div>
-  <% end %>
-
   <% if recipes.size == 0 %>
   <span class="recipes-index__empty-state">
     No results found
