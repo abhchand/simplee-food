@@ -21,7 +21,7 @@ import {
 
 import { onRecipeStepClick, onRecipeDelete } from './recipes/show';
 
-import { clearFlashError } from './shared/flash';
+import { clearFlash } from './shared/flash';
 
 import { onRecipeShare } from './shared/recipe-share';
 
@@ -32,7 +32,7 @@ export {
   bulkAddDraggableListItems,
   closeBulkAddModal,
   openBulkAddModal,
-  clearFlashError,
+  clearFlash,
   onDraggableItemDelete,
   onDragEnd,
   onDragOver,

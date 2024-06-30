@@ -1,0 +1,7 @@
+<% flash_key = flash.to_h.keys.first %>
+<div id="flash" <%= "class=\"flash--#{flash_key}\"" if flash_key %>>
+  <% if flash_key %>
+  <span><%= flash[flash_key] %></span>
+  (<a href="#" onclick="SimpleeFood.clearFlash()">dismiss</a>)
+  <% end %>
+</div>

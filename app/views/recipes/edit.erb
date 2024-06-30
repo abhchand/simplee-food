@@ -14,7 +14,7 @@
     </button>
   </div>
 
-  <span id="flash"></span>
+  <%= erb(:"shared/flash") %>
 
   <form class="recipes-edit__form" data-recipe-slug="<%= @recipe.slug %>" onSubmit="SimpleeFood.onEditRecipeSubmit(event)">
     <div class="recipes-edit__image-preview">

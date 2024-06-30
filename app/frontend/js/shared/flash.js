@@ -3,10 +3,11 @@ import { fromHTML } from './html';
 function setFlashError(text, autoscroll = false) {
   const span = fromHTML(`<span>${text}</span>`);
   const dismiss = fromHTML(
-    `<a href="#" onclick="SimpleeFood.clearFlashError()">(dismiss)</a>`
+    `(<a href="#" onclick="SimpleeFood.clearFlash()">dismiss</a>)`
   );
 
   const flash = document.getElementById('flash');
+  flash.classList.add('flash--error');
   flash.appendChild(span);
   flash.appendChild(dismiss);
 
@@ -15,8 +16,11 @@ function setFlashError(text, autoscroll = false) {
   }
 }
 
-function clearFlashError() {
-  document.getElementById('flash').innerHTML = '';
+function clearFlash() {
+  const flash = document.getElementById('flash');
+
+  flash.innerHTML = '';
+  flash.classList.remove('flash--error');
 }
 
-export { clearFlashError, setFlashError };
+export { clearFlash, setFlashError };

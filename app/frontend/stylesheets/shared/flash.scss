@@ -3,7 +3,18 @@
 
   & > span {
     margin-right: 5px;
+  }
+
+  &.flash--error > span {
     color: red;
+  }
+
+  &.flash--notice > span {
+    color: gray;
+  }
+
+  &.flash--success > span {
+    color: green;
   }
 }
 
