@@ -35,8 +35,7 @@
 
 .recipes-index__sort-by {
   button.selected {
-    color: white;
-    background-color: black;
+    background-color: #eee;
   }
 }
 
@@ -76,7 +75,6 @@
   margin-bottom: 15px;
   padding: 15px;
   border: 1px solid black;
-  border-radius: 5px;
 
   img {
     width: auto;
@@ -132,7 +130,7 @@
 }
 
 .recipes-index__tags {
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 @media screen and (max-width: 600px) {
