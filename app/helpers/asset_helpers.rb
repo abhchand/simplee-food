@@ -15,10 +15,11 @@ helpers do
   end
 
   def recipe_image_placeholder
-    @recipe_image_placeholder ||= begin
-      img_data = File.read(APP_ROOT.join('public', 'images', 'no-image.jpg'))
-      "image/jpeg;base64," + Base64.encode64(img_data)
-    end
+    @recipe_image_placeholder ||=
+      begin
+        img_data = File.read(APP_ROOT.join('public', 'images', 'no-image.jpg'))
+        'image/jpeg;base64,' + Base64.encode64(img_data)
+      end
   end
 
   def svg_icon(name)
