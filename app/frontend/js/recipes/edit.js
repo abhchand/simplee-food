@@ -67,7 +67,7 @@ function onEditRecipeSubmit(event) {
     .then((json) => (window.location.href = json.url))
     .catch((response) => {
       console.log(response.status, response.statusText);
-      response.json().then((json) => setFlashError(json.error));
+      response.json().then((json) => setFlashError(json.error, true));
     });
 }
 
