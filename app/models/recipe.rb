@@ -17,6 +17,10 @@ class Recipe < ActiveRecord::Base
 
   before_validation :calculate_slug
 
+  def add_tag(tag)
+    RecipeTag.find_or_create_by(recipe: self, tag: tag)
+  end
+
   def ingredients
     return if self[:ingredients].nil?
 
@@ -31,6 +35,11 @@ class Recipe < ActiveRecord::Base
     return if self[:steps].nil?
 
     JSON.parse(self[:steps])
+  end
+
+  def rm_tag(tag)
+    rt = RecipeTag.find_by(recipe: self, tag: tag)
+    rt.destroy! if rt.present?
   end
 
   def steps=(val)
