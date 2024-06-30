@@ -77,6 +77,11 @@ class RecipeUpdateService
       steps: (@params[:recipe][:instructions] || {}).values
     }
 
+    # nilify any blank strings
+    %i[source_url serving_size].each do |field|
+      @attributes[field] = nil if @attributes[field].blank?
+    end
+
     # assumption: `image_valid?` should have already been called before this
     @attributes.merge!(image: image) if image?
 
