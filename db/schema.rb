@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2024_06_13_160255) do
     t.json "ingredients", default: "[]"
     t.json "steps", default: "[]"
     t.string "source_url"
-    t.text "notes"
   end
 
   create_table "tags", force: :cascade do |t|

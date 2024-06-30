@@ -9,7 +9,6 @@ class CreateRecipesTable < ActiveRecord::Migration[5.0]
       t.json :ingredients, default: '[]'
       t.json :steps, default: '[]'
       t.string :source_url
-      t.text :notes
     end
   end
 end
