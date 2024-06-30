@@ -135,6 +135,12 @@
   .floating-tooltip {
     top: 25px;
   }
+
+  svg {
+    // Override size for this specific icon
+    width: 18px;
+    height: 18px;
+  }
 }
 
 .recipes-index__tags {
