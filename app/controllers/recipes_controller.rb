@@ -1,4 +1,6 @@
-get '/recipes', auth: :user do
+require_relative 'auth_controller'
+
+get '/recipes', authenticate: :conditionally do
   response = RecipeSearchService.new(params).call
 
   @recipes = response['items']
@@ -15,21 +17,21 @@ get '/recipes', auth: :user do
   erb :'recipes/index'
 end
 
-get '/recipes/new', auth: :user do
+get '/recipes/new', authenticate: :always do
   @recipe = Recipe.new
   @tags = Tag.all.order(:name)
 
   erb :'recipes/edit'
 end
 
-get '/recipes/:slug', auth: :user do
+get '/recipes/:slug', authenticate: :conditionally do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
   return(status 404) unless @recipe
 
   erb :'recipes/show'
 end
 
-get '/recipes/:slug/edit', auth: :user do
+get '/recipes/:slug/edit', authenticate: :always do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
   @tags = Tag.all.order(:name)
 
@@ -38,7 +40,7 @@ get '/recipes/:slug/edit', auth: :user do
   erb :'recipes/edit'
 end
 
-delete '/recipes/:slug', auth: :user do
+delete '/recipes/:slug', authenticate: :always do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
   return(status 404) unless @recipe
 

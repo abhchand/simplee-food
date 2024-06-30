@@ -5,6 +5,10 @@
   <span>&nbsp;|&nbsp;</span>
   <a href="/settings">settings</a>
 
-  <span class="nav--user"><b>👤 <%= @user.name %></b></span>
+  <% if @user %>
+  <span class="nav--auth"><b>👤 <%= @user.name %></b></span>
   &nbsp;(<a href="/logout">logout</a>)
+  <% else %>
+  <a class="nav--auth" href="/login">login</a>
+  <% end %>
 </nav>

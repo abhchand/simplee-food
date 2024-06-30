@@ -1,4 +1,6 @@
-get '/api/recipes' do
+require_relative '../auth_controller'
+
+get '/api/recipes', authenticate: :conditionally do
   content_type :json
 
   begin
@@ -28,7 +30,7 @@ get '/api/recipes' do
   { html: html }.to_json
 end
 
-put '/api/recipes' do
+put '/api/recipes', authenticate: :always do
   @recipe = Recipe.new
 
   begin
@@ -55,7 +57,7 @@ put '/api/recipes' do
   }.to_json
 end
 
-put '/api/recipes/:slug' do
+put '/api/recipes/:slug', authenticate: :always do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
 
   begin

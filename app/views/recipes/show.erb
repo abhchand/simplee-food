@@ -3,9 +3,11 @@
 
   <div class="recipe-title-bar">
     <h1><%= @recipe.name %></h1>
+    <% if @user %>
     <a href="/recipes/<%= @recipe.slug %>/edit">
       <button class="recipes-show__edit-btn btn--hollow">Edit&nbsp;<%= svg_icon(:pencil) %></button>
     </a>
+    <% end %>
   </div>
 
   <%= erb(:"shared/flash") %>

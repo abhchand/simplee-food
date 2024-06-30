@@ -1,19 +1,21 @@
 # Auth mechanism adapted from https://stackoverflow.com/a/3560286/2490003
 
 register do
-  def auth(type)
+  def authenticate(type)
+    unless %w[conditionally always].include?(type.to_s)
+      raise "Unknown authentication type '#{type}'"
+    end
+
+    require_auth = Config.find_by_key('ENFORCE_AUTH')&.value == '1'
+    should_auth =
+      type.to_s == 'always' || (type.to_s == 'conditionally' && require_auth)
+
     condition do
-      unless send("is_#{type}?")
+      if should_auth && @user.nil?
         flash[:notice] = 'You must sign in first'
         redirect '/login'
       end
     end
-  end
-end
-
-helpers do
-  def is_user?
-    @user != nil
   end
 end
 

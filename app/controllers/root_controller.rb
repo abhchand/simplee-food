@@ -1,3 +1,5 @@
-get '/', auth: :user do
+require_relative 'auth_controller'
+
+get '/' do
   redirect '/recipes'
 end
