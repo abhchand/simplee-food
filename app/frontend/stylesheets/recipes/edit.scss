@@ -1,0 +1,137 @@
+.recipes-edit__form {
+  padding: 20px 0;
+  background-color: #ffffed;
+
+  // Apply only to the submit at the bottom of the page
+  .recipes-edit__save-btn {
+    margin-top: 50px;
+  }
+}
+
+.recipes-edit__image-preview {
+  width: 250px;
+  min-width: 250px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 5px;
+
+  img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+  }
+}
+
+.recipes-edit__image-select {
+  display: none;
+}
+
+.recipes-edit__image-select-label {
+  margin-top: 5px;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.recipes-edit__field-block {
+  margin-top: 35px;
+
+  > label, > h3 {
+    display: block;
+    color: #555;
+    font-weight: 700;
+    font-size: 20px;
+  }
+
+  input {
+    width: 300px;
+  }
+}
+
+.recipes-edit__draggable-list {
+}
+
+.recipes-edit__draggable-list-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: grab;
+
+  input {
+    // Override global input styling
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  textarea {
+    // Override global textarea styling
+    width: 100%;
+    height: 75px;
+    margin: 5px 0;
+  }
+
+  svg {
+    width: 22px;
+    height: 22px;
+    fill: #555;
+  }
+
+  // Apply only to the drag icon
+  & > svg {
+    margin-right: 10px;
+  }
+
+  button {
+    width: 30px;
+    margin-left: 10px;
+    background-color: transparent;
+  }
+}
+
+.recipes-edit__draggable-list-actions {
+}
+
+.recipes-edit__add-draggable-item-btn {
+  margin-right: 5px;
+}
+
+.recipes-edit__bulk-add-draggable-item-btn {
+}
+
+.recipes-edit__bulk-add-draggable-item-modal {
+}
+
+.recipes-edit__bulk-add-draggable-item-close-btn {
+}
+
+.recipes-edit__bulk-add-draggable-item-open-btn {
+}
+
+#recipe-ingredients {
+}
+
+#recipe-instructions {
+}
+
+.recipes-edit__tags {
+
+  padding-left: 10px;
+
+  input[type="checkbox"] {
+    // Override global input styling
+    width: 20px;
+    margin: 2px 5px 2px 0;
+    vertical-align: middle;
+  }
+}
+
+.recipes-edit__save-btn {
+  background-color: #00F535;
+}
+
+.recipes-edit__cancel-btn {
+  margin-left: 10px;
+}
+
+.dragging-bumper {
+  margin-top: 25px;
+}

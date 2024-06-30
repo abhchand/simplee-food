@@ -1,0 +1,210 @@
+<div class="content">
+  <%= erb(:"shared/nav") %>
+
+  <div class="recipe-title-bar">
+    <h1>Edit Recipe</h1>
+    <button onClick="SimpleeFood.onEditRecipeSubmit(event)" class="recipes-edit__save-btn btn--hollow">
+      Save
+    </button>
+  </div>
+
+  <span id="flash"></span>
+
+  <form class="recipes-edit__form" data-recipe-slug="<%= @recipe.slug %>" onSubmit="SimpleeFood.onEditRecipeSubmit(event)">
+    <div class="recipes-edit__image-preview">
+      <img
+        class="recipes-edit__image-preview"
+        src="data:<%= @recipe.image || recipe_image_placeholder %>">
+    </div>
+    <input
+      class="recipes-edit__image-select"
+      onChange="SimpleeFood.onImageSelect(event)"
+      type="file"
+      name="recipe[image]"
+      id="file-upload"
+      accept=".jpg, .jpeg, .png">
+    <label for="file-upload" class="recipes-edit__image-select-label btn--hollow">Upload New Image</label>
+
+    <div class="recipes-edit__field-block">
+      <label for="recipe_name">name</label>
+      <input id="recipe_name" name="recipe[name]" value="<%= @recipe.name %>"/>
+    </div>
+
+    <div class="recipes-edit__field-block">
+      <label for="recipe_source_url">original url</label>
+      <input id="recipe_source_url" name="recipe[source_url]" value="<%= @recipe.source_url %>"/>
+    </div>
+
+    <div class="recipes-edit__field-block">
+      <label for="recipe_serving_size">serving size</label>
+      <input id="recipe_serving_size" name="recipe[serving_size]" value="<%= @recipe.serving_size %>"/>
+    </div>
+
+    <%# Edit Ingredients %>
+    <div class="recipes-edit__field-block" id="recipe-ingredients">
+      <h3>ingredients</h3>
+      <ul
+        class="recipes-edit__draggable-list"
+        ondragstart="SimpleeFood.onDragStart(event)"
+        ondragend="SimpleeFood.onDragEnd(event)"
+        ondragover="SimpleeFood.onDragOver(event)">
+        <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
+          <%#
+            this <li> is reconstructed programmatically in JS, so any changes
+            here should be updated in the JS logic as well
+          %>
+          <li draggable="true" class="recipes-edit__draggable-list-row">
+            <%= svg_icon(:drag_icon) %>
+            <input name="recipe[ingredients][<%= idx %>]" value="<%= ingredient %>" />
+            <button type="button" onclick="SimpleeFood.onDraggableItemDelete(event)">
+              <%= svg_icon(:trash) %>
+            </button>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="recipes-edit__draggable-list-actions">
+        <button
+          type="button"
+          class="recipes-edit__add-draggable-item-btn btn--hollow"
+          onclick="SimpleeFood.addDraggableListItem('recipe-ingredients')">
+          add
+        </button>
+        <button
+          type="button"
+          class="recipes-edit__bulk-add-draggable-item-btn btn--hollow"
+          onclick="SimpleeFood.openBulkAddModal('recipe-ingredients')">
+          bulk add
+        </button>
+
+        <%# render the modal, which is hidden by default until opened %>
+        <div class="modal modal--closed recipes-edit__bulk-add-draggable-item-modal">
+          <div class="modal-content">
+            <h2>Bulk Add Ingredients</h2>
+            <p>Enter multiple ingredients here. Each line will be added as a separate ingredient.</p>
+            <textarea class="modal-textarea"></textarea>
+            <button
+              type="button"
+              class="recipes-edit__bulk-add-draggable-item-close-btn btn--hollow"
+              onclick="SimpleeFood.closeBulkAddModal('recipe-ingredients')">
+              cancel
+            </button>
+            <button
+              type="button"
+              class="recipes-edit__bulk-add-draggable-item-open-btn btn--hollow"
+              onclick="SimpleeFood.bulkAddDraggableListItems('recipe-ingredients')">
+              add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <%# Edit Instructions %>
+    <div class="recipes-edit__field-block" id="recipe-instructions">
+      <h3>steps</h3>
+      <ul
+        class="recipes-edit__draggable-list"
+        ondragstart="SimpleeFood.onDragStart(event)"
+        ondragend="SimpleeFood.onDragEnd(event)"
+        ondragover="SimpleeFood.onDragOver(event)">
+        <% @recipe.steps.each_with_index do |instruction, idx| %>
+          <%#
+            this <li> is reconstructed programmatically in JS, so any changes
+            here should be updated in the JS logic as well
+          %>
+          <li draggable="true" class="recipes-edit__draggable-list-row">
+            <%= svg_icon(:drag_icon) %>
+            <textarea name="recipe[instructions][<%= idx %>]" style="resize: none;"><%= instruction %></textarea>
+            <button type="button" onclick="SimpleeFood.onDraggableItemDelete(event)">
+              <%= svg_icon(:trash) %>
+            </button>
+          </li>
+        <% end %>
+      </ul>
+
+      <div class="recipes-edit__draggable-list-actions">
+        <button
+          type="button"
+          class="recipes-edit__add-draggable-item-btn btn--hollow"
+          onclick="SimpleeFood.addDraggableListItem('recipe-instructions')">
+          add
+        </button>
+        <button
+          type="button"
+          class="recipes-edit__bulk-add-draggable-item-btn btn--hollow"
+          onclick="SimpleeFood.openBulkAddModal('recipe-instructions')">
+          bulk add
+        </button>
+
+        <%# render the modal, which is hidden by default until opened %>
+        <div class="modal modal--closed recipes-edit__bulk-add-draggable-item-modal">
+          <div class="modal-content">
+            <h2>Bulk Add Instructions</h2>
+            <p>Enter multiple instructions here. Each line will be added as a separate instruction.</p>
+            <textarea class="modal-textarea"></textarea>
+            <button
+              type="button"
+              class="recipes-edit__bulk-add-draggable-item-close-btn btn--hollow"
+              onclick="SimpleeFood.closeBulkAddModal('recipe-instructions')">
+              cancel
+            </button>
+            <button
+              type="button"
+              class="recipes-edit__bulk-add-draggable-item-open-btn btn--hollow"
+              onclick="SimpleeFood.bulkAddDraggableListItems('recipe-instructions')">
+              add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="recipes-edit__field-block">
+      <h3>tags</h3>
+
+      <ul class="recipes-edit__tags">
+      <% @tags.each do |tag| %>
+        <% id = "recipe_tag_ids_#{tag.slug}" %>
+        <li>
+          <input
+            type="checkbox"
+            id="<%= id %>"
+            name="recipe[tag_ids][]"
+            <%= 'checked' if @recipe.tags.include?(tag) %>
+            value="<%= tag.id %>">
+          <label for="<%= id %>"><%= tag.name %></label>
+        </li>
+      <% end %>
+      </ul>
+
+      <button
+        type="button"
+        class="recipes-edit__add-tag-btn btn--hollow"
+        onclick="SimpleeFood.onAddTag()">
+        add new tag
+      </button>
+    </div>
+
+    <%#
+      this exists purely so that we can copy these icons when programmatically
+      building DOM elements in JS
+    %>
+    <div id="reference_icons" style="display: none;">
+      <div class="drag-icon"><%= svg_icon(:drag_icon) %></div>
+      <div class="trash"><%= svg_icon(:trash) %></div>
+    </div>
+
+    <button type="submit" class="recipes-edit__save-btn btn--hollow">
+      Save
+    </button>
+
+    <a href="/recipes/<%= @recipe.slug %>">
+      <button type="button" class="recipes-edit__cancel-btn btn--hollow">
+        cancel
+      </button>
+    </a>
+  </form>
+</div>

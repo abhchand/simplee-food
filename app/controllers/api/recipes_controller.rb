@@ -27,3 +27,30 @@ get '/api/recipes' do
   status 200
   { html: html }.to_json
 end
+
+post '/api/recipes/:slug' do
+  @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+
+  begin
+    RecipeUpdateService.new(@recipe, params).call
+  rescue RecipeUpdateService::UpdateError => e
+    status 500
+    return { error: e.message }.to_json
+  rescue StandardError => e
+    status 500
+    return { error: 'An unknown error occurred' }.to_json
+  end
+
+  # Ideally we'd `redirect()` here to send a 301 Response back to the frontend,
+  # which would follow the redirect. However, it doesn't seem straightforward
+  # behavior to implement that
+  #
+  # https://stackoverflow.com/a/39739894/2490003
+  #
+  # We settle for a 200 JSON reponse and let the frontend manually redirect.
+  status 200
+  {
+    # We reload because if the `name` has changed, the slug may have changed
+    url: "/recipes/#{@recipe.reload.slug}"
+  }.to_json
+end

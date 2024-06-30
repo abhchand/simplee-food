@@ -21,7 +21,14 @@ get '/recipes/:slug', auth: :user do
   erb :'recipes/show'
 end
 
-delete '/recipes/:slug' do
+get '/recipes/:slug/edit', auth: :user do
+  @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+  @tags = Tag.all.order(:name)
+
+  erb :'recipes/edit'
+end
+
+delete '/recipes/:slug', auth: :user do
   @recipe = Recipe.find_by_slug(params['slug']&.downcase)
   @recipe.destroy! if @recipe
 
