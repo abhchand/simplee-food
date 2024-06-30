@@ -49,7 +49,7 @@ class RecipeUpdateService
 
     # Update attributes on this recipe
     @recipe.attributes = attributes
-    raise_error(@recipe.errors.full_messages.join(', ')) unless @recipe.save
+    raise_error(@recipe.errors.full_messages[0]) unless @recipe.save
 
     # Add/Remove tags on this recipe
     (new_tags - cur_tags).each { |tag| @recipe.add_tag(tag) }
