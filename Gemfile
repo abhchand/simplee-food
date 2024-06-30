@@ -4,6 +4,7 @@ ruby "3.0.0"
 
 gem "activerecord", "~> 6.0.0"
 gem "activesupport", "~> 6.0.0"
+gem "fastimage", "~> 2.3", ">= 2.3.1"
 gem "rake", "~> 13.1.0"
 gem "sinatra", "~> 3.1.0"
 gem "sinatra-activerecord", "~> 2.0.27"
