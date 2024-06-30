@@ -58,7 +58,7 @@ class SessionSecretManager
       return false unless defined?(Rake)
 
       running_tasks = Rake.application.top_level_tasks
-      (running_tasks & %w[db:migrate db:migrate:status]).any?
+      (running_tasks & %w[db:create db:migrate db:migrate:status db:seed]).any?
     end
   end
 end
