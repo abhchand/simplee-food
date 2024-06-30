@@ -124,7 +124,7 @@ class RecipeUpdateService
   end
 
   def raise_error(msg)
-    raise UpdateError(msg)
+    raise UpdateError.new(msg)
   end
 
   def validate_params!
