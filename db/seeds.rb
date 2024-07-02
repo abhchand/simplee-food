@@ -3,6 +3,11 @@ if !ENV['RACK_ENV'] == 'development'
   return
 end
 
+if User.count >= 1
+  puts "\tSkipping Seeding... data already exists"
+  return
+end
+
 puts "\t=== Seeding Users"
 User.create!(name: 'indra', password: 'purpose')
 
