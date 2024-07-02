@@ -5,6 +5,11 @@ set -e
 
 case "$1" in
   backend)
+    if [ ! -f ./sqlite/app.development.sqlite3 ]; then
+      echo "Development DB not found - did you run \`bin/app setup\` first?"
+      exit
+    fi
+
     rerun --pattern 'app/**/*.rb' -- rackup config.ru -s webrick
     ;;
 
