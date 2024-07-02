@@ -9,7 +9,7 @@ if User.count >= 1
 end
 
 puts "\t=== Seeding Users"
-User.create!(name: 'indra', password: 'purpose')
+User.create!(name: 'indra', password: 'sekrit')
 
 puts "\t=== Seeding Tags"
 (1..5).each { |i| Tag.create!(name: "Tag #{i}") }
