@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  girder:
-    image: girder/girder:${SIMPLEE_FOOD_DOCKER_TAG:-latest}
+  simplee_food:
+    image: simplee_food/simplee_food:${SIMPLEE_FOOD_DOCKER_TAG:-latest}
     build:
       context: .
     environment:
