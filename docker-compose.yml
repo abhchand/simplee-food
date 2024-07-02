@@ -6,7 +6,9 @@ services:
     build:
       context: .
     environment:
-      RACK_ENV: production
+      - RACK_ENV=production
+      - SIMPLEE_FOOD_SESSION_SECRET
+
     extra_hosts:
       # Allow accessing services running on `localhost`, outside the container
       - host.docker.internal:host-gateway
