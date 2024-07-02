@@ -19,11 +19,11 @@ puts "\t=== Seeding Recipes"
   Recipe.create!(
     name: "Recipe #{i}",
     serving_size: "#{i} bowls",
-    ingredients: ["2 Onions (diced)", "4 Bell Peppers", "3 Bananas (peeled)"],
+    ingredients: ['2 Onions (diced)', '4 Bell Peppers', '3 Bananas (peeled)'],
     steps: [
-      "Boil the banana",
-      "Blend the onions",
-      "Heat water to 1,500 degrees and add bell peppers"
+      'Boil the banana',
+      'Blend the onions',
+      'Heat water to 1,500 degrees and add bell peppers'
     ]
   )
 end
