@@ -2,9 +2,7 @@
 
 SimpleeFood is a simple, no-frills recipe application to self host your recipes.
 
-Most Recipe applications are over-complicated and bloated with unnecessary features
-
-SimpleeFood emphasizes a simple design, minimal functionality, and an easy to run application.
+Most Recipe applications are over-complicated and bloated with unnecessary features. SimpleeFood emphasizes a simple design, minimal functionality, and an easy to run application.
 
 ## Quick Start
 
