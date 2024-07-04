@@ -38,6 +38,13 @@ You can access the Sinatra ruby console with:
 bin/app console
 ```
 
+### Hot Reloading
+
+Both the frontend and backend processes support hot reloading by default. This makes it easier to see any code changes reflected, without having to restart the server.
+
+* The frontend reloads using the built-in `--watch` functionality provided by `rollup.js`. See the `build:dev` task in `package.json`.
+* The backend reloads using `rerun`, which watches for any `*.rb` file changes. See the `bin/app` shell script wrapper, and how it starts the backend Sinatra server.
+
 ### Running Tests
 
 SimpleeFood uses [`rspec`](http://rspec.info/) to run tests.
