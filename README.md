@@ -12,16 +12,26 @@ SimpleeFood uses [docker](https://www.docker.com/get-started/) and [docker compo
 # Clone this repo
 git clone git@github.com:abhchand/simplee-food.git
 cd simplee-food/
-```
 
-```shell
 # Start the application
-docker compose up --build
+docker compose up
 ```
 
 Visit http://localhost:8080/ in your browser to view the application.
 
 You can log in with username `admin` and password `sekrit`. You can rename your user or add new users from the "settings" page.
+
+## Updating
+
+When updating SimpleeFood, be sure to `git pull` and force re-build the docker image first.
+
+```shell
+git pull
+docker compose build --no-cache
+
+# Start the application
+docker compose up
+```
 
 ### Configuration
 
