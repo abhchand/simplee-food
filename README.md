@@ -21,6 +21,8 @@ docker compose up --build
 
 Visit http://localhost:8080/ in your browser to view the application.
 
+You can log in with username `admin` and password `sekrit`. You can rename your user or add new users from the "settings" page.
+
 ### Configuration
 
 SimpleeFood respects the following environment variables, if set:
