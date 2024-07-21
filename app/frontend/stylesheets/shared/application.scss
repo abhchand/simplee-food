@@ -1,5 +1,7 @@
 body {
+  color: black;
   font-weight: 400;
+  font-size: 16px;
   font-family: "Ubuntu Sans", sans-serif;
   font-style: normal;
   font-optical-sizing: auto;
@@ -8,6 +10,11 @@ body {
 
 a:link, a:visited, a:hover, a:active {
   color: blue;
+}
+
+button {
+  color: black;
+  font-size: 16px;
 }
 
 input, textarea {

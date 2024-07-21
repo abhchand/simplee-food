@@ -8,6 +8,7 @@
   width: 100%;
   margin-bottom: 20px;
   border: 1px black solid;
+  border-radius: 0;
 }
 
 .recipes-index__empty-state {
@@ -34,8 +35,17 @@
 }
 
 .recipes-index__sort-by {
-  button.selected {
-    background-color: #eee;
+  button {
+    font-size: 14px;
+
+    // Both boxes have a shared border, which appears double thickness
+    &:first-child {
+      border-right-width: 0;
+    }
+
+    &.selected {
+      background-color: #eee;
+    }
   }
 }
 
