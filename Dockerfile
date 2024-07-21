@@ -16,6 +16,7 @@ RUN apt-get -q update \
   && apt-get install -q -y --no-install-recommends git build-essential curl
 
 RUN bundle config set path /bundle \
+  && bundle config set --local without test development \
   && bundle install \
   && apt-get clean -y
 
