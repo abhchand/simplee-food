@@ -28,9 +28,9 @@ RUN bundle config set path /bundle \
 # NodeJS
 # Installing a specific version of node directly is dificult. Use `nvm` to
 # install it (which installs both `node` and `npm`)
-ENV NODE_VERSION 14.17.5
-ENV NVM_DIR /usr/local/nvm
-ENV NVM_VERSION 0.39.3
+ENV NODE_VERSION=14.17.5
+ENV NVM_DIR=/usr/local/nvm
+ENV NVM_VERSION=0.39.3
 
 RUN mkdir -p $NVM_DIR \
   && curl https://raw.githubusercontent.com/creationix/nvm/v$NVM_VERSION/install.sh | bash \
@@ -41,7 +41,7 @@ RUN mkdir -p $NVM_DIR \
   && node -v \
   && npm -v
 
-ENV PATH $NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Yarn
 RUN npm install -g yarn && yarn install --check-files --pure-lockfile
