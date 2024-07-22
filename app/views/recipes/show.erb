@@ -41,9 +41,10 @@
       <h2>Ingredients</h2>
 
       <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
-      <input type="checkbox" id="ingredient_<%= idx %>" name="ingredient_<%= idx %>" value="<%= ingredient %>">
-      <label for="ingredient_<%= idx %>"> <%= ingredient %></label>
-      <br>
+      <div class='recipes-show__ingredient'>
+        <input type="checkbox" id="ingredient_<%= idx %>" name="ingredient_<%= idx %>" value="<%= ingredient %>">
+        <label for="ingredient_<%= idx %>"> <%= ingredient %></label>
+      </div>
       <% end %>
     </section>
 

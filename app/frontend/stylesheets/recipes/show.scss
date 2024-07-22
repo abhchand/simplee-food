@@ -65,19 +65,24 @@
   width: 350px;
   min-width: 350px;
   border-right: 1px silver solid;
+}
+
+.recipes-show__ingredient {
+  display: flex;
+  align-items: flex-start;
+  margin: 25px 0;
 
   input[type='checkbox'] {
-    display: inline;
     width: 30px;
+    min-width: 30px;
     height: 30px;
-    margin-right: 10px;
+    margin: 0 15px 0 0;
     vertical-align: middle;
   }
   label {
-    display: inline;
+    padding-right: 10px;
     font-size: 18px;
-    line-height: 50px;
-    vertical-align: middle;
+    line-height: 30px;
   }
   input[type='checkbox']:checked + label {
     text-decoration: line-through;
@@ -151,6 +156,5 @@
 
   .recipes-show__steps {
     margin-top: 20px;
-    padding: 0 20px;
   }
 }
