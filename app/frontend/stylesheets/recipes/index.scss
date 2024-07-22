@@ -108,9 +108,23 @@
 
 .recipes-index__item--details {
   flex-grow: 1;
+  // When a flex child contains further child elements, the text truncation
+  // does not work as expected.
+  //
+  // See: https://css-tricks.com/flexbox-truncated-text/
+  //
+  // In this case, the `--details` element is a flex child, and itself contains
+  // child elements like the `<span>` inside it.
+  //
+  // The solution is
+  //  1. Apply `min-width: 0` to this flex child, as the article suggests
+  //  2. Make the `<span>` width 100%, for which it also needs to be an inline-block
+  min-width: 0;
   margin-left: 15px;
 
   span:first-child {
+    display: inline-block;
+    width: 100%;
     overflow: hidden;
     font-weight: 700;
     font-size: 22px;
