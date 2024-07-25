@@ -1,4 +1,4 @@
-require "database_cleaner/active_record"
+require 'database_cleaner/active_record'
 
 RSpec.configure do |config|
   config.before(:suite) { DatabaseCleaner.clean_with(:deletion) }
