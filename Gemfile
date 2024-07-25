@@ -21,4 +21,5 @@ group :development, :test do
   gem "pry", "~> 0.14.2"
   gem "rerun", "~> 0.11.0"
   gem "rspec", "~> 3.10"
+  gem "shoulda-matchers", "~> 5.3", require: false
 end
