@@ -14,6 +14,7 @@ gem "webrick", "~> 1.8", ">= 1.8.1"
 
 group :development, :test do
   gem "database_cleaner-active_record", "~> 2.2", require: false
+  gem "factory_bot", "~> 6.4", ">= 6.4.6", require: false
   # Prettier docs suggest to _not_ install `prettier` any more, and directly
   # install the dependencies it depends on. But... it works so far
   # https://github.com/prettier/plugin-ruby#getting-started
