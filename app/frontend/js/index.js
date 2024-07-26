@@ -21,6 +21,8 @@ import {
 
 import { onRecipeStepClick, onRecipeDelete } from './recipes/show';
 
+import { debounce } from './shared/debounce';
+
 import { clearFlash } from './shared/flash';
 
 import { onRecipeShare } from './shared/recipe-share';
@@ -33,6 +35,7 @@ export {
   closeBulkAddModal,
   openBulkAddModal,
   clearFlash,
+  debounce,
   onDraggableItemDelete,
   onDragEnd,
   onDragOver,
