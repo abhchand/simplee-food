@@ -8,6 +8,10 @@ module SlugHelper
     # If we're updating and name didn't change - don't do anything
     return if persisted? && !name_changed?
 
+    # `name` should always be present, but in case it's not present, let
+    # validations catch the error instead of running into an error here.
+    return self[:slug] = nil if name.nil?
+
     base_slug = to_slug(name)
     suffix = 1
 
