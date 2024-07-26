@@ -30,7 +30,7 @@
     </div>
   </section>
 
-  <% if @recipe.serving_size %>
+  <% if @recipe.serving_size.present? %>
   <div class="recipes-show__serving-size">
     <%= @recipe.serving_size %>
   </div>
