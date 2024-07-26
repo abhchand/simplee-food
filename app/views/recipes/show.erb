@@ -64,7 +64,7 @@
   <div class="recipes-show__tags">
   <% if @recipe.tags.any? %>
     <% @recipe.tags.each_with_index do |tag| %>
-    <a class="tag" href="/tags/<%= tag.slug %>"><%= tag.name.downcase %></a>
+    <a class="tag" href="/recipes?tag=<%= tag.slug %>"><%= tag.name.downcase %></a>
     <% end %>
   </div>
   <% end %>
