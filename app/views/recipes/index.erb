@@ -24,7 +24,7 @@
     class="recipes-index__search"
     placeholder="search recipes"
     type = "text"
-    onkeyup = "SimpleeFood.onRecipeSearch(event);"
+    onkeyup="SimpleeFood.debounce(SimpleeFood.onRecipeSearch, 250);"
     />
 
   <% if Recipe.count > 0 %>
