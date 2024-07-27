@@ -34,8 +34,8 @@ module SlugHelper
     slug = str.dup
     slug = slug.downcase.strip
 
-    source = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;?@&=+$.!~'()#".split('')
-    target = 'aaaaeeeeiiiioooouuuunc-------------------'.split('')
+    source = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;?@&=+$.!~'()#|".split('')
+    target = 'aaaaeeeeiiiioooouuuunc--------------------'.split('')
 
     source.each_with_index { |s, idx| slug.gsub!(s, target[idx]) }
 
