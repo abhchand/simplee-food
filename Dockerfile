@@ -20,7 +20,6 @@ RUN bundle config set path /bundle \
   && bundle install \
   && apt-get clean -y
 
-
 #
 # Node
 #
@@ -45,6 +44,13 @@ ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
 
 # Yarn
 RUN npm install -g yarn && yarn install --check-files --pure-lockfile
+
+#
+# Dependencies
+#
+
+# ImageMagick
+RUN apt-get install -q -y --no-install-recommends imagemagick
 
 COPY . .
 

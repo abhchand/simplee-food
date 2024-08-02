@@ -9,6 +9,7 @@ If you wish to contribute to it, you can run it locally in development mode.
 You must have the following installed -
   * The ruby version specified in [`.ruby-version`](./.ruby-version).
   * The node version specified in [`.nvmrc`](./.nvmrc), along with [`yarn`](https://yarnpkg.com/).
+  * [`ImageMagick`](https://imagemagick.org/) to process images. Install with `sudo apt install imagemagick` (Debian) or `brew install imagemagick` (OSX)
 
 Optionally, [`rvm`](https://rvm.io/) is a tool to help manage multiple ruby versions and [`nvm`](https://github.com/nvm-sh/nvm) is a tool to help manage multiple node versions.
 
