@@ -1,5 +1,5 @@
 class RecipeSearchService
-  DEFAULT_PAGE_SIZE = 25
+  DEFAULT_PAGE_SIZE = 10
 
   # params should be of the form:
   # {
