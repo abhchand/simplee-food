@@ -13,8 +13,7 @@ else
   echo "No database setup: running setup"
   bundle exec rake db:create
   bundle exec rake db:migrate
-  # Seed an initial User
-  bundle exec pry -I . -r app/app.rb -e "User.create!(name: 'admin', password: 'sekrit'); exit"
+  bundle exec rake simplee_food:create_initial_user
 fi
 
 # Make sure to bail out if db:setup or db:migrate failed
