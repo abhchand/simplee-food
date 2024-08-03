@@ -10,7 +10,7 @@ case "$1" in
       exit
     fi
 
-    if !(which convert); then
+    if !(which convert 1>/dev/null); then
       echo "ImageMagick is not installed. Install it with:"
       echo "    sudo apt install imagemagick (Debian)"
       echo "    brew install imagemagick     (OSX)"
