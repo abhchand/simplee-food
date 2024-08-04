@@ -30,7 +30,7 @@
     <div class="recipes-index__item shareable" data-name="<%= recipe.slug %>">
       <div class="recipes-index__item--image">
         <a href="/recipes/<%= recipe.slug %>">
-          <img src="data:<%= recipe.image || recipe_image_placeholder %>">
+          <img src="data:<%= recipe.image_thumbnail || recipe_image_placeholder %>">
         </a>
       </div>
       <div class="recipes-index__item--details">

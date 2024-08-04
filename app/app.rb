@@ -2,6 +2,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/flash'
 require 'active_support'
+require 'image_processing/mini_magick'
 
 require 'pathname'
 

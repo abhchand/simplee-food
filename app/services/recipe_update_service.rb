@@ -6,9 +6,6 @@ class RecipeUpdateService
   class UpdateError < StandardError
   end
 
-  MAX_IMAGE_HEIGHT = 2_000
-  MAX_IMAGE_WIDTH = 2_000
-
   # params should be of the form:
   #
   # {
@@ -45,11 +42,9 @@ class RecipeUpdateService
   end
 
   def call
-    validate_params!
-
     # Update attributes on this recipe
     @recipe.attributes = attributes
-    raise_error(@recipe.errors.full_messages[0]) unless @recipe.save
+    raise UpdateError.new(@recipe.errors.full_messages[0]) unless @recipe.save
 
     # Add/Remove tags on this recipe
     (new_tags - cur_tags).each { |tag| @recipe.add_tag(tag) }
@@ -82,29 +77,36 @@ class RecipeUpdateService
       @attributes[field] = nil if @attributes[field].blank?
     end
 
-    # assumption: `image_valid?` should have already been called before this
-    @attributes.merge!(image: image) if image?
+    @attributes.merge!(image_attributes) if image?
 
     @attributes
   end
 
-  def image
+  def image_attributes
     # e.g. "image/jpeg"
     mime_type = @params[:recipe][:image][:type]
-    body = File.read(@params[:recipe][:image][:tempfile])
+    file = @params[:recipe][:image][:tempfile]
+    pipeline = ImageProcessing::MiniMagick.source(file)
 
-    "#{mime_type};base64,#{Base64.encode64(body)}"
+    # `resize_to_cover` will resize to ensure the image fits within the
+    # dimensions, but will not apply any cropping to the excess/overflow
+    regular = pipeline.resize_to_cover!(750, 300)
+    thumb = pipeline.resize_to_cover!(100, 100)
+
+    attrs = {
+      image: image_to_raw(regular, mime_type),
+      image_thumbnail: image_to_raw(thumb, mime_type)
+    }
+
+    # Tempfiles delete themselves, but regular `File` objects don't
+    File.delete(regular)
+    File.delete(thumb)
+
+    attrs
   end
 
   def image?
     @params.dig(:recipe, :image, :tempfile).present?
-  end
-
-  def image_valid?
-    return true unless image?
-
-    width, height = *FastImage.size(@params[:recipe][:image][:tempfile].path)
-    width < MAX_IMAGE_WIDTH && height < MAX_IMAGE_HEIGHT
   end
 
   # "Current tags" are the tags that already exist on the recipe, before update
@@ -128,15 +130,7 @@ class RecipeUpdateService
         end
   end
 
-  def raise_error(msg)
-    raise UpdateError.new(msg)
-  end
-
-  def validate_params!
-    unless image_valid?
-      raise_error(
-        "Image must be less than #{MAX_IMAGE_WIDTH}x#{MAX_IMAGE_HEIGHT}"
-      )
-    end
+  def image_to_raw(file, mime_type)
+    "#{mime_type};base64,#{Base64.encode64(File.read(file))}"
   end
 end
