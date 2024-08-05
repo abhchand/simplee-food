@@ -8,15 +8,15 @@
     </div>
 
     <div class="recipes-index__pagination">
-      <button class="nav-arrow" onclick="SimpleeFood.onPaginationPrev()">
+      <div role="button" class="nav-arrow" onclick="SimpleeFood.onPaginationPrev()">
         <%= svg_icon(:left_arrow) %>
-      </button>
+      </div>
       <span>
         <%= pagination[:first_item] %> - <%= pagination[:last_item] %> of <%= pagination[:total_items] %>
       </span>
-      <button class="nav-arrow" onclick="SimpleeFood.onPaginationNext()">
+      <div role="button" class="nav-arrow" onclick="SimpleeFood.onPaginationNext()">
         <%= svg_icon(:right_arrow) %>
-      </button>
+      </div>
     </div>
   </div>
 
