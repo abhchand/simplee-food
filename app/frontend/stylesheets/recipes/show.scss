@@ -149,6 +149,7 @@
   }
 
   .recipes-show__ingredients {
+    box-sizing: border-box;
     width: 100%;
     padding: 0 20px;
     border-right: none;
