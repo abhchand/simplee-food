@@ -39,11 +39,6 @@
             <%= recipe.name %>
           </a>
         </span>
-        <div class="recipes-index__share-link btn--as-link shareable" data-name="<%= recipe.slug %>" >
-          <a href="" onclick="SimpleeFood.onRecipeShare(event)">
-            share
-          </a>&nbsp;<%= svg_icon(:share) %>
-        </div>
         <% if recipe.tags.any? %>
         <div class="recipes-index__tags">
           <% recipe.tags.each_with_index do |tag| %>
