@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'pathname'
+require 'pry'
 
 ENV['RACK_ENV'] ||= 'test'
 ROOT = Pathname.new(File.expand_path('..', __dir__))
