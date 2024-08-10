@@ -61,11 +61,13 @@ class RecipeSearchService
 
   def page_size
     @page_size ||=
-      if @params['page_size'].nil? || @params['page_size'] <= 0
-        DEFAULT_PAGE_SIZE
-      else
-        @params['page_size']
-      end
+      (
+        if @params['page_size'].to_i <= 0
+          DEFAULT_PAGE_SIZE
+        else
+          @params['page_size'].to_i
+        end
+      )
   end
 
   def paginate!
