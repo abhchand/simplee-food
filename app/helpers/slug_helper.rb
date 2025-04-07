@@ -19,7 +19,7 @@ module SlugHelper
     loop do
       # We never use `-1` as a suffix. We start with `-2`, if needed
       slug = [base_slug, suffix == 1 ? nil : suffix].compact.join('-')
-      record = self.class.find_by_slug(slug)
+      record = self.class.unscoped.find_by_slug(slug)
 
       if record.nil?
         self[:slug] = slug
