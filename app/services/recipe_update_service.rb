@@ -1,41 +1,50 @@
-# Updates a `Recipe` instance based on new `params`.
-# This can also be used to create a Recipe if pass a newly instantiated
-# `Recipe.new` object.
+# Creates or Updates a `Recipe` instance
 #
 class RecipeUpdateService
   class UpdateError < StandardError
   end
 
-  # params should be of the form:
+  # Initialize the class with a `Recipe` instance and the params that should
+  # be used to create/update the instance.
   #
-  # {
-  #   "recipe": {
-  #     "image": {
-  #       "filename": "filename.jpg",
-  #       "type": "image/jpeg",
-  #       "name": "recipe[image]",
-  #       "tempfile": "#\\u003cFile:0x00007f1c44931d38\\u003e",
-  #       "head": "Content-Disposition: ...."
-  #     },
-  #     "name": "....",
-  #     "source_url": "....",
-  #     "serving_size": "...",
-  #     "ingredients": {
-  #       "0": "...",
-  #       "1": "...",
-  #     },
-  #     "instructions": {
-  #       "0": "...",
-  #       "1": "...",
-  #     },
-  #     "tag_ids": [
-  #       "...",
-  #     ],
-  #     "tag_names": [
-  #       "...",
-  #     ]
+  # You can pass a non-persisted Recipe record (e.g. `Recipe.new`) to create
+  # a new record.
+  #
+  # `params` should be an indifferent Hash of the form:
+  #
+  #   {
+  #     recipe: {
+  #       image: {
+  #         filename: 'filename.jpg',
+  #         type: 'image/jpeg',
+  #         name: 'recipe[image]',
+  #         tempfile: '#\\u003cFile:0x00007f1c44931d38\\u003e',
+  #         head: 'Content-Disposition: ....'
+  #       },
+  #       name: '....',
+  #       source_url: '....',
+  #       serving_size: '...',
+  #       ingredients: {
+  #         0: '...',
+  #         1: '...',
+  #       },
+  #       instructions: {
+  #         0: '...',
+  #         1: '...',
+  #       },
+  #       tag_ids: [
+  #         '...',
+  #       ],
+  #       tag_names: [
+  #         '...',
+  #       ]
+  #     }
   #   }
-  # }
+  #
+  # @param recipe [Recipe] the `Recipe` model instance. If persisted, it will
+  #   be updated. If not persisted, it will create a new record.
+  # @param params [Hash] the params containing attributes to create or update
+  #   the record, in the format described above.
   def initialize(recipe, params = {})
     @recipe = recipe
     @params = params
@@ -60,7 +69,7 @@ class RecipeUpdateService
   # the params.
   #
   # Thee only exception to this is the image. If a `nil` value is sent in the
-  # params, we don't overwrite it.
+  # params, we don't clear the image.
   def attributes
     return @attributes if @attributes
 
