@@ -49,56 +49,57 @@
     <%# Edit Ingredients %>
     <div class="recipes-edit__field-block" id="recipe-ingredients">
       <h3>ingredients</h3>
-      <ul
-        class="recipes-edit__draggable-list"
-        ondragstart="SimpleeFood.onDragStart(event)"
-        ondragend="SimpleeFood.onDragEnd(event)"
-        ondragover="SimpleeFood.onDragOver(event)">
+      <ul class="recipes-edit__sortable-list">
         <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
           <%#
             this <li> is reconstructed programmatically in JS, so any changes
             here should be updated in the JS logic as well
           %>
-          <li draggable="true" class="recipes-edit__draggable-list-row">
-            <%= svg_icon(:drag_icon) %>
+          <li class="recipes-edit__sortable-list-row">
             <input name="recipe[ingredients][<%= idx %>]" value="<%= ingredient %>" />
-            <button type="button" onclick="SimpleeFood.onDraggableItemDelete(event)">
+            <button type="button" onclick="SimpleeFood.moveSortableListItemUp(event)">
+              <%= svg_icon(:arrow_up) %>
+            </button>
+            <button type="button" onclick="SimpleeFood.moveSortableListItemDown(event)">
+              <%= svg_icon(:arrow_down) %>
+            </button>
+            <button type="button" onclick="SimpleeFood.deleteSortableListItem(event)">
               <%= svg_icon(:trash) %>
             </button>
           </li>
         <% end %>
       </ul>
 
-      <div class="recipes-edit__draggable-list-actions">
+      <div class="recipes-edit__sortable-list-actions">
         <button
           type="button"
-          class="recipes-edit__add-draggable-item-btn btn--hollow"
-          onclick="SimpleeFood.addDraggableListItem('recipe-ingredients')">
+          class="recipes-edit__add-sortable-item-btn btn--hollow"
+          onclick="SimpleeFood.addSortableListItem('recipe-ingredients')">
           add
         </button>
         <button
           type="button"
-          class="recipes-edit__bulk-add-draggable-item-btn btn--hollow"
+          class="recipes-edit__bulk-add-sortable-item-btn btn--hollow"
           onclick="SimpleeFood.openBulkAddModal('recipe-ingredients')">
           bulk add
         </button>
 
         <%# render the modal, which is hidden by default until opened %>
-        <div class="modal modal--closed recipes-edit__bulk-add-draggable-item-modal">
+        <div class="modal modal--closed recipes-edit__bulk-add-sortable-item-modal">
           <div class="modal-content">
             <h2>Bulk Add Ingredients</h2>
             <p>Enter multiple ingredients here. Each line will be added as a separate ingredient.</p>
             <textarea class="modal-textarea"></textarea>
             <button
               type="button"
-              class="recipes-edit__bulk-add-draggable-item-close-btn btn--hollow"
+              class="recipes-edit__bulk-add-sortable-item-close-btn btn--hollow"
               onclick="SimpleeFood.closeBulkAddModal('recipe-ingredients')">
               cancel
             </button>
             <button
               type="button"
-              class="recipes-edit__bulk-add-draggable-item-open-btn btn--hollow"
-              onclick="SimpleeFood.bulkAddDraggableListItems('recipe-ingredients')">
+              class="recipes-edit__bulk-add-sortable-item-open-btn btn--hollow"
+              onclick="SimpleeFood.bulkAddSortableListItems('recipe-ingredients')">
               add
             </button>
           </div>
@@ -110,56 +111,57 @@
     <%# Edit Instructions %>
     <div class="recipes-edit__field-block" id="recipe-instructions">
       <h3>steps</h3>
-      <ul
-        class="recipes-edit__draggable-list"
-        ondragstart="SimpleeFood.onDragStart(event)"
-        ondragend="SimpleeFood.onDragEnd(event)"
-        ondragover="SimpleeFood.onDragOver(event)">
+      <ul class="recipes-edit__sortable-list">
         <% @recipe.steps.each_with_index do |instruction, idx| %>
           <%#
             this <li> is reconstructed programmatically in JS, so any changes
             here should be updated in the JS logic as well
           %>
-          <li draggable="true" class="recipes-edit__draggable-list-row">
-            <%= svg_icon(:drag_icon) %>
+          <li class="recipes-edit__sortable-list-row">
             <textarea name="recipe[instructions][<%= idx %>]" style="resize: none;"><%= instruction %></textarea>
-            <button type="button" onclick="SimpleeFood.onDraggableItemDelete(event)">
+            <button type="button" onclick="SimpleeFood.moveSortableListItemUp(event)">
+              <%= svg_icon(:arrow_up) %>
+            </button>
+            <button type="button" onclick="SimpleeFood.moveSortableListItemDown(event)">
+              <%= svg_icon(:arrow_down) %>
+            </button>
+            <button type="button" onclick="SimpleeFood.deleteSortableListItem(event)">
               <%= svg_icon(:trash) %>
             </button>
           </li>
         <% end %>
       </ul>
 
-      <div class="recipes-edit__draggable-list-actions">
+      <div class="recipes-edit__sortable-list-actions">
         <button
           type="button"
-          class="recipes-edit__add-draggable-item-btn btn--hollow"
-          onclick="SimpleeFood.addDraggableListItem('recipe-instructions')">
+          class="recipes-edit__add-sortable-item-btn btn--hollow"
+          onclick="SimpleeFood.addSortableListItem('recipe-instructions')">
           add
         </button>
         <button
           type="button"
-          class="recipes-edit__bulk-add-draggable-item-btn btn--hollow"
+          class="recipes-edit__bulk-add-sortable-item-btn btn--hollow"
           onclick="SimpleeFood.openBulkAddModal('recipe-instructions')">
           bulk add
         </button>
 
         <%# render the modal, which is hidden by default until opened %>
-        <div class="modal modal--closed recipes-edit__bulk-add-draggable-item-modal">
+        <div class="modal modal--closed recipes-edit__bulk-add-sortable-item-modal">
           <div class="modal-content">
             <h2>Bulk Add Instructions</h2>
             <p>Enter multiple instructions here. Each line will be added as a separate instruction.</p>
             <textarea class="modal-textarea"></textarea>
             <button
               type="button"
-              class="recipes-edit__bulk-add-draggable-item-close-btn btn--hollow"
+              class="recipes-edit__bulk-add-sortable-item-close-btn btn--hollow"
               onclick="SimpleeFood.closeBulkAddModal('recipe-instructions')">
               cancel
             </button>
             <button
               type="button"
-              class="recipes-edit__bulk-add-draggable-item-open-btn btn--hollow"
-              onclick="SimpleeFood.bulkAddDraggableListItems('recipe-instructions')">
+              class="recipes-edit__bulk-add-sortable-item-open-btn btn--hollow"
+              onclick="SimpleeFood.bulkAddSortableListItems('recipe-instructions')">
               add
             </button>
           </div>
@@ -199,8 +201,9 @@
       building DOM elements in JS
     %>
     <div id="reference_icons" style="display: none;">
-      <div class="drag-icon"><%= svg_icon(:drag_icon) %></div>
-      <div class="trash"><%= svg_icon(:trash) %></div>
+      <div class="arrow-down"><%= svg_icon(:arrow_down) %></div>
+      <div class="arrow-up"><%= svg_icon(:arrow_up) %></div>
+      <div class="trash"><%= svg_icon(:trash) %></div>`
     </div>
 
     <button type="submit" class="recipes-edit__save-btn btn--hollow">

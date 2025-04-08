@@ -1,6 +1,5 @@
 import { setFlashError } from '../shared/flash';
 
-let draggedItem = null;
 let newTagId = 1000;
 
 function onImageSelect(event) {
@@ -72,28 +71,31 @@ function onEditRecipeSubmit(event) {
 }
 
 /*
- * Add Draggable List Items
+ * Sortable List Handlers
  */
 
-function addDraggableListItem(css_id, value = null) {
+function addSortableListItem(css_id, value = null) {
   // Last index is length-1, so next index is length
   const nextIdx = document.querySelectorAll(
-    `#${css_id} .recipes-edit__draggable-list li`
+    `#${css_id} .recipes-edit__sortable-list li`
   ).length;
 
   // "recipe-ingredients" -> "ingredients"
   const suffix = css_id.replace(/recipe\-/, '');
 
-  const dragIcon = document
-    .querySelector('#reference_icons .drag-icon svg')
+  // Clone reference SVG icons to build new DOM element
+  const arrowDownIcon = document
+    .querySelector('#reference_icons .arrow-down svg')
+    .cloneNode(true);
+  const arrowUpIcon = document
+    .querySelector('#reference_icons .arrow-up svg')
     .cloneNode(true);
   const trashIcon = document
     .querySelector('#reference_icons .trash svg')
     .cloneNode(true);
 
   const li = document.createElement('li');
-  li.draggable = true;
-  li.classList.add('recipes-edit__draggable-list-row');
+  li.classList.add('recipes-edit__sortable-list-row');
 
   // The one major difference between the "ingredients" and "instructions"
   // section is that the latter uses textarea instead of input fields.
@@ -110,29 +112,97 @@ function addDraggableListItem(css_id, value = null) {
     input.value = value;
   }
 
-  const button = document.createElement('button');
-  button.type = 'button';
-  button.setAttribute('onclick', 'SimpleeFood.onDraggableItemDelete(event)');
-  button.appendChild(trashIcon);
+  // Build buttons
 
-  li.appendChild(dragIcon);
+  const arrowUpButton = document.createElement('button');
+  arrowUpButton.type = 'button';
+  arrowUpButton.setAttribute(
+    'onclick',
+    'SimpleeFood.moveSortableListItemUp(event)'
+  );
+  arrowUpButton.appendChild(arrowUpIcon);
+
+  const arrowDownButton = document.createElement('button');
+  arrowDownButton.type = 'button';
+  arrowDownButton.setAttribute(
+    'onclick',
+    'SimpleeFood.moveSortableListItemDown(event)'
+  );
+  arrowDownButton.appendChild(arrowDownIcon);
+
+  const trashButton = document.createElement('button');
+  trashButton.type = 'button';
+  trashButton.setAttribute(
+    'onclick',
+    'SimpleeFood.deleteSortableListItem(event)'
+  );
+  trashButton.appendChild(trashIcon);
+
   li.appendChild(input);
-  li.appendChild(button);
+  li.appendChild(arrowUpButton);
+  li.appendChild(arrowDownButton);
+  li.appendChild(trashButton);
 
-  const ul = document.querySelector(`#${css_id} .recipes-edit__draggable-list`);
+  const ul = document.querySelector(`#${css_id} .recipes-edit__sortable-list`);
   ul.appendChild(li);
 }
 
-function bulkAddDraggableListItems(css_id) {
+function bulkAddSortableListItems(css_id) {
   const modal = document.querySelector(`#${css_id} .modal`);
   const text = modal.querySelector('textarea').value;
 
-  text.split('\n').forEach((line) => addDraggableListItem(css_id, line));
+  text.split('\n').forEach((line) => addSortableListItem(css_id, line));
   closeBulkAddModal(css_id);
 }
 
+function deleteSortableListItem(event) {
+  const button = event.currentTarget;
+  const item = button.closest('li');
+  const sortableList = button.closest('ul');
+
+  item.parentNode.removeChild(item);
+
+  renumberSortableList(sortableList);
+}
+
+function moveSortableListItem(clickedItem, shiftBy) {
+  const sortableList = clickedItem.closest('ul');
+  const items = [...sortableList.querySelectorAll('li')];
+
+  const curIdx = items.indexOf(clickedItem);
+  const newIdx = curIdx + shiftBy;
+
+  // If incrementing or decrementing takes us out of bounds, don't do it
+  if (newIdx < 0 || newIdx >= items.length) {
+    return;
+  }
+
+  // Move item to new position by re-structuring the list
+  const curItem = items[curIdx];
+  const newItem = items[newIdx];
+  const refNode = newIdx > curIdx ? newItem.nextSibling : newItem;
+  sortableList.insertBefore(curItem, refNode);
+
+  // Since the list is re-ordered, we need to re-number the form element names
+  renumberSortableList(sortableList);
+
+  // Add temporary highlighting to the item that was moved
+  curItem.classList.add('selected');
+  setTimeout(clearSelectedSortableItems, 1000);
+}
+
+function moveSortableListItemDown(event) {
+  const clickedItem = event.target.closest('li');
+  moveSortableListItem(clickedItem, 1);
+}
+
+function moveSortableListItemUp(event) {
+  const clickedItem = event.target.closest('li');
+  moveSortableListItem(clickedItem, -1);
+}
+
 /*
- * Modal Handlers
+ * Modal Actions
  */
 
 function closeBulkAddModal(css_id) {
@@ -149,93 +219,10 @@ function openBulkAddModal(css_id) {
 }
 
 /*
- * Draggable List Event Handlers
- *
- * Dragging logic adapted from
- * https://www.geeksforgeeks.org/create-a-drag-and-drop-sortable-list-using-html-css-javascript/
+ * Sortable List Helpers
  */
 
-function onDragStart(event) {
-  draggedItem = event.target;
-  draggedItem.classList.add('dragging');
-
-  // Style needs to be set async to show as draggable in the browser
-  setTimeout(() => {
-    event.target.style.display = 'none';
-  }, 0);
-}
-
-function onDragEnd(event) {
-  clearDraggingBumpers();
-
-  // Style needs to be set async to show as draggable in the browser
-  setTimeout(() => {
-    event.target.style.display = '';
-    draggedItem.classList.remove('dragging');
-    draggedItem = null;
-
-    // The event target should be the `<li>` that was dragged
-    const sortableList = event.target.closest('ul');
-    renumberDraggableList(sortableList);
-  }, 0);
-}
-
-function onDragOver(event) {
-  event.preventDefault();
-
-  // The event target itself should be the top level `<ul>` container
-  const sortableList = event.currentTarget;
-  // Find "after element", the element just below the currently dragged item.
-  const afterElement = getDragAfterElement(sortableList, event.clientY);
-
-  if (afterElement == null) {
-    sortableList.appendChild(draggedItem);
-  } else {
-    // We add dragging bumpers, which is a styling that provides some spacing
-    // between the currently dragged element and the list below it.
-    clearDraggingBumpers();
-    afterElement.classList.add('dragging-bumper');
-    sortableList.insertBefore(draggedItem, afterElement);
-  }
-}
-
-function onDraggableItemDelete(event) {
-  const button = event.currentTarget;
-  const item = button.closest('li');
-  const sortableList = button.closest('ul');
-
-  item.parentNode.removeChild(item);
-
-  renumberDraggableList(sortableList);
-}
-
-function clearDraggingBumpers() {
-  document.querySelectorAll('.dragging-bumper').forEach((el) => {
-    el.classList.remove('dragging-bumper');
-  });
-}
-
-function getDragAfterElement(container, y) {
-  const draggableElements = [
-    ...container.querySelectorAll('li:not(.dragging)')
-  ];
-
-  return draggableElements.reduce(
-    (closest, element) => {
-      const box = element.getBoundingClientRect();
-      const offset = y - box.top - box.height / 2;
-
-      if (offset < 0 && offset > closest.offset) {
-        return { offset: offset, element: element };
-      } else {
-        return closest;
-      }
-    },
-    { offset: Number.NEGATIVE_INFINITY }
-  ).element;
-}
-
-function renumberDraggableList(sortableList) {
+function renumberSortableList(sortableList) {
   let idx = 0;
 
   [...sortableList.querySelectorAll('li > input')].forEach((input) => {
@@ -246,16 +233,27 @@ function renumberDraggableList(sortableList) {
   });
 }
 
+// Safely removes the `selected` class
+function clearSelectedSortableItems() {
+  const el = document.querySelector(
+    '.recipes-edit__sortable-list-row.selected'
+  );
+  if (!el) {
+    return;
+  }
+
+  el.classList.remove('selected');
+}
+
 export {
-  addDraggableListItem,
-  bulkAddDraggableListItems,
+  addSortableListItem,
+  bulkAddSortableListItems,
   closeBulkAddModal,
-  openBulkAddModal,
-  onDraggableItemDelete,
-  onDragEnd,
-  onDragOver,
-  onDragStart,
-  onImageSelect,
+  deleteSortableListItem,
+  moveSortableListItemDown,
+  moveSortableListItemUp,
   onAddTag,
-  onEditRecipeSubmit
+  onEditRecipeSubmit,
+  onImageSelect,
+  openBulkAddModal
 };
