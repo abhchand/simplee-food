@@ -1,15 +1,14 @@
 import {
-  addDraggableListItem,
-  bulkAddDraggableListItems,
+  addSortableListItem,
+  bulkAddSortableListItems,
   closeBulkAddModal,
-  openBulkAddModal,
-  onDraggableItemDelete,
-  onDragEnd,
-  onDragOver,
-  onDragStart,
-  onImageSelect,
+  deleteSortableListItem,
+  moveSortableListItemDown,
+  moveSortableListItemUp,
   onAddTag,
-  onEditRecipeSubmit
+  onEditRecipeSubmit,
+  onImageSelect,
+  openBulkAddModal
 } from './recipes/edit';
 
 import {
@@ -30,24 +29,23 @@ import { onRecipeShare } from './shared/recipe-share';
 import '../stylesheets/index.scss';
 
 export {
-  addDraggableListItem,
-  bulkAddDraggableListItems,
-  closeBulkAddModal,
-  openBulkAddModal,
+  addSortableListItem,
+  bulkAddSortableListItems,
   clearFlash,
+  closeBulkAddModal,
   debounce,
-  onDraggableItemDelete,
-  onDragEnd,
-  onDragOver,
-  onDragStart,
-  onImageSelect,
+  deleteSortableListItem,
+  moveSortableListItemDown,
+  moveSortableListItemUp,
   onAddTag,
   onEditRecipeSubmit,
+  onImageSelect,
   onPaginationNext,
   onPaginationPrev,
+  onRecipeDelete,
   onRecipeSearch,
   onRecipeShare,
   onRecipeSort,
   onRecipeStepClick,
-  onRecipeDelete
+  openBulkAddModal
 };

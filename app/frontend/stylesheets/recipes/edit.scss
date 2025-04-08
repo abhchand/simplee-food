@@ -47,14 +47,19 @@
   }
 }
 
-.recipes-edit__draggable-list {
+.recipes-edit__sortable-list {
 }
 
-.recipes-edit__draggable-list-row {
+.recipes-edit__sortable-list-row {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   cursor: grab;
+  transition: background-color 1s ease-out;
+
+  &.selected {
+    background-color: #E0FFFF;
+  }
 
   input {
     // Override global input styling
@@ -87,23 +92,23 @@
   }
 }
 
-.recipes-edit__draggable-list-actions {
+.recipes-edit__sortable-list-actions {
 }
 
-.recipes-edit__add-draggable-item-btn {
+.recipes-edit__add-sortable-item-btn {
   margin-right: 5px;
 }
 
-.recipes-edit__bulk-add-draggable-item-btn {
+.recipes-edit__bulk-add-sortable-item-btn {
 }
 
-.recipes-edit__bulk-add-draggable-item-modal {
+.recipes-edit__bulk-add-sortable-item-modal {
 }
 
-.recipes-edit__bulk-add-draggable-item-close-btn {
+.recipes-edit__bulk-add-sortable-item-close-btn {
 }
 
-.recipes-edit__bulk-add-draggable-item-open-btn {
+.recipes-edit__bulk-add-sortable-item-open-btn {
 }
 
 #recipe-ingredients {
@@ -130,8 +135,4 @@
 
 .recipes-edit__cancel-btn {
   margin-left: 10px;
-}
-
-.dragging-bumper {
-  margin-top: 25px;
 }
