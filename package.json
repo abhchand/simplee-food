@@ -10,7 +10,7 @@
   },
   "author": "Abhishek Chandrasekhar <me@abhchand.me>",
   "engines": {
-    "node": "14.17.5"
+    "node": "18.20.7"
   },
   "devDependencies": {
     "@prettier/plugin-ruby": "^3.2.2",
