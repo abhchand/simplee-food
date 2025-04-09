@@ -1,16 +1,23 @@
 #flash {
   display: none;
-  margin: 10px 0;
-  padding: 10px 20px;
-  background-color: #ffffed;
-  border: 1px solid #ddd;
+  // Margin height has to include padding of child element (10px), so make it
+  // 20px so it actually ends up as 10px margin.
+  margin: 20px 0;
+  text-align: center;
 
   &.active {
-    display: initial;
+    display: block;
   }
 
-  & > span {
-    margin-right: 5px;
+  .flash__content {
+    display: inline;
+    padding: 10px 20px;
+    background-color: #ffffed;
+    border: 1px solid #ddd;
+
+    & > span {
+      margin-right: 5px;
+    }
   }
 
   &.flash--error > span {

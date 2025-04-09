@@ -11,6 +11,8 @@
   class, which is only set if there is a flash to be displayed.
 %>
 <div id="flash" class="<%= classes.join(' ') %>">
-  <span><%= flash[flash_key] %></span>
-  (<a href="#" onclick="SimpleeFood.clearFlash()">dismiss</a>)
+  <div class="flash__content">
+    <span><%= flash[flash_key] %></span>
+    (<a href="#" onclick="SimpleeFood.clearFlash()">dismiss</a>)
+  </div>
 </div>
