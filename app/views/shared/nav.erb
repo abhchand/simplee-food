@@ -11,6 +11,10 @@
   <span class="nav--auth"><b>👤 <%= @user.name %></b></span>
   &nbsp;(<a href="/logout">logout</a>)
   <% else %>
-  <a class="nav--auth" href="/login">login</a>
+  <%
+    # When logging in, ensure user is ultimately redirect back to current path
+    dest = URI.encode_www_form_component(request.fullpath)
+  %>
+  <a class="nav--auth" href="/login?dest=<%= dest %>">login</a>
   <% end %>
 </nav>
