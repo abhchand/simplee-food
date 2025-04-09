@@ -86,5 +86,5 @@ get '/logout' do
 
   flash[:notice] = 'You have been logged out'
 
-  redirect to('/login')
+  redirect to('/recipes')
 end
