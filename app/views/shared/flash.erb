@@ -1,7 +1,16 @@
-<% flash_key = flash.to_h.keys.first %>
-<div id="flash" <%= "class=\"flash--#{flash_key}\"" if flash_key %>>
-  <% if flash_key %>
+<%
+  flash_key = flash.to_h.keys.first
+  classes = flash_key ? ["flash--#{flash_key}", "active"] : []
+%>
+
+<%#
+  We always generate the `#flash` div container, so that JS can programmatically
+  set the flash on the page.
+
+  However the display is controlled by the presence/absence of the `active`
+  class, which is only set if there is a flash to be displayed.
+%>
+<div id="flash" class="<%= classes.join(' ') %>">
   <span><%= flash[flash_key] %></span>
   (<a href="#" onclick="SimpleeFood.clearFlash()">dismiss</a>)
-  <% end %>
 </div>
