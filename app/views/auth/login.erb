@@ -14,6 +14,13 @@
       <input type="password" name="login[password]" id="login-password" class="form-control" />
     </div>
 
+    <%#
+      Even if `params[:dest]` is URL encoded, it will be automatically decoded here.
+      So the subsequent form POST request to the backend will include the decoded param
+      (e.g. "/recipes/foo/edit")
+    %>
+    <input type="hidden" name="dest" value="<%= params[:dest] %>" />
+
     <button type="submit" class="auth__form-submit-btn btn--hollow">log in</button>
   </form>
 </div>
