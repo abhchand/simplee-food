@@ -1,8 +1,31 @@
 import { fromHTML } from '../shared/html';
 
 function onRecipeSearch(_event) {
-  // Reset the page to the first each time we search
+  // Add or remove the "--touched" class as needed, based on whether
+  const input = document.querySelector('.recipes-index__search-input');
+  const touchedClass = 'recipes-index__search-input--touched';
+
+  if (input.value && !input.classList.contains(touchedClass)) {
+    input.classList.add(touchedClass);
+  }
+  if (!input.value && input.classList.contains(touchedClass)) {
+    input.classList.remove(touchedClass);
+  }
+
+  // Update the recipe list, but also reset the page to the first page
+  // each time we search
   renderRecipeList({ page: 1 });
+}
+
+function onRecipeSearchClear(_event) {
+  const input = document.querySelector('.recipes-index__search-input');
+
+  input.value = '';
+  input.focus();
+  input.classList.remove('recipes-index__search-input--touched');
+
+  // Trigger a search to update results
+  onRecipeSearch();
 }
 
 function onRecipeSort(_event) {
@@ -63,7 +86,7 @@ function getCurrentPage() {
 }
 
 function getCurrentSearch() {
-  return document.querySelector('.recipes-index__search').value;
+  return document.querySelector('.recipes-index__search-input').value;
 }
 
 function getCurrentSortBy() {
@@ -74,4 +97,10 @@ function getCurrentTag() {
   return document.querySelector('.recipes-index__content').dataset.tagScope;
 }
 
-export { onPaginationNext, onPaginationPrev, onRecipeSearch, onRecipeSort };
+export {
+  onPaginationNext,
+  onPaginationPrev,
+  onRecipeSearch,
+  onRecipeSearchClear,
+  onRecipeSort
+};

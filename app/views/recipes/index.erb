@@ -20,12 +20,21 @@
 
   <%= erb(:"shared/flash") %>
 
-  <input
-    class="recipes-index__search"
-    placeholder="search recipes"
-    type = "text"
-    onkeyup="SimpleeFood.debounce(SimpleeFood.onRecipeSearch, 250);"
-    />
+  <div class="recipes-index__search-container">
+    <input
+      class="recipes-index__search-input"
+      placeholder="search recipes"
+      type="search"
+      onkeyup="SimpleeFood.debounce(SimpleeFood.onRecipeSearch, 250);"
+      />
+    <button
+      class="recipes-index__search-clear-btn"
+      aria-label="Clear input"
+      title="Clear input"
+      onclick="SimpleeFood.onRecipeSearchClear(event)"
+    >×</button>
+  </div>
+
 
   <% if Recipe.count > 0 %>
   <%=

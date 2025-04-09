@@ -4,12 +4,46 @@
   background-color: #00F535;
 }
 
-.recipes-index__search {
+.recipes-index__search-container {
+  position: relative;
+  display: inline-block;
   width: 100%;
   margin-bottom: 20px;
+}
+.recipes-index__search-input {
+  width: 100%;
   border: 1px black solid;
   border-radius: 0;
 }
+.recipes-index__search-clear-btn {
+  position: absolute;
+  top: 16px;
+  right: 6px;
+  bottom: 0;
+  /* hide the button initially */
+  display: none;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 2px;
+  color: white;
+  font-size: 18px;
+  background: #444;
+  border: none;
+  cursor: pointer;
+  appearance: none;
+
+  &:hover {
+    background: darkgray;
+  }
+}
+.recipes-index__search-input--touched + .recipes-index__search-clear-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 
 .recipes-index__empty-state {
   margin: 10px 0;

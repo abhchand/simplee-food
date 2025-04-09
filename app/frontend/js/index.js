@@ -15,6 +15,7 @@ import {
   onPaginationNext,
   onPaginationPrev,
   onRecipeSearch,
+  onRecipeSearchClear,
   onRecipeSort
 } from './recipes/index';
 
@@ -44,6 +45,7 @@ export {
   onPaginationPrev,
   onRecipeDelete,
   onRecipeSearch,
+  onRecipeSearchClear,
   onRecipeShare,
   onRecipeSort,
   onRecipeStepClick,
