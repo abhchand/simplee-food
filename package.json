@@ -4,6 +4,7 @@
   "scripts": {
     "build:dev": "rollup --config rollup.config.js --watch",
     "build:prod": "NODE_ENV=production rollup --config rollup.config.js",
+    "build:test": "rollup --config rollup.config.js",
     "lint": "yarn run lint:css && yarn run lint:prettier",
     "lint:css": "stylelint app/frontend/stylesheets/* --fix",
     "lint:prettier": "prettier --write --config .prettierrc.json '**/*'"

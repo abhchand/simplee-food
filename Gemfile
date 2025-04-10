@@ -25,6 +25,9 @@ group :development, :test do
 end
 
 group :test do
+  gem "capybara", "~> 3.9"
+  gem "capybara-screenshot"
   gem "factory_bot", "~> 6.4", ">= 6.4.6", require: false
+  gem "selenium-webdriver", "~> 4.26.0"
   gem "shoulda-matchers", "~> 5.3", require: false
 end
