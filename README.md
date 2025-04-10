@@ -1,3 +1,5 @@
+![Build](https://github.com/abhchand/simplee-food/actions/workflows/test.yml/badge.svg)
+
 # SimpleeFood
 
 SimpleeFood is a simple, no-frills recipe application to self host your recipes.
