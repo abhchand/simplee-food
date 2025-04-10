@@ -1,0 +1,117 @@
+name: SimpleeFood Test Suite
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  unit_tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+
+    env:
+      RACK_ENV: test
+      RUNNING_ON_CI_SERVER: 1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby 3.0.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Set up Node 18.20.7
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.7
+          # does _not_ run `yarn install`, but _does_ install `yarn`
+          cache: yarn
+
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile --immutable
+
+      - name: Run Unit Specs (excluding JS)
+        run: bundle exec rspec --tag ~type:feature
+
+  headless_browser_tests:
+    name: Headless Browser Tests
+    runs-on: ubuntu-latest
+
+    env:
+      DISPLAY: :99.0
+      RACK_ENV: test
+      RUNNING_ON_CI_SERVER: 1
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby 3.0.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+
+      - name: Install ImageMagick
+        run: sudo apt-get update && sudo apt-get install -y imagemagick
+
+      - name: Set up Node 18.20.7
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.7
+          # does _not_ run `yarn install`, but _does_ install `yarn`
+          cache: yarn
+
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile --immutable
+
+      - name: Start xvfb for headless browser support
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+          Xvfb :99 -screen 0 1920x1080x24 &
+
+      - name: Run JS Specs
+        run: bundle exec rspec --tag type:feature
+
+  lint:
+    name: Linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Ruby 3.0.0
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.0
+          # runs 'bundle install' and caches installed gems automatically
+          bundler-cache: true
+
+      - name: Set up Node 18.20.7
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.20.7
+          # does _not_ run `yarn install`, but _does_ install `yarn`
+          cache: yarn
+
+      - name: Install Yarn dependencies
+        run: yarn install --frozen-lockfile --immutable
+
+      - name: Run Stylelint
+        run: npx stylelint app/frontend/stylesheets/*
+
+      - name: Run Prettier
+        run: npx prettier --check --config .prettierrc.json '**/*'
