@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 #flash {
   display: none;
   // Margin height has to include padding of child element (10px), so make it
@@ -12,8 +14,8 @@
   .flash__content {
     display: inline;
     padding: 10px 20px;
-    background-color: #ffffed;
-    border: 1px solid #ddd;
+    background-color: $off-white;
+    border: 1px solid $light-gray;
 
     & > span {
       margin-right: 5px;
@@ -37,6 +39,6 @@
   position: absolute;
   padding: 5px 8px;
   color: black;
-  background-color: #FBDB65;
+  background-color: $neon-green;
   border-radius: 4px;
 }
