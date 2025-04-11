@@ -13,9 +13,7 @@ Capybara.configure do |config|
   config.default_max_wait_time = 5
 end
 
-RSpec.configure do |config|
-  config.include FeatureHelpers, type: :feature
-end
+RSpec.configure { |config| config.include FeatureHelpers, type: :feature }
 
 #
 # Screenshot configuration
