@@ -1,10 +1,10 @@
 require 'sinatra_helper'
 
-RSpec.feature 'Flash', type: :feature, js: true do
+RSpec.feature 'Flash', type: :feature do
   let(:recipe) { FactoryBot.create(:recipe) }
   let(:user) { FactoryBot.create(:user) }
 
-  it 'can dismiss a flash set via ERB' do
+  it 'can dismiss a flash set via ERB', js: true do
     # Force a flash message by logging in with a bad password
     visit '/login'
     fill_in('login[username]', with: user.name)
@@ -21,7 +21,7 @@ RSpec.feature 'Flash', type: :feature, js: true do
     expect(page).to_not have_selector('#flash')
   end
 
-  it 'can dismiss a flash set via JS' do
+  it 'can dismiss a flash set via JS', js: true do
     log_in(user)
 
     # Force a flash message by causing an issue when deleting a recipe

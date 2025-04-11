@@ -46,5 +46,7 @@ delete '/recipes/:slug', authenticate: :always do
 
   @recipe.destroy! if @recipe
 
-  redirect '/recipes'
+  content_type :json
+  status 200
+  {}.to_json
 end

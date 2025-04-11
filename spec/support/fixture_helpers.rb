@@ -18,4 +18,8 @@ module FixtureHelpers
         temp.rewind
       end
   end
+
+  def fixture_path_for(fixture_name)
+    ROOT.join('spec', 'fixtures', fixture_name)
+  end
 end
