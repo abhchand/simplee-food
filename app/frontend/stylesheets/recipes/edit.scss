@@ -1,6 +1,8 @@
+@import '../shared/colors.scss';
+
 .recipes-edit__form {
   padding: 20px 0;
-  background-color: #ffffed;
+  background-color: $off-white;
 
   // Apply only to the submit at the bottom of the page
   .recipes-edit__save-btn {
@@ -37,7 +39,7 @@
 
   > label, > h3 {
     display: block;
-    color: #555;
+    color: $dark-gray;
     font-weight: 700;
     font-size: 20px;
   }
@@ -58,7 +60,7 @@
   transition: background-color 1s ease-out;
 
   &.selected {
-    background-color: #E0FFFF;
+    background-color: $pale-aqua;
   }
 
   input {
@@ -77,7 +79,7 @@
   svg, path {
     width: 22px;
     height: 22px;
-    fill: #555;
+    fill: $dark-gray;
   }
 
   button {
@@ -125,7 +127,7 @@
 }
 
 .recipes-edit__save-btn {
-  background-color: #00F535;
+  background-color: $neon-green;
 }
 
 .recipes-edit__cancel-btn {

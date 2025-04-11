@@ -1,7 +1,8 @@
+@import '../shared/colors.scss';
 @import '../shared/tags.scss';
 
 .recipes-index__create-btn {
-  background-color: #00F535;
+  background-color: $neon-green;
 }
 
 .recipes-index__search-container {
@@ -28,7 +29,7 @@
   padding: 2px;
   color: white;
   font-size: 18px;
-  background: #444;
+  background: $dark-gray;
   border: none;
   cursor: pointer;
   appearance: none;
@@ -78,7 +79,7 @@
     }
 
     &.selected {
-      background-color: #eee;
+      background-color: $light-gray;
     }
   }
 }
@@ -120,7 +121,7 @@
   height: 100px;
   margin-bottom: 15px;
   padding: 15px;
-  background-color: #f4ffff;
+  background-color: $pale-blue;
   border: 1px solid black;
 
   img {

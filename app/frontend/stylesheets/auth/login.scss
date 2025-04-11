@@ -1,3 +1,5 @@
+@import '../shared/colors.scss';
+
 .auth__form {
   display: flex;
   flex-direction: column;
@@ -22,5 +24,5 @@
 .auth__form-submit-btn {
   width: 300px;
   margin-top: 35px;
-  background-color: #00F535;
+  background-color: $neon-green;
 }

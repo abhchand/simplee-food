@@ -1,3 +1,4 @@
+@import '../shared/colors.scss';
 @import '../shared/tags.scss';
 
 .recipes-show__edit-btn {
@@ -51,7 +52,7 @@
   font-weight: 700;
   font-size: 16px;
   text-align: center;
-  background-color: #EA9999;
+  background-color: $light-rose;
   border-width: 1px;
   border-radius: 3px;
 }
