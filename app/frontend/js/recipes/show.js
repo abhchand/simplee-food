@@ -16,8 +16,14 @@ function onRecipeDelete(url) {
   }
 
   fetch(url, { method: 'DELETE' })
-    .then(() => (window.location.href = '/recipes'))
-    .catch(() => setFlashError('Unable to delete Recipe'));
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error - status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((_data) => (window.location.href = '/recipes'))
+    .catch((_error) => setFlashError('Unable to delete Recipe'));
 }
 
 export { onRecipeStepClick, onRecipeDelete };
