@@ -51,6 +51,8 @@ function onAddTag(_event) {
 function onEditRecipeSubmit(event) {
   event.preventDefault();
 
+  disableSaveButtons();
+
   const form = document.querySelector('form.recipes-edit__form');
   const formData = new FormData(form);
 
@@ -65,9 +67,24 @@ function onEditRecipeSubmit(event) {
     })
     .then((json) => (window.location.href = json.url))
     .catch((response) => {
+      enableSaveButtons();
       console.log(response.status, response.statusText);
       response.json().then((json) => setFlashError(json.error, true));
     });
+}
+
+function disableSaveButtons() {
+  document.querySelectorAll('.recipes-edit__save-btn').forEach((btn) => {
+    btn.disabled = true;
+    btn.textContent = 'Saving...';
+  });
+}
+
+function enableSaveButtons() {
+  document.querySelectorAll('.recipes-edit__save-btn').forEach((btn) => {
+    btn.disabled = false;
+    btn.textContent = 'Save';
+  });
 }
 
 /*

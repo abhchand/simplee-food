@@ -128,6 +128,10 @@
 
 .recipes-edit__save-btn {
   background-color: $neon-green;
+
+  &:disabled {
+    opacity: 0.4;
+  }
 }
 
 .recipes-edit__cancel-btn {
