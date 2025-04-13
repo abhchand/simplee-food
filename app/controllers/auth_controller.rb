@@ -38,6 +38,7 @@ before do
 end
 
 get '/login' do
+  @page_title = 'Log In'
   erb :'auth/login'
 end
 
