@@ -83,3 +83,14 @@ put '/api/recipes/:slug', authenticate: :always do
     url: "/recipes/#{@recipe.reload.slug}"
   }.to_json
 end
+
+delete '/api/recipes/:slug', authenticate: :always do
+  @recipe = Recipe.find_by_slug(params['slug']&.downcase)
+  return(status 404) unless @recipe
+
+  @recipe.destroy! if @recipe
+
+  content_type :json
+  status 200
+  {}.to_json
+end
