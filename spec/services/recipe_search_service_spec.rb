@@ -102,6 +102,20 @@ RSpec.describe RecipeSearchService, type: :service do
         'tag' => nil
       )
     end
+
+    it 'gracefully handles no data found' do
+      params['search'] = 'xyz'
+
+      expect(data).to eq(
+        'items' => [],
+        'first_item' => 0,
+        'last_item' => 0,
+        'total_items' => 0,
+        'current_page' => 1,
+        'last_page' => 0,
+        'tag' => nil
+      )
+    end
   end
 
   context 'sorting' do

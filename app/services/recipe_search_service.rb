@@ -49,7 +49,7 @@ class RecipeSearchService
         req_page = (@params['page'] || 1).to_i
 
         case
-        when req_page <= 0
+        when req_page <= 0 || max_page <= 0
           1
         when req_page > max_page
           max_page
