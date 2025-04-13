@@ -1,6 +1,6 @@
 require 'sinatra_helper'
 
-RSpec.feature 'Logging Out', type: :feature, js: true do
+RSpec.feature 'Logging Out', type: :feature do
   let(:user) { FactoryBot.create(:user) }
 
   it 'can log out' do

@@ -225,7 +225,7 @@ function openBulkAddModal(css_id) {
 function renumberSortableList(sortableList) {
   let idx = 0;
 
-  [...sortableList.querySelectorAll('li > input')].forEach((input) => {
+  [...sortableList.querySelectorAll('li > input,textarea')].forEach((input) => {
     // Replace the last number with the current index
     // e.g. foo[bar][9] -> foo[bar][<count>]
     input.name = input.name.replace(/\[\d+\]/, `[${idx}]`);

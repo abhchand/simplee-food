@@ -1,6 +1,6 @@
 require 'sinatra_helper'
 
-RSpec.feature 'Logging In', type: :feature, js: true do
+RSpec.feature 'Logging In', type: :feature do
   let(:recipe) { FactoryBot.create(:recipe) }
   let(:user) { FactoryBot.create(:user) }
 
