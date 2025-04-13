@@ -27,7 +27,7 @@ RUN bundle config set path /bundle \
 # NodeJS
 # Installing a specific version of node directly is dificult. Use `nvm` to
 # install it (which installs both `node` and `npm`)
-ENV NODE_VERSION=14.17.5
+ENV NODE_VERSION=18.20.7
 ENV NVM_DIR=/usr/local/nvm
 ENV NVM_VERSION=0.39.3
 
