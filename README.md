@@ -1,38 +1,37 @@
 ![Build](https://github.com/abhchand/simplee-food/actions/workflows/build.yml/badge.svg)
 
+[![Docker Hub](https://img.shields.io/docker/pulls/abhchand/simplee_food)](https://hub.docker.com/r/abhchand/simplee_food)
+
+
 # SimpleeFood
 
-SimpleeFood is a simple, no-frills recipe application to self host your recipes.
+SimpleeFood is self-hosted recipe app.
 
-Most Recipe applications are over-complicated and bloated with unnecessary features. SimpleeFood emphasizes a simple design, minimal functionality, and an easy to run application.
+Simple to run. Simple to use. Simply no bloat.
 
 ## Quick Start
 
-SimpleeFood uses [docker](https://www.docker.com/get-started/) and [docker compose](https://docs.docker.com/compose/) to run a container-ized application.
+Run the app with `docker compose` (which pulls from [docker hub](https://hub.docker.com/repository/docker/abhchand/simplee_food))
 
 ```shell
-# Clone this repo
-git clone git@github.com:abhchand/simplee-food.git
-cd simplee-food/
+# download the latest `docker-compose.yml` file in this repo
+curl "https://raw.githubusercontent.com/abhchand/simplee-food/refs/heads/main/docker-compose.yml" > docker-compose.yml
 
-# Start the application
+# start the application
 docker compose up
 ```
 
-Visit http://localhost:8080/ in your browser to view the application.
-
-You can log in with username `admin` and password `sekrit`. You can rename your user or add new users from the "settings" page.
+* View the application at http://localhost:8080/.
+* Log in with username `admin` and password `sekrit`.
+* You can change the username/password or add new users from the `/settings` page.
 
 ## Updating
 
-When updating SimpleeFood, be sure to `git pull` and force re-build the docker image first.
-
 ```shell
-git pull
-docker compose build --no-cache
+docker compose pull
 
-# Start the application
-docker compose up
+docker compose down
+docker compose up --build --force-recreate
 ```
 
 ### Configuration
@@ -42,8 +41,7 @@ SimpleeFood respects the following environment variables, if set:
 ENV Var | Description
 --- | ---
 `SIMPLEE_FOOD_APP_PORT` | Serve the application on a specific port. (default: `8080`)
-`SIMPLEE_FOOD_DOCKER_TAG` | Specify a tag for the docker image (default: `latest`)
-`SIMPLEE_FOOD_SESSION_SECRET` | Specify a custom application secret that will be used to encrypt sessions. If none is specified, one will be generated on application startup and cached in the DB
+`SIMPLEE_FOOD_DOCKER_TAG` | Specify a tag for the docker image (default: `latest`). [See available tags](https://hub.docker.com/repository/docker/abhchand/simplee_food/tags).
 
 ### Backing up and Restoring Data
 

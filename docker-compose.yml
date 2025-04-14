@@ -2,13 +2,10 @@ version: '3'
 
 services:
   simplee_food:
-    image: simplee_food/simplee_food:${SIMPLEE_FOOD_DOCKER_TAG:-latest}
-    build:
-      context: .
+    image: abhchand/simplee_food:${SIMPLEE_FOOD_DOCKER_TAG:-latest}
     environment:
       - RACK_ENV=production
       - SIMPLEE_FOOD_SESSION_SECRET
-
     extra_hosts:
       # Allow accessing services running on `localhost`, outside the container
       - host.docker.internal:host-gateway
