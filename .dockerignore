@@ -1,0 +1,60 @@
+# === OS-Specific Files ===
+.DS_Store
+Thumbs.db
+
+# === Log Files ===
+*.log
+log/
+tmp/
+*.pid
+*.swp
+
+# === Ruby / Sinatra ===
+*.gem
+*.rbc
+.bundle/
+vendor/bundle/
+.ruby-version
+.ruby-gemset
+
+# Byebug and Pry history
+.byebug_history
+.pry_history
+
+# === Node.js ===
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.pnpm-debug.log
+
+# === Environment Files ===
+.env
+.env.local
+.env.*.local
+
+# === Coverage / Test Output ===
+coverage/
+.nyc_output/
+test/tmp/
+rspec.failures
+
+# === Asset Compilers ===
+.sass-cache/
+.cache/
+dist/
+build/
+
+# === Editor/IDE Files ===
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.code-workspace
+
+# === Git Files ===
+*.orig
+
+# === Misc ===
+*.bak
