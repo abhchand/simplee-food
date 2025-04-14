@@ -112,7 +112,7 @@
     <div class="recipes-edit__field-block" id="recipe-instructions">
       <h3>steps</h3>
       <ul class="recipes-edit__sortable-list">
-        <% @recipe.steps.each_with_index do |instruction, idx| %>
+        <% @recipe.instructions.each_with_index do |instruction, idx| %>
           <%#
             this <li> is reconstructed programmatically in JS, so any changes
             here should be updated in the JS logic as well

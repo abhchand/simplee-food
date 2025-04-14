@@ -36,7 +36,7 @@
   </div>
   <% end %>
 
-  <div class="recipes-show__instructions">
+  <div class="recipes-show__content">
     <section class="recipes-show__ingredients">
       <h2>Ingredients</h2>
 
@@ -48,13 +48,13 @@
       <% end %>
     </section>
 
-    <section class="recipes-show__steps">
+    <section class="recipes-show__instructions">
       <h2>Steps</h2>
       <ul>
-        <% @recipe.steps.each_with_index do |step, idx| %>
-        <li class="recipes-show__step-item" data-id="<%= idx + 1 %>" onclick="SimpleeFood.onRecipeStepClick(event)">
-          <div class="recipes-show__step-number"><%= idx + 1 %></div>
-          <p class="recipes-show__step-text"><%= step %></p>
+        <% @recipe.instructions.each_with_index do |instruction, idx| %>
+        <li class="recipes-show__instruction-item" data-id="<%= idx + 1 %>" onclick="SimpleeFood.onRecipeInstructionClick(event)">
+          <div class="recipes-show__instruction-number"><%= idx + 1 %></div>
+          <p class="recipes-show__instruction-text"><%= instruction %></p>
         </li>
         <% end %>
       </ul>

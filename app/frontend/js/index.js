@@ -19,7 +19,7 @@ import {
   onRecipeSort
 } from './recipes/index';
 
-import { onRecipeStepClick, onRecipeDelete } from './recipes/show';
+import { onRecipeInstructionClick, onRecipeDelete } from './recipes/show';
 
 import { debounce } from './shared/debounce';
 
@@ -44,10 +44,10 @@ export {
   onPaginationNext,
   onPaginationPrev,
   onRecipeDelete,
+  onRecipeInstructionClick,
   onRecipeSearch,
   onRecipeSearchClear,
   onRecipeShare,
   onRecipeSort,
-  onRecipeStepClick,
   openBulkAddModal
 };

@@ -7,7 +7,7 @@ RSpec.feature 'Creating Recipes', type: :feature do
     FactoryBot.create(
       :recipe,
       ingredients: %w[apple banana pear],
-      steps: %w[wash chop boil]
+      instructions: %w[wash chop boil]
     )
   end
   let(:user) { FactoryBot.create(:user) }
@@ -60,7 +60,7 @@ RSpec.feature 'Creating Recipes', type: :feature do
     expect(recipe.image).to_not be_nil
     expect(recipe.image_thumbnail).to_not be_nil
     expect(recipe.ingredients).to eq(%w[apple tomatoes])
-    expect(recipe.steps).to eq(['peel em', 'smash em'])
+    expect(recipe.instructions).to eq(['peel em', 'smash em'])
     expect(recipe.tags.map(&:name)).to eq(%w[newtag])
   end
 

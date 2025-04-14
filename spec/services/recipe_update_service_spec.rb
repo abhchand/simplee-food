@@ -75,18 +75,18 @@ RSpec.describe RecipeUpdateService, type: :service do
       end
     end
 
-    describe 'updating steps' do
+    describe 'updating instructions' do
       it 'updates the instructions' do
-        expect do call! end.to change { recipe.reload.steps }.to(
+        expect do call! end.to change { recipe.reload.instructions }.to(
           params[:recipe][:instructions].values
         )
       end
 
       it 'clears the instructions when it is specified as blank' do
-        recipe.update!(steps: ['step 1', 'step 2'])
+        recipe.update!(instructions: ['instruction 1', 'instruction 2'])
         params[:recipe].delete(:instructions)
 
-        expect do call! end.to change { recipe.reload.steps }.to([])
+        expect do call! end.to change { recipe.reload.instructions }.to([])
       end
     end
 
@@ -234,7 +234,9 @@ RSpec.describe RecipeUpdateService, type: :service do
 
     it 'sets the instructions' do
       call!
-      expect(recipe.reload.steps).to eq(params[:recipe][:instructions].values)
+      expect(recipe.reload.instructions).to eq(
+        params[:recipe][:instructions].values
+      )
     end
 
     describe 'updating image' do

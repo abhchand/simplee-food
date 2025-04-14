@@ -57,7 +57,7 @@
   border-radius: 3px;
 }
 
-.recipes-show__instructions {
+.recipes-show__content {
   display: flex;
   margin-bottom: 75px;
 }
@@ -90,7 +90,7 @@
   }
 }
 
-.recipes-show__steps {
+.recipes-show__instructions {
   padding-left: 30px;
 
   ul {
@@ -99,7 +99,7 @@
   }
 }
 
-.recipes-show__step-item {
+.recipes-show__instruction-item {
   display: flex;
   margin-bottom: 30px;
 
@@ -108,7 +108,7 @@
   }
 }
 
-.recipes-show__step-number {
+.recipes-show__instruction-number {
   width: 50px;
   min-width: 50px;
   height: 50px;
@@ -122,7 +122,7 @@
   cursor: pointer;
 }
 
-.recipes-show__step-text {
+.recipes-show__instruction-text {
   margin: 0;
   font-size: 18px;
 }
@@ -144,7 +144,7 @@
 }
 
 @media screen and (max-width: 980px) {
-  .recipes-show__instructions {
+  .recipes-show__content {
     flex-direction: column;
     align-items: stretch;
   }
@@ -156,7 +156,7 @@
     border-right: none;
   }
 
-  .recipes-show__steps {
+  .recipes-show__instructions {
     margin-top: 20px;
   }
 }

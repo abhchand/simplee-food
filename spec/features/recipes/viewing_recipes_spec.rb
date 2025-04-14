@@ -5,7 +5,7 @@ RSpec.feature 'Viewing Recipes', type: :feature do
     FactoryBot.create(
       :recipe,
       ingredients: %w[apple banana pear],
-      steps: ['wash banana', 'chop apple', 'boil the pear']
+      instructions: ['wash banana', 'chop apple', 'boil the pear']
     )
   end
   let(:user) { FactoryBot.create(:user) }
@@ -48,8 +48,8 @@ RSpec.feature 'Viewing Recipes', type: :feature do
       expect(page).to have_unchecked_field('pear')
     end
 
-    # User can toggle steps
-    el = page.find(".recipes-show__step-item[data-id='2']")
+    # User can toggle instructions
+    el = page.find(".recipes-show__instruction-item[data-id='2']")
     expect do el.click end.to change { el[:class].include?('selected') }.from(
       false
     ).to(true)

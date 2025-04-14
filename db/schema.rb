@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_02_220524) do
+ActiveRecord::Schema.define(version: 2025_04_13_192159) do
 
   create_table "configs", id: false, force: :cascade do |t|
     t.string "key", null: false
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2024_08_02_220524) do
     t.binary "image"
     t.string "serving_size"
     t.string "ingredients"
-    t.string "steps"
+    t.string "instructions"
     t.string "source_url"
     t.binary "image_thumbnail"
   end
