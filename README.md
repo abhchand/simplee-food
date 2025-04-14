@@ -51,6 +51,10 @@ All recipe data is stored in a single, self-contained [SQLite](https://www.sqlit
 sqlite/simplee_food.production.sqlite3
 ```
 
+## Support
+
+Questions? Need help? [Open an issuee](https://github.com/abhchand/simplee-food/issues) on Github.
+
 ## Development
 
 Interested in contributing to SimpleeFood or running it locally in development mode?

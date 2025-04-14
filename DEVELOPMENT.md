@@ -2,7 +2,8 @@
 
 SimpleeFood uses [Sinatra Ruby](https://sinatrarb.com/) for the backend and [rollup.js](https://github.com/rollup/rollup) for the frontend.
 
-If you wish to contribute to it, you can run it locally in development mode.
+The easiest way to run the project is with the official docker image ([instructions](README.md)). However,
+if you wish to contribute to it you can run the application locally in `development` mode.
 
 ### Pre-Requisites
 
@@ -15,21 +16,20 @@ Optionally, [`rvm`](https://rvm.io/) is a tool to help manage multiple ruby vers
 
 ### Run
 
-The `bin/app` script provides a convenient wrapper for multiple commands. It's not doing anything complex, you can [see for yourself here](bin/app).
-
+The `bin/app` script provides a convenient wrapper for multiple commands. It's not doing anything complex, it's just running ruby and yarn commands. [See for yourself here](bin/app).
 
 ```shell
-# One-time setup
+# One-time setup - creates the DB, runs migrations, etc...
 bin/app setup
 
-# Start the frontend and backend in different windows
+# Start the frontend and backend in different terminal windows
 bin/app backend
 bin/app frontend
 ```
 
-Visit http://localhost:9292/ in your browser to view the application.
-
-The default seeded login is `indra` / `sekrit`.
+* View the application at http://localhost:9292/.
+* Log in with username `indra` and password `sekrit`.
+* You can change the username/password or add new users from the `/settings` page.
 
 ### Sinatra Console
 
@@ -39,16 +39,30 @@ You can access the Sinatra ruby console with:
 bin/app console
 ```
 
+### Migrations
+
+If you make DB changes you will have to migrate the schema manually.
+
+Stop the `backend` ruby server and run:
+
+```shell
+# Run migrations
+bundle exec rake db:migrate
+
+# Start the backend again
+bin/app backend
+```
+
 ### Hot Reloading
 
 Both the frontend and backend processes support hot reloading by default. This makes it easier to see any code changes reflected, without having to restart the server.
 
 * The frontend reloads using the built-in `--watch` functionality provided by `rollup.js`. See the `build:dev` task in `package.json`.
-* The backend reloads using `rerun`, which watches for any `*.rb` file changes. See the `bin/app` shell script wrapper, and how it starts the backend Sinatra server.
+* The backend reloads using `rerun`, which watches for any `*.rb` file changes. See the `bin/app` shell script wrapper, where you can see how it starts the backend Sinatra server.
 
 ### Running Tests
 
-SimpleeFood uses [`rspec`](http://rspec.info/) to run tests.
+SimpleeFood uses [`rspec`](http://rspec.info/) to run tests. It also uses [`capybara`](https://github.com/teamcapybara/capybara) to run Chrome Headless Browser tests (see `spec/features/*`).
 
 ```shell
 bundle exec rspec
@@ -56,12 +70,13 @@ bundle exec rspec
 
 ### Linting
 
-The following linting tasks are available via [`yarn` scripts](https://classic.yarnpkg.com/lang/en/docs/cli/run/) -
+Run linting with:
 
 ```shell
-yarn run lint:css        # lints *.scss/*.css files
-yarn run lint:prettier   # formats Ruby and JS code
+yarn run lint
 ```
+
+This runs `stylelint`, `prettier`, etc.. See [`package.json`](package.json).
 
 ### DB Reset
 
@@ -72,3 +87,5 @@ All data is stored in a single [SQLite](https://www.sqlite.org/index.html) DB fi
 ```shell
 rm sqlite/app.development.sqlite3
 ```
+
+Be sure to run the one-time `bin/app setup` task again since you are starting from scratch.
