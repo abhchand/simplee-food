@@ -1,4 +1,4 @@
-![Build](https://github.com/abhchand/simplee-food/actions/workflows/test.yml/badge.svg)
+![Build](https://github.com/abhchand/simplee-food/actions/workflows/build.yml/badge.svg)
 
 # SimpleeFood
 
