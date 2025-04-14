@@ -1,6 +1,6 @@
 import { setFlashError } from '../shared/flash';
 
-function onRecipeStepClick(event) {
+function onRecipeInstructionClick(event) {
   const el = event.currentTarget;
 
   if (el.classList.contains('selected')) {
@@ -26,4 +26,4 @@ function onRecipeDelete(url) {
     .catch((_error) => setFlashError('Unable to delete Recipe'));
 }
 
-export { onRecipeStepClick, onRecipeDelete };
+export { onRecipeInstructionClick, onRecipeDelete };

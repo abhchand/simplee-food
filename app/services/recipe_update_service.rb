@@ -78,7 +78,7 @@ class RecipeUpdateService
       source_url: @params[:recipe][:source_url],
       serving_size: @params[:recipe][:serving_size],
       ingredients: (@params[:recipe][:ingredients] || {}).values,
-      steps: (@params[:recipe][:instructions] || {}).values
+      instructions: (@params[:recipe][:instructions] || {}).values
     }
 
     # nilify any blank strings

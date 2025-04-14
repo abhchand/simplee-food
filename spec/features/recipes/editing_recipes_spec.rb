@@ -7,7 +7,7 @@ RSpec.feature 'Editing Recipes', type: :feature do
     FactoryBot.create(
       :recipe,
       ingredients: %w[apple banana pear],
-      steps: %w[wash chop boil]
+      instructions: %w[wash chop boil]
     )
   end
   let(:user) { FactoryBot.create(:user) }

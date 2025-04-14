@@ -20,7 +20,7 @@ puts "\t=== Seeding Recipes"
     name: "Recipe #{i}",
     serving_size: "#{i} bowls",
     ingredients: ['2 Onions (diced)', '4 Bell Peppers', '3 Bananas (peeled)'],
-    steps: [
+    instructions: [
       'Boil the banana',
       'Blend the onions',
       'Heat water to 1,500 degrees and add bell peppers'

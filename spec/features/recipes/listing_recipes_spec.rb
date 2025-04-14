@@ -233,7 +233,7 @@ RSpec.feature 'Listing Recipes', type: :feature, js: true do
 
   def search_recipes_for(text)
     page.find('.recipes-index__search-input').base.send_keys(text)
-    sleep(0.5)
+    sleep(1)
   end
 
   def sort_by!(type)

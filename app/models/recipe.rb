@@ -31,10 +31,10 @@ class Recipe < ActiveRecord::Base
     self[:ingredients] = val&.to_json
   end
 
-  def steps
-    return [] if self[:steps].nil?
+  def instructions
+    return [] if self[:instructions].nil?
 
-    JSON.parse(self[:steps])
+    JSON.parse(self[:instructions])
   end
 
   def rm_tag(tag)
@@ -42,8 +42,8 @@ class Recipe < ActiveRecord::Base
     rt.destroy! if rt.present?
   end
 
-  def steps=(val)
-    self[:steps] = val&.to_json
+  def instructions=(val)
+    self[:instructions] = val&.to_json
   end
 
   private

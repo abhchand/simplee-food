@@ -166,16 +166,16 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
-  describe '#steps' do
-    it 'returns the steps as parsed JSON' do
-      recipe[:steps] = "[\"onion\", \"carrot\"]"
-      expect(recipe.steps).to eq(%w[onion carrot])
+  describe '#instructions' do
+    it 'returns the instructions as parsed JSON' do
+      recipe[:instructions] = "[\"onion\", \"carrot\"]"
+      expect(recipe.instructions).to eq(%w[onion carrot])
     end
 
-    context 'steps is empty' do
+    context 'instructions is empty' do
       it 'returns []' do
-        recipe[:steps] = nil
-        expect(recipe.steps).to eq([])
+        recipe[:instructions] = nil
+        expect(recipe.instructions).to eq([])
       end
     end
   end
@@ -200,16 +200,16 @@ RSpec.describe Recipe, type: :model do
     end
   end
 
-  describe '#steps=' do
-    it 'stores the steps as raw JSON' do
-      recipe.steps = %w[onion carrot]
-      expect(recipe[:steps]).to eq("[\"onion\",\"carrot\"]")
+  describe '#instructions=' do
+    it 'stores the instructions as raw JSON' do
+      recipe.instructions = %w[onion carrot]
+      expect(recipe[:instructions]).to eq("[\"onion\",\"carrot\"]")
     end
 
     context 'value is nil' do
       it 'gracefully stores the value as nil' do
-        recipe.steps = nil
-        expect(recipe[:steps]).to be_nil
+        recipe.instructions = nil
+        expect(recipe[:instructions]).to be_nil
       end
     end
   end
