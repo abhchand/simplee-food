@@ -1,4 +1,9 @@
+// `content` and `footer` are flex items under the <body> in order to implement
+// a sticky footer
+// See: https://css-tricks.com/couple-takes-sticky-footer/
+
 .content {
+  flex: 1 0 auto;
   width: 980px;
   margin: 0 auto;
   padding: 40px 0;
@@ -6,6 +11,21 @@
 @media screen and (max-width: 980px) {
   .content {
     width: 100%;
+  }
+}
+
+.footer {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  // Use padding-bottom over margin-bottom since this flex child is pushed
+  // all the way down
+  padding-bottom: 20px;
+
+  & > *:not(:last-child) {
+    margin-right: 6px;
   }
 }
 
