@@ -15,7 +15,6 @@ SimpleeFood is packaged as a docker image and can be run with `docker compose`.
 
 ```shell
 # optional: specify which image tag to use
-# see: https://hub.docker.com/repository/docker/abhchand/simplee_food
 # defaults to "latest"
 export SIMPLEE_FOOD_DOCKER_TAG="v1.0.0"
 
@@ -28,13 +27,13 @@ docker compose up
 
 * View the application at http://localhost:8080/.
 * Log in with username `admin` and password `sekrit`. You can update this from the [`/settings`](http://localhost:8080/settings) page.
+* See [docker hub](https://hub.docker.com/r/abhchand/simplee_food/tags) for the list of available tags
 
 
 ## Updating
 
 ```shell
 # optional: specify which image tag to use
-# see: https://hub.docker.com/repository/docker/abhchand/simplee_food
 # defaults to "latest"
 export SIMPLEE_FOOD_DOCKER_TAG="v1.0.0"
 
@@ -65,7 +64,7 @@ sqlite/simplee_food.production.sqlite3
 
 ## Support
 
-Questions? Need help? [Open an issuee](https://github.com/abhchand/simplee-food/issues) on Github.
+Questions? Need help? [Open an issue](https://github.com/abhchand/simplee-food/issues) on Github.
 
 ## Development
 
