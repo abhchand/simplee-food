@@ -7,11 +7,13 @@ require 'image_processing/mini_magick'
 require 'pathname'
 
 require_relative 'session_secret_manager'
+require_relative 'version'
 
 ENV['RACK_ENV'] ||= 'development'
 
 APP_ROOT = Pathname.new(File.expand_path('..', __dir__))
 SQLITE_FILE = "simplee_food.#{ENV['RACK_ENV']}.sqlite3"
+APP_VERSION = Version.find!
 
 ## Application Configuration
 

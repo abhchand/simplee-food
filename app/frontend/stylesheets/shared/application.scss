@@ -1,4 +1,14 @@
+// Set body to full height and display as flex in order to implement a sticky
+// footer
+// See: https://css-tricks.com/couple-takes-sticky-footer/
+
+html, body {
+  height: 100%;
+}
+
 body {
+  display: flex;
+  flex-direction: column;
   color: black;
   font-weight: 400;
   font-size: 16px;
