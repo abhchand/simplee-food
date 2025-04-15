@@ -1,25 +1,36 @@
 ## Development
 
-SimpleeFood uses [Sinatra Ruby](https://sinatrarb.com/) for the backend and [rollup.js](https://github.com/rollup/rollup) for the frontend.
-
-The easiest way to run the project is with the official docker image ([instructions](README.md)). However,
+On production, SimpleeFood is intended to run inside docker ([instructions](README.md)). However,
 if you wish to contribute to it you can run the application locally in `development` mode.
+
+SimpleeFood uses [Sinatra Ruby](https://sinatrarb.com/) for the backend and [rollup.js](https://github.com/rollup/rollup) for the frontend.
 
 ### Pre-Requisites
 
-You must have the following installed -
-  * The ruby version specified in [`.ruby-version`](./.ruby-version).
-  * The node version specified in [`.nvmrc`](./.nvmrc), along with [`yarn`](https://yarnpkg.com/).
-  * [`ImageMagick`](https://imagemagick.org/) to process images. Install with `sudo apt install imagemagick` (Debian) or `brew install imagemagick` (OSX)
+The development environment requires the following:
 
-Optionally, [`rvm`](https://rvm.io/) is a tool to help manage multiple ruby versions and [`nvm`](https://github.com/nvm-sh/nvm) is a tool to help manage multiple node versions.
+software | notes
+--- | ---
+`ruby` | the ruby version specified in [`.ruby-version`](./.ruby-version).
+`node` | the node version specified in [`.nvmrc`](./.nvmrc)
+[`yarn`](https://yarnpkg.com/) | install with `npm install -g yarn`
+  [`ImageMagick`](https://imagemagick.org/) | needed for image processing. Install with `sudo apt install imagemagick` (Debian) or `brew install imagemagick` (OSX)
+[`rvm`](https://rvm.io/) (optional) | a tool to help manage multiple ruby versions
+[`nvm`](https://github.com/nvm-sh/nvm) (optional) | a tool to help manage multiple node versions
+
+
+### Helper Script
+
+This repo includes a [`bin/app`](bin/app) script that provides a convenient wrapper for common tasks. This script is used below, but it's not doing anything magical. [See for yourself](bin/app) what it's doing.
+
+Alternately, you can execute those commands yourself directly.
 
 ### Run
 
-The `bin/app` script provides a convenient wrapper for multiple commands. It's not doing anything complex, it's just running ruby and yarn commands. [See for yourself here](bin/app).
+To run SimpleeFood:
 
 ```shell
-# One-time setup - creates the DB, runs migrations, etc...
+# One-time setup: installs dependencies, creates the DB, runs migrations, etc...
 bin/app setup
 
 # Start the frontend and backend in different terminal windows
@@ -28,8 +39,7 @@ bin/app frontend
 ```
 
 * View the application at http://localhost:9292/.
-* Log in with username `indra` and password `sekrit`.
-* You can change the username/password or add new users from the `/settings` page.
+* Log in with username `indra` and password `sekrit`. You can update this from the [`/settings`](http://localhost:9292/settings) page.
 
 ### Sinatra Console
 
@@ -41,7 +51,7 @@ bin/app console
 
 ### Migrations
 
-If you make DB changes you will have to migrate the schema manually.
+If you make DB changes you will need to migrate the schema manually.
 
 Stop the `backend` ruby server and run:
 
@@ -70,13 +80,13 @@ bundle exec rspec
 
 ### Linting
 
-Run linting with:
+Run all linters (`styleline`, `prettier`, etc...) with
 
 ```shell
 yarn run lint
 ```
 
-This runs `stylelint`, `prettier`, etc.. See [`package.json`](package.json).
+See [`package.json`](package.json) for task definition.
 
 ### DB Reset
 
@@ -88,4 +98,10 @@ All data is stored in a single [SQLite](https://www.sqlite.org/index.html) DB fi
 rm sqlite/app.development.sqlite3
 ```
 
-Be sure to run the one-time `bin/app setup` task again since you are starting from scratch.
+Since you're resetting and removing all DB data, you'll have to re-run one-time `bin/app setup` task again before starting your app again.
+
+```shell
+bin/app setup     # one time setup
+bin/app backend
+bin/app frontend
+```
