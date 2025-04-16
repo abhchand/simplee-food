@@ -18,11 +18,16 @@
   display: flex;
   flex-shrink: 0;
   justify-content: center;
+  align-items: center;
   width: 100%;
   margin-top: 20px;
   // Use padding-bottom over margin-bottom since this flex child is pushed
   // all the way down
   padding-bottom: 20px;
+
+  a, span {
+    line-height: 22px;
+  }
 
   & > *:not(:last-child) {
     margin-right: 6px;
