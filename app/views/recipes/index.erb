@@ -49,8 +49,15 @@
     )
   %>
   <% else %>
-  <span class="recipes-index__empty-state">
-    You have no recipes (yet!)
-  </span>
+  <div class="recipes-index__empty-state">
+    <span>You have no recipes (yet!)</span>
+    <% if @user %>
+    <a href="/recipes/new">
+      <button class="recipes-index__create-btn btn--hollow">
+        Add Recipe
+      </button>
+    </a>
+    <% end %>
+  </div>
   <% end %>
 </div>
