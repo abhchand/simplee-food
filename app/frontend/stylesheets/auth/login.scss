@@ -6,8 +6,10 @@
   align-items: center;
   margin-top: 50px;
 
-  h1 {
-    margin-bottom: 35px;
+  .logo {
+    // Override the logo, just on this page. It should be full width of the form
+    width: 300px;
+    height: initial;
   }
 }
 
