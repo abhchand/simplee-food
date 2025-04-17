@@ -47,9 +47,15 @@
 
 
 .recipes-index__empty-state {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 75px;
   margin: 10px 0;
-  color: darkgrey;
+  color: $dark-gray;
   font-style: italic;
+  text-align: center;
 }
 
 .recipes-index__action-bar {

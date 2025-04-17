@@ -14,6 +14,10 @@ helpers do
     '/' + asset_manifest[name.to_s + '.js']
   end
 
+  def image_asset_path(name)
+    '/images/' + name
+  end
+
   def recipe_image_placeholder
     @recipe_image_placeholder ||=
       begin
