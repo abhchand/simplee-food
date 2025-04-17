@@ -5,7 +5,7 @@
 
 # SimpleeFood
 
-SimpleeFood is self-hosted recipe app.
+SimpleeFood is a self-hosted recipe app.
 
 Simple to run. Simple to use. Simply no bloat.
 
