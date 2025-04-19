@@ -11,6 +11,24 @@
     display: block;
   }
 
+  &.flash--error {
+    .flash__content {
+      background-color: $light-rose;
+    }
+  }
+
+  &.flash--notice {
+    .flash__content {
+      background-color: $off-white;
+    }
+  }
+
+  &.flash--success {
+    .flash__content {
+      background-color: $neon-green;
+    }
+  }
+
   .flash__content {
     display: inline;
     padding: 10px 20px;
@@ -20,18 +38,6 @@
     & > span {
       margin-right: 5px;
     }
-  }
-
-  &.flash--error > span {
-    color: red;
-  }
-
-  &.flash--notice > span {
-    color: gray;
-  }
-
-  &.flash--success > span {
-    color: green;
   }
 }
 
