@@ -33,9 +33,9 @@ docker compose up
 ## Updating
 
 ```shell
-# optional: specify which image tag to use
+# optional: specify which new image tag to use
 # defaults to "latest"
-export SIMPLEE_FOOD_DOCKER_TAG="v1.0.0"
+export SIMPLEE_FOOD_DOCKER_TAG="v2.0.0"
 
 # fetch the image
 docker compose pull
