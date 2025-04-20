@@ -1,0 +1,46 @@
+.settings__section {
+  margin-bottom: 40px;
+
+  h3 {
+    border-bottom: 1px solid black;
+  }
+
+  button {
+    width: 75px;
+  }
+}
+
+.settings__user-list {
+  li {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  span {
+    width: 100px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  button {
+    width: 30px;
+    margin-left: 10px;
+    background-color: transparent;
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.settings__form-block {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  label {
+    font-weight: 700;
+  }
+}

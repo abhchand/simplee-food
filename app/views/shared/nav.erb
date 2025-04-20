@@ -8,8 +8,8 @@
   <% end %>
 
   <% if @user %>
-  <span class="nav--auth"><b>👤 <%= @user.name %></b></span>
-  &nbsp;(<a href="/logout">logout</a>)
+  <span class="nav--auth"><b><%= @user.name %></b></span>
+  <span>(<a href="/logout">logout</a>)</span>
   <% else %>
   <%
     # When logging in, ensure user is ultimately redirect back to current path

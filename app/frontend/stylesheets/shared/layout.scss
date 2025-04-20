@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 // `content` and `footer` are flex items under the <body> in order to implement
 // a sticky footer
 // See: https://css-tricks.com/couple-takes-sticky-footer/
@@ -27,6 +29,10 @@
 
   a, span {
     line-height: 22px;
+  }
+
+  span:last-child {
+    color: $dark-gray;
   }
 
   & > *:not(:last-child) {

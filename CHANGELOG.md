@@ -1,5 +1,14 @@
 # Changelog
 
+## v1.3.0
+
+* added `/settings` page to manager users and account
+* logo is now a link to `/`
+* removing profile icon from nav
+* flash color styling based on flash type
+* model validations for `User#name` and `User#password`
+* updated footer copy
+
 ## v1.2.0
 
 * add logo on all page headers
