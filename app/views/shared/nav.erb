@@ -2,13 +2,13 @@
   <a href="/recipes">recipes</a>
   <span>&nbsp;|&nbsp;</span>
   <a href="/tags">tags</a>
-  <% if @user %>
+  <% if @current_user %>
   <span>&nbsp;|&nbsp;</span>
   <a href="/settings">settings</a>
   <% end %>
 
-  <% if @user %>
-  <span class="nav--auth"><b><%= @user.name %></b></span>
+  <% if @current_user %>
+  <span class="nav--auth"><b><%= @current_user.name %></b></span>
   <span>(<a href="/logout">logout</a>)</span>
   <% else %>
   <%

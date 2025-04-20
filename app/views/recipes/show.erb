@@ -4,7 +4,7 @@
 
   <div class="recipe-title-bar">
     <h1><%= @recipe.name %></h1>
-    <% if @user %>
+    <% if @current_user %>
     <a href="/recipes/<%= @recipe.slug %>/edit">
       <button class="recipes-show__edit-btn btn--hollow">Edit&nbsp;<%= svg_icon(:pencil) %></button>
     </a>
@@ -74,7 +74,7 @@
     created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
   </div>
 
-  <% if @user %>
+  <% if @current_user %>
   <div class="recipes-show__delete-btn btn--as-link">
     <a onclick="SimpleeFood.onRecipeDelete('/api/recipes/<%= @recipe.slug %>'); return false;">
       delete this recipe

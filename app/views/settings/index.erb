@@ -15,7 +15,7 @@
       <% User.order(:name).each do |user| %>
       <li>
         <span><%= user.name %></span>
-        <% if user != @user %>
+        <% if user != @current_user %>
         <form class="settings__delete-user-form" method="post" action="/users/<%= user.id %>">
           <input type="hidden" name="_method" value="DELETE">
           <button data-id="<%= user.id %>" type="submit" class="settings__delete-user-form-submit-btn">
@@ -50,7 +50,7 @@
   <section class="settings__section settings__section--change-username">
     <h3>Change My Username</h3>
 
-    <form class="settings__new-user-form" method="post" action="/users/<%= @user.id %>">
+    <form class="settings__new-user-form" method="post" action="/users/<%= @current_user.id %>">
       <input type="hidden" name="_method" value="PUT">
 
       <div class="settings__form-block">
@@ -65,7 +65,7 @@
   <section class="settings__section settings__section--change-password">
     <h3>Change My Password</h3>
 
-    <form class="settings__new-user-form" method="post" action="/users/<%= @user.id %>">
+    <form class="settings__new-user-form" method="post" action="/users/<%= @current_user.id %>">
       <input type="hidden" name="_method" value="PUT">
       <div class="auth__form-block">
         <label class="" for="update-user-current-password">current password</label>

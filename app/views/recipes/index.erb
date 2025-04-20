@@ -10,7 +10,7 @@
     <% end %>
     </h1>
 
-    <% if @user %>
+    <% if @current_user %>
     <a href="/recipes/new">
       <button class="recipes-index__create-btn btn--hollow">
         Add Recipe
@@ -51,7 +51,7 @@
   <% else %>
   <div class="recipes-index__empty-state">
     <span>You have no recipes (yet!)</span>
-    <% if @user %>
+    <% if @current_user %>
     <a href="/recipes/new">
       <button class="recipes-index__create-btn btn--hollow">
         Add Recipe

@@ -11,7 +11,7 @@ register do
       should_auth =
         type.to_s == 'always' || (type.to_s == 'conditionally' && require_auth)
 
-      if should_auth && @user.nil?
+      if should_auth && @current_user.nil?
         flash[:notice] = 'You must sign in first'
 
         # The user hit an endpoint that requires authentication, but was not
@@ -33,7 +33,7 @@ end
 
 before do
   if session[:expires_at] && Time.at(session[:expires_at]) > Time.now
-    @user = User.find_by_id(session[:user_id])
+    @current_user = User.find_by_id(session[:user_id])
   end
 end
 
