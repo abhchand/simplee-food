@@ -1,0 +1,88 @@
+<div class="content">
+  <%= erb(:"shared/logo") %>
+  <%= erb(:"shared/nav") %>
+  <%= erb(:"shared/flash") %>
+
+  <%# This is not really a "recipe", but re-use the CSS class for consistency %>
+  <div class="recipe-title-bar">
+    <h1>Settings</h1>
+  </div>
+
+  <section class="settings__section settings__section--manage-users">
+    <h3>Manage Users (<%= User.count %>)</h3>
+
+    <ul class='settings__user-list'>
+      <% User.order(:name).each do |user| %>
+      <li>
+        <span><%= user.name %></span>
+        <% if user != @user %>
+        <form class="settings__delete-user-form" method="post" action="/users/<%= user.id %>">
+          <input type="hidden" name="_method" value="DELETE">
+          <button data-id="<%= user.id %>" type="submit" class="settings__delete-user-form-submit-btn">
+            <%= svg_icon(:trash) %>
+          </button>
+        </form>
+        <% end %>
+      </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <section class="settings__section settings__section--new-user">
+    <h3>Add new user</h3>
+
+    <form class="settings__new-user-form" method="post" action="/users">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="settings__form-block">
+        <label class="" for="new-user-username">username</label>
+        <input type="text" autocomplete="off" name="user[name]" id="new-user-username" class="form-control" />
+      </div>
+
+      <div class="auth__form-block">
+        <label class="" for="new-user-password">password</label>
+        <input type="password" name="user[password]" id="new-user-password" class="form-control" />
+      </div>
+
+      <button type="submit" class="settings__new-user-form-submit-btn btn--hollow">add</button>
+    </form>
+  </section>
+
+  <section class="settings__section settings__section--change-username">
+    <h3>Change My Username</h3>
+
+    <form class="settings__new-user-form" method="post" action="/users/<%= @user.id %>">
+      <input type="hidden" name="_method" value="PUT">
+
+      <div class="settings__form-block">
+        <label class="" for="update-user-username">username</label>
+        <input type="text" autocomplete="off" name="user[name]" id="update-user-username" class="form-control" />
+      </div>
+
+      <button type="submit" class="settings__update-user-username-form-submit-btn btn--hollow">update</button>
+    </form>
+  </section>
+
+  <section class="settings__section settings__section--change-password">
+    <h3>Change My Password</h3>
+
+    <form class="settings__new-user-form" method="post" action="/users/<%= @user.id %>">
+      <input type="hidden" name="_method" value="PUT">
+      <div class="auth__form-block">
+        <label class="" for="update-user-current-password">current password</label>
+        <input type="password" name="user[current_password]" id="update-user-current-password" class="form-control" />
+      </div>
+
+      <div class="auth__form-block">
+        <label class="" for="update-user-new-password">new password</label>
+        <input type="password" name="user[new_password]" id="update-user-new-password" class="form-control" />
+      </div>
+
+      <div class="auth__form-block">
+        <label class="" for="update-user-confirm-password">confirm new password</label>
+        <input type="password" name="user[confirmation]" id="update-user-confirm-password" class="form-control" />
+      </div>
+
+      <button type="submit" class="settings__update-user-password-form-submit-btn btn--hollow">update</button>
+    </form>
+  </section>
+</div>
