@@ -72,4 +72,4 @@ Questions? Need help? [Open an issue](https://github.com/abhchand/simplee-food/i
 
 Interested in contributing to SimpleeFood or running it locally in development mode?
 
-See [`DEVELOPMENT.md`](DEVELOPMENT.md).
+See [`DEVELOPMENT.md`](doc/DEVELOPMENT.md).
