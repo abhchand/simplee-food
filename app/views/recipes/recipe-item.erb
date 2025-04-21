@@ -27,7 +27,7 @@
   <% else %>
   <div class="recipes-index__list">
   <% recipes.each do |recipe| %>
-    <div class="recipes-index__item shareable" data-name="<%= recipe.slug %>">
+    <div class="recipes-index__item" data-name="<%= recipe.slug %>">
       <div class="recipes-index__item--image">
         <a href="/recipes/<%= recipe.slug %>">
           <img src="data:<%= recipe.image_thumbnail || recipe_image_placeholder %>">

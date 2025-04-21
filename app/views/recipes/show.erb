@@ -18,11 +18,6 @@
       <img src="data:<%= @recipe.image || recipe_image_placeholder %>">
     </div>
     <div class="recipes-show__header-toolbar">
-      <div class="recipes-show__header-share-link btn--as-link shareable" data-name="<%= @recipe.slug %>" >
-        <a href="" onclick="SimpleeFood.onRecipeShare(event)">
-          share
-        </a>&nbsp;<%= svg_icon(:share) %>
-      </div>
       <% if @recipe.source_url %>
       <div class="recipes-show__header-source-url btn--as-link">
         <a target="_blank" href="<%= @recipe.source_url %>">original url</a>&nbsp;<%= svg_icon(:arrow_top_right) %>

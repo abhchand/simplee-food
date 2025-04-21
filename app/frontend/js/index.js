@@ -25,8 +25,6 @@ import { debounce } from './shared/debounce';
 
 import { clearFlash } from './shared/flash';
 
-import { onRecipeShare } from './shared/recipe-share';
-
 import '../stylesheets/index.scss';
 
 export {
@@ -47,7 +45,6 @@ export {
   onRecipeInstructionClick,
   onRecipeSearch,
   onRecipeSearchClear,
-  onRecipeShare,
   onRecipeSort,
   openBulkAddModal
 };
