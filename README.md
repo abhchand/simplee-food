@@ -1,6 +1,4 @@
-![Build](https://github.com/abhchand/simplee-food/actions/workflows/build.yml/badge.svg)
-
-[![Docker Hub](https://img.shields.io/docker/pulls/abhchand/simplee_food)](https://hub.docker.com/r/abhchand/simplee_food)
+![Build](https://github.com/abhchand/simplee-food/actions/workflows/build.yml/badge.svg)&nbsp;&nbsp;&nbsp;[![Docker Hub](https://img.shields.io/docker/pulls/abhchand/simplee_food)](https://hub.docker.com/r/abhchand/simplee_food)
 
 
 <img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/logo.svg?raw=true" width="300px" />
