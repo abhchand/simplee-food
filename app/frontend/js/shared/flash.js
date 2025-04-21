@@ -1,18 +1,30 @@
 import { fromHTML } from './html';
 
-// Sets a flash message of type 'error'
-function setFlashError(text, autoscroll = false) {
+// Generically sets a flash message of type `flashType`, with a given `text`
+function setFlashMessage(text, flashType, autoscroll = false) {
   const flash = document.getElementById('flash');
   const span = flash.querySelector('span');
 
   flash.classList.add('active');
-  flash.classList.add('flash--error');
+  flash.classList.add(`flash--${flashType}`);
 
   span.innerHTML = text;
 
   if (autoscroll) {
     flash.scrollIntoView(true, { behavior: 'smooth' });
   }
+}
+
+function setFlashError(text, autoscroll = false) {
+  setFlashMessage(text, 'error', autoscroll);
+}
+
+function setFlashNotice(text, autoscroll = false) {
+  setFlashMessage(text, 'notice', autoscroll);
+}
+
+function setFlashSuccess(text, autoscroll = false) {
+  setFlashMessage(text, 'success', autoscroll);
 }
 
 // Clears current flash message (of any type)
@@ -31,4 +43,4 @@ function clearFlash() {
   span.innerHTML = '';
 }
 
-export { clearFlash, setFlashError };
+export { clearFlash, setFlashError, setFlashNotice, setFlashSuccess };
