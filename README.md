@@ -3,7 +3,9 @@
 [![Docker Hub](https://img.shields.io/docker/pulls/abhchand/simplee_food)](https://hub.docker.com/r/abhchand/simplee_food)
 
 
-# SimpleeFood
+<img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/logo.svg?raw=true" width="300px" />
+
+-----
 
 SimpleeFood is a self-hosted recipe app.
 
