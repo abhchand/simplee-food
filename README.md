@@ -11,9 +11,7 @@ SimpleeFood is a self-hosted recipe app.
 
 Simple to run. Simple to use. Simply no bloat.
 
-<img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/simplee-food-recipe-list.png?raw=true" width="300px" />
-
-<img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/simplee-food-recipe.png?raw=true" width="300px" />
+<img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/simplee-food-recipe-list.png?raw=true" width="350px" />&nbsp;<img src="https://github.com/abhchand/simplee-food/blob/main/doc/images/simplee-food-recipe.png?raw=true" width="350px" />
 
 ## Quick Start
 
