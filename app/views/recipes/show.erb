@@ -23,6 +23,9 @@
         <a target="_blank" href="<%= @recipe.source_url %>">original url</a>&nbsp;<%= svg_icon(:arrow_top_right) %>
       </div>
       <% end %>
+      <div class="recipes-show__header-fullscreen btn--as-link">
+        <a href="#" onclick="SimpleeFood.recipeFullscreenOpen()">view fullscreen</a>&nbsp;<%= svg_icon(:fullscreen) %>
+      </div>
     </div>
   </section>
 
@@ -77,3 +80,5 @@
   </div>
   <% end %>
 </div>
+
+<%= erb(:"recipes/recipe-fullscreen", {}, recipe: @recipe) %>
