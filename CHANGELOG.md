@@ -1,5 +1,13 @@
 # Changelog
 
+## v1.4.0
+
+* add fullscreen mode, for cooking with tablet or phone
+* switching fonts to `Lato` for better readability
+* remove `share` link feature
+* disable password manager autofill on `/settings` page
+* `README` and documentation stylistic updates
+
 ## v1.3.0
 
 * added `/settings` page to manager users and account
