@@ -19,6 +19,13 @@ import {
   onRecipeSort
 } from './recipes/index';
 
+import {
+  onRecipeFullscreenClickNext,
+  onRecipeFullscreenClickPrev,
+  onRecipeFullscreenTrasitionEnd,
+  recipeFullscreenClose,
+  recipeFullscreenOpen
+} from './recipes/recipe-fullscreen';
 import { onRecipeInstructionClick, onRecipeDelete } from './recipes/show';
 
 import { debounce } from './shared/debounce';
@@ -46,5 +53,10 @@ export {
   onRecipeSearch,
   onRecipeSearchClear,
   onRecipeSort,
-  openBulkAddModal
+  openBulkAddModal,
+  onRecipeFullscreenClickNext,
+  onRecipeFullscreenClickPrev,
+  onRecipeFullscreenTrasitionEnd,
+  recipeFullscreenClose,
+  recipeFullscreenOpen
 };

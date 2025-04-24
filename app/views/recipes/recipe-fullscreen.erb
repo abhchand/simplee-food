@@ -1,0 +1,43 @@
+<div class="recipe-fullscreen">
+  <ul
+    class="recipe-fullscreen__slide-wrapper"
+    onTransitionEnd="SimpleeFood.onRecipeFullscreenTrasitionEnd()">
+
+    <%# First slide will be the ingredient list %>
+    <li class="recipe-fullscreen__slide recipe-fullscreen__slide--ingredients" data-id="0">
+      <h3><%= recipe.name %></h3>
+      <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
+      <div class='ingredient'>
+        <input type="checkbox" id="fullscreen_ingredient_<%= idx %>" name="fullscreen_ingredient_<%= idx %>" value="<%= ingredient %>">
+        <label for="fullscreen_ingredient_<%= idx %>"> <%= ingredient %></label>
+      </div>
+      <% end %>
+    </li>
+
+    <%# Each subsequent slide will be an instruction %>
+    <% recipe.instructions.each_with_index do |instruction, idx| %>
+    <li class="recipe-fullscreen__slide recipe-fullscreen__slide--instruction" data-id="<%= idx + 1 %>">
+      <div class="instruction-number"><%= idx + 1 %></div>
+      <% instruction.split("\n").map(&:strip).select(&:present?).each do |chunk| %>
+      <p class="instruction-text"><%= chunk %></p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+
+  <div class="recipe-fullscreen__progress">
+    <div class="recipe-fullscreen__progress-value"></div>
+  </div>
+
+  <div class="recipe-fullscreen__nav">
+    <button class='btn--hollow' onclick="SimpleeFood.onRecipeFullscreenClickPrev()">
+      <%= svg_icon(:arrow_left) %>
+    </button>
+    <button class='btn--hollow' onclick="SimpleeFood.recipeFullscreenClose()">
+      <%= svg_icon(:x) %>
+    </button>
+    <button class='btn--hollow' onclick="SimpleeFood.onRecipeFullscreenClickNext()">
+      <%= svg_icon(:arrow_right) %>
+    </button>
+  </div>
+</div>
