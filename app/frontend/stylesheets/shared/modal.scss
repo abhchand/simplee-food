@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 .modal {
   position: fixed;
   top: 0;
@@ -23,9 +25,18 @@
   background: white;
   border-radius: 4px;
 }
+.modal--error {
+  color: $red;
+  font-weight: 700;
+}
 .modal-textarea {
   width: 100%;
   height: 200px;
+  margin: 10px 0;
+  resize: none;
+}
+.modal-input {
+  width: 100%;
   margin: 10px 0;
   resize: none;
 }

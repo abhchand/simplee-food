@@ -59,6 +59,8 @@ class RecipeUpdateService
     (new_tags - cur_tags).each { |tag| @recipe.add_tag(tag) }
     (cur_tags - new_tags).each { |tag| @recipe.rm_tag(tag) }
     Tag.remove_all_unused!
+
+    @recipe
   end
 
   private
@@ -77,8 +79,8 @@ class RecipeUpdateService
       name: @params[:recipe][:name],
       source_url: @params[:recipe][:source_url],
       serving_size: @params[:recipe][:serving_size],
-      ingredients: (@params[:recipe][:ingredients] || {}).values,
-      instructions: (@params[:recipe][:instructions] || {}).values
+      ingredients: parse_ordered_hash(@params[:recipe][:ingredients]),
+      instructions: parse_ordered_hash(@params[:recipe][:instructions])
     }
 
     # nilify any blank strings
@@ -141,5 +143,21 @@ class RecipeUpdateService
 
   def image_to_raw(file, mime_type)
     "#{mime_type};base64,#{Base64.encode64(File.read(file))}"
+  end
+
+  # Re-arranges a number-indexed Hash to be an arry
+  #
+  # e.g.
+  #   input:  { '0' => 'a', '1' => 'b', '2' => 'c' }
+  #   output: ['a', 'b', 'c']
+  #
+  # If the object is already an array, it is returned as-is.
+  # If nil, an array is always returned by default.
+  #
+  # @return Array
+  def parse_ordered_hash(obj)
+    return obj.to_a.sort_by(&:first).map(&:last) if obj.is_a?(Hash)
+
+    obj || []
   end
 end

@@ -15,6 +15,7 @@ Simple to run. Simple to use. Simply no bloat.
 Major Features -
 
 * search and tag recipes
+* import recipes from a URL
 * fullscreen mode, for easy cooking on your tablet or phone
 
 ## Quick Start
