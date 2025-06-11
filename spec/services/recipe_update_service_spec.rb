@@ -298,6 +298,29 @@ RSpec.describe RecipeUpdateService, type: :service do
     end
   end
 
+  context 'data is not provided as an ordered hash' do
+    let(:recipe) { Recipe.new }
+
+    before do
+      params[:recipe][:ingredients] = params[:recipe][:ingredients].values
+      params[:recipe][:instructions] = params[:recipe][:instructions].values
+    end
+
+    it 'creates a new Recipe record' do
+      expect do call! end.to change { Recipe.count }.by(1)
+    end
+
+    it 'sets the ingredients' do
+      call!
+      expect(recipe.reload.ingredients).to eq(params[:recipe][:ingredients])
+    end
+
+    it 'sets the instructions' do
+      call!
+      expect(recipe.reload.instructions).to eq(params[:recipe][:instructions])
+    end
+  end
+
   def call!
     RecipeUpdateService.new(recipe, params).call
   end
