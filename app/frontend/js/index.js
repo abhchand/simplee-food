@@ -1,4 +1,12 @@
 import {
+  onRecipeCreateModalClose,
+  onRecipeCreateModalImportInputChange,
+  onRecipeCreateModalOpen,
+  onRecipeCreateModalRadioChange,
+  onRecipeCreateModalSubmit
+} from './recipes/create-modal';
+
+import {
   addSortableListItem,
   bulkAddSortableListItems,
   closeBulkAddModal,
@@ -58,5 +66,10 @@ export {
   onRecipeFullscreenClickPrev,
   onRecipeFullscreenTrasitionEnd,
   recipeFullscreenClose,
-  recipeFullscreenOpen
+  recipeFullscreenOpen,
+  onRecipeCreateModalClose,
+  onRecipeCreateModalOpen,
+  onRecipeCreateModalImportInputChange,
+  onRecipeCreateModalRadioChange,
+  onRecipeCreateModalSubmit
 };

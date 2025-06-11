@@ -1,0 +1,56 @@
+<% if @current_user %>
+<button
+  class="recipes-index__create-btn btn--hollow"
+  onClick="SimpleeFood.onRecipeCreateModalOpen()">
+  Add Recipe
+</button>
+
+<div id="recipe-create-modal">
+  <%# render the modal, which is hidden by default until opened %>
+  <div class="modal modal--closed">
+    <div class="modal-content">
+      <h2>Add Recipe</h2>
+
+      <input
+        type="radio"
+        id="recipe-create-new"
+        name="recipe-create"
+        value="new"
+        checked="checked"
+        onChange="SimpleeFood.onRecipeCreateModalRadioChange(this)">
+      <label for="recipe-create-new">Create new recipe</label>
+      <br />
+
+      <input
+        type="radio"
+        id="recipe-create-import"
+        name="recipe-create"
+        value="import"
+        onChange="SimpleeFood.onRecipeCreateModalRadioChange(this)">
+      <label for="recipe-create-import">Import recipe from URL</label>
+      <input
+        class="modal-input"
+        disabled
+        name="import_url"
+        onchange="SimpleeFood.onRecipeCreateModalImportInputChange()"
+        onkeypress="SimpleeFood.onRecipeCreateModalImportInputChange()"
+        oninput="SimpleeFood.onRecipeCreateModalImportInputChange()">
+      </input>
+      <p class="modal--error"></p>
+
+      <button
+        type="button"
+        class="recipes-create-modal__close-btn btn--hollow"
+        onclick="SimpleeFood.onRecipeCreateModalClose()">
+        cancel
+      </button>
+      <button
+        type="button"
+        class="recipes-create-modal__submit-btn btn--hollow"
+        onclick="SimpleeFood.onRecipeCreateModalSubmit()">
+        go →
+      </button>
+    </div>
+  </div>
+</div>
+<% end %>

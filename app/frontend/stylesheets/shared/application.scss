@@ -38,6 +38,15 @@ input, textarea {
 
 input {
   line-height: 48px;
+
+  &:disabled {
+    opacity: 0.40;
+  }
+}
+
+input[type='radio'] {
+  width: initial;
+  height: initial;
 }
 
 ul {

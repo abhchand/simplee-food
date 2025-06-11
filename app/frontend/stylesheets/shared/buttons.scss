@@ -31,6 +31,10 @@ button {
     opacity: 0.85;
   }
 
+  &:disabled {
+    opacity: 0.45;
+  }
+
   svg {
     width: 22px;
     height: 22px;

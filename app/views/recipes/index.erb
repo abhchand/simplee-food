@@ -10,13 +10,7 @@
     <% end %>
     </h1>
 
-    <% if @current_user %>
-    <a href="/recipes/new">
-      <button class="recipes-index__create-btn btn--hollow">
-        Add Recipe
-      </button>
-    </a>
-    <% end %>
+    <%= erb(:"recipes/create-modal") %>
   </div>
 
   <%= erb(:"shared/flash") %>
@@ -35,7 +29,6 @@
       onclick="SimpleeFood.onRecipeSearchClear(event)"
     >×</button>
   </div>
-
 
   <% if Recipe.count > 0 %>
   <%=

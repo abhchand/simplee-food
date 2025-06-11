@@ -94,3 +94,28 @@ delete '/api/recipes/:slug', authenticate: :always do
   status 200
   {}.to_json
 end
+
+post '/api/recipes/import', authenticate: :always do
+  request.body.rewind
+  url = JSON.parse(request.body.read)['url']
+  recipes = []
+
+  begin
+    jsons = RecipeImport::ScrapingService.new(url).call
+    return(status 400) if jsons.empty?
+
+    jsons.each do |json|
+      attrs = RecipeImport::ParsingService.new(json).call
+      recipes << RecipeUpdateService.new(Recipe.new, { recipe: attrs }).call
+    end
+  rescue => e
+    return(status 400)
+  end
+
+  flash[:notice] = "Successfully imported #{recipes.size} " \
+    "#{recipes.size > 1 ? 'recipes' : 'recipe'}."
+
+  content_type :json
+  status 200
+  recipes.map { |r| { id: r.id, slug: r.slug } }.to_json
+end
