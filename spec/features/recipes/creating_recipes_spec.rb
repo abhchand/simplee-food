@@ -14,7 +14,10 @@ RSpec.feature 'Creating Recipes', type: :feature do
 
   before do
     log_in(user)
-    within('.recipe-title-bar') { click_link('Add Recipe') }
+    within('.recipe-title-bar') do
+      click_button('Add Recipe')
+      click_button('go')
+    end
   end
 
   # "New Recipe" uses the same ERB template as "Edit Recipe".
@@ -64,7 +67,7 @@ RSpec.feature 'Creating Recipes', type: :feature do
     expect(recipe.tags.map(&:name)).to eq(%w[newtag])
   end
 
-  it 'user can cancel creating a recipe' do
+  it 'user can cancel creating a recipe', js: true do
     fill_in('recipe[name]', with: 'New Name')
 
     expect do
