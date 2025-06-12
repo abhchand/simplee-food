@@ -140,7 +140,7 @@ RSpec.feature 'Viewing Recipes', type: :feature do
   end
 
   def click_fullscreen_open
-    within('.recipes-show__header-toolbar') { click_link('view fullscreen') }
+    within('.recipes-show__header-toolbar') { click_link('cooking mode') }
 
     expect(page).to have_selector('.recipe-fullscreen', visible: true)
   end

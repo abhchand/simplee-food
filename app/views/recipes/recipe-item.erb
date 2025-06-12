@@ -4,7 +4,7 @@
   data-tag-scope=<%= tag&.slug %>>
   <div class="recipes-index__action-bar">
     <div class="recipes-index__sort-by">
-      <button data-id="created_at" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--recent<%= ' selected' if sort_by == "created_at" %>">Sort By Recent</button><button data-id="name" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--name<%= ' selected' if sort_by == "name" %>">Sort By Name</button>
+      <button data-id="updated_at" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--recent<%= ' selected' if sort_by == "updated_at" %>">Sort By Recent</button><button data-id="name" onclick="SimpleeFood.onRecipeSort(event)" class="recipes-index__sort-by--name<%= ' selected' if sort_by == "name" %>">Sort By Name</button>
     </div>
 
     <div class="recipes-index__pagination">

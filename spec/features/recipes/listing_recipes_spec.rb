@@ -17,7 +17,7 @@ RSpec.feature 'Listing Recipes', type: :feature, js: true do
   end
 
   it 'can view the paginated recipe list' do
-    # recipes are sorted by created_at: desc by default.
+    # recipes are sorted by updated_at: desc by default.
     #   - page 1:  recipes[3], recipes[2]
     #   - page 2:  recipes[1], recipes[0]
 
@@ -83,7 +83,7 @@ RSpec.feature 'Listing Recipes', type: :feature, js: true do
     it 'can clear the search' do
       search_recipes_for('ia')
 
-      # recipes are sorted by created_at: desc by default.
+      # recipes are sorted by updated_at: desc by default.
       #   - page 1:  recipes[3], recipes[2]
       #   - page 2:  recipes[1], recipes[0]
 
@@ -161,7 +161,7 @@ RSpec.feature 'Listing Recipes', type: :feature, js: true do
     it 'can clear the search' do
       search_recipes_for('ia')
 
-      # recipes are sorted by created_at: desc by default.
+      # recipes are sorted by updated_at: desc by default.
       #   - page 1:  recipes[3], recipes[1]
       #   - page 2:  recipes[0]
 

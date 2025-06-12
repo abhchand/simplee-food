@@ -4,7 +4,7 @@ get '/recipes', authenticate: :conditionally do
   response = RecipeSearchService.new(params).call
 
   @recipes = response['items']
-  @sort_by = 'created_at'
+  @sort_by = 'updated_at'
   @tag = response['tag']
   @pagination = {
     first_item: response['first_item'],

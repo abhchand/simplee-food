@@ -24,7 +24,7 @@
       </div>
       <% end %>
       <div class="recipes-show__header-fullscreen btn--as-link">
-        <a href="#" onclick="SimpleeFood.recipeFullscreenOpen()">view fullscreen</a>&nbsp;<%= svg_icon(:fullscreen) %>
+        <a href="#" onclick="SimpleeFood.recipeFullscreenOpen()">cooking mode</a>&nbsp;<%= svg_icon(:fullscreen) %>
       </div>
     </div>
   </section>
@@ -70,6 +70,8 @@
 
   <div class="recipes-show__created-at">
     created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
+    <br />
+    updated <%= @recipe.updated_at.strftime("%Y-%m-%d") %>
   </div>
 
   <% if @current_user %>
