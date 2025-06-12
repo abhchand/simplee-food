@@ -8,7 +8,7 @@ class RecipeSearchService
   #                            # be limited to positive numbers
   #   'search'    => (string)  # Optional. Ignored if blank.
   #   'sort_by'   => (string)  # Optional. Sorts by 'name ASC' if specified as "name",
-  #                            # defaults to `created_at DESC` otherwise.
+  #                            # defaults to `updated_at DESC` otherwise.
   #   'tag'       => (string)  # Optional. The *slug* of the `Tag` to scope all searches by.
   # }
   def initialize(params = {})
@@ -122,7 +122,7 @@ class RecipeSearchService
       if @params['sort_by']&.downcase == 'name'
         %w[recipes.name asc]
       else
-        %w[recipes.created_at desc]
+        %w[recipes.updated_at desc]
       end
 
     @recipes = @recipes.order("#{field} #{direction}")

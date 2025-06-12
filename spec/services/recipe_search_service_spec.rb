@@ -3,9 +3,9 @@ require 'sinatra_helper'
 RSpec.describe RecipeSearchService, type: :service do
   let!(:recipes) do
     [
-      FactoryBot.create(:recipe, name: 'Pasta Salad', created_at: 3.days.ago),
-      FactoryBot.create(:recipe, name: 'Pulav', created_at: 2.days.ago),
-      FactoryBot.create(:recipe, name: 'Black Bean Soup', created_at: 1.day.ago)
+      FactoryBot.create(:recipe, name: 'Pasta Salad', updated_at: 3.days.ago),
+      FactoryBot.create(:recipe, name: 'Pulav', updated_at: 2.days.ago),
+      FactoryBot.create(:recipe, name: 'Black Bean Soup', updated_at: 1.day.ago)
     ]
   end
 
