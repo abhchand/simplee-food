@@ -70,6 +70,8 @@
 
   <div class="recipes-show__created-at">
     created <%= @recipe.created_at.strftime("%Y-%m-%d") %>
+    <br />
+    updated <%= @recipe.updated_at.strftime("%Y-%m-%d") %>
   </div>
 
   <% if @current_user %>
