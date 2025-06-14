@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.5.0
+
+* add ability to import recipes from a URL
+* sorting by "recent" now sorts by recipe updated date instead of created date
+* "fullscreen mode" renamed to "cooking mode"
+
 ## v1.4.0
 
 * add fullscreen mode, for cooking with tablet or phone
