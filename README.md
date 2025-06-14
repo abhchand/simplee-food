@@ -18,6 +18,8 @@ Major Features -
 * import recipes from a URL
 * fullscreen mode, for easy cooking on your tablet or phone
 
+<a href="https://www.buymeacoffee.com/abhchand" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+
 ## Quick Start
 
 SimpleeFood is packaged as a docker image and can be run with `docker compose`.
