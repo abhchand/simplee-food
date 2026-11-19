@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.6.0
+
+* keep the screen awake in cooking mode
+* allow optionally grouping ingredients together using a tag prefix
+
 ## v1.5.0
 
 * add ability to import recipes from a URL
