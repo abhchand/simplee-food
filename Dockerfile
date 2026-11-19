@@ -1,4 +1,4 @@
-FROM ruby:3.0.0-slim-buster
+FROM ruby:3.4.13-slim-trixie
 
 # Configure working directory
 RUN mkdir /server

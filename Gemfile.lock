@@ -78,7 +78,7 @@ GEM
     multi_json (1.15.0)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    nokogiri (1.13.10-x86_64-linux)
+    nokogiri (1.19.7-x86_64-linux-gnu)
       racc (~> 1.4)
     prettier (3.2.2)
       syntax_tree (>= 2.7.1)
@@ -145,7 +145,7 @@ GEM
       sinatra (>= 1.0)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
-    sqlite3 (1.7.0-x86_64-linux)
+    sqlite3 (2.10.2-x86_64-linux-gnu)
     syntax_tree (6.2.0)
       prettier_print (>= 1.2.0)
     syntax_tree-haml (4.0.3)
@@ -180,7 +180,7 @@ DEPENDENCIES
   factory_bot (~> 6.4, >= 6.4.6)
   image_processing (~> 1.13)
   json-ld (~> 3.3, >= 3.3.2)
-  nokogiri (~> 1.13.8)
+  nokogiri (~> 1.19.7)
   prettier (~> 3.2, >= 3.2.2)
   prettier_print (~> 1.2)
   pry (~> 0.14.2)
@@ -192,11 +192,11 @@ DEPENDENCIES
   sinatra (~> 3.1.0)
   sinatra-activerecord (~> 2.0.27)
   sinatra-flash (~> 0.3.0)
-  sqlite3 (~> 1.7)
+  sqlite3 (~> 2.10.2)
   webrick (~> 1.8, >= 1.8.1)
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.4.13p195
 
 BUNDLED WITH
    2.3.14

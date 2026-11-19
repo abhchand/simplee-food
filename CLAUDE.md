@@ -242,7 +242,7 @@ So **shipping a release means adding a new version heading at the top of
 user-visible changes). Merging to `main` without bumping it is a no-op for publishing —
 which is the normal case for internal changes.
 
-The image (`Dockerfile`) is `ruby:3.0.0-slim-buster` plus node 18 (installed via nvm),
+The image (`Dockerfile`) is `ruby:3.4.13-slim-trixie` plus node 18 (installed via nvm),
 yarn, and ImageMagick. `entrypoint.sh` runs at container start and handles
 create-or-migrate on the DB, creates the initial `admin` / `sekrit` user on a fresh
 install (`rake simplee_food:create_initial_user`), builds production assets with
@@ -256,6 +256,6 @@ Runtime surface, which should stay this small:
 - `RACK_ENV=production`
 - a volume mount for `./sqlite`, which holds the one file that matters
 
-Version pinning is `ruby "3.0.0"` / `.ruby-version`, `.nvmrc` at 18.20.7, and
+Version pinning is `ruby "3.4.13"` / `.ruby-version`, `.nvmrc` at 18.20.7, and
 `package.json` `engines` — the Dockerfile and both CI jobs hardcode these same versions,
 so bumping a runtime means updating all of them together.

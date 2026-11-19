@@ -20,10 +20,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Ruby 3.0.0
+      - name: Set up Ruby 3.4.13
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: 3.4.13
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
@@ -56,10 +56,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Ruby 3.0.0
+      - name: Set up Ruby 3.4.13
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: 3.4.13
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 
@@ -93,10 +93,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Ruby 3.0.0
+      - name: Set up Ruby 3.4.13
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.0.0
+          ruby-version: 3.4.13
           # runs 'bundle install' and caches installed gems automatically
           bundler-cache: true
 

@@ -1,17 +1,17 @@
 source "https://rubygems.org"
 
-ruby "3.0.0"
+ruby "3.4.13"
 
 gem "activerecord", "~> 6.0.0"
 gem "activesupport", "~> 6.0.0"
 gem "image_processing", "~> 1.13"
 gem "json-ld", "~> 3.3", ">= 3.3.2"
-gem "nokogiri", "~> 1.13.8"
+gem "nokogiri", "~> 1.19.7"
 gem "rake", "~> 13.1.0"
 gem "sinatra", "~> 3.1.0"
 gem "sinatra-activerecord", "~> 2.0.27"
 gem "sinatra-flash", "~> 0.3.0"
-gem "sqlite3", "~> 1.7"
+gem "sqlite3", "~> 2.10.2"
 gem "webrick", "~> 1.8", ">= 1.8.1"
 
 group :development, :test do
