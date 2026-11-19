@@ -179,16 +179,12 @@ RSpec.feature 'Viewing Recipes', type: :feature do
 
   def click_fullscreen_nav_next
     page.all('.recipe-fullscreen__nav button')[2].click
-
-    # The CSS transition takes 400ms
-    sleep(0.4)
+    wait_for_fullscreen_slide_transition
   end
 
   def click_fullscreen_nav_prev
     page.all('.recipe-fullscreen__nav button')[0].click
-
-    # The CSS transition takes 400ms
-    sleep(0.4)
+    wait_for_fullscreen_slide_transition
   end
 
   def click_fullscreen_open
@@ -220,14 +216,42 @@ RSpec.feature 'Viewing Recipes', type: :feature do
   end
 
   def expect_fullscreen_slide_to_have(text)
-    # Capybara registers the current slide *and* previous slide as both visible
-    # at any given time. The previous slide is just offscreen to the left, with
-    # it's bounding rectangle's right edge at x = 0. Perhaps capybara registers
-    # the 0 axis as an inclusive boundary when determining "visible".
-    #
-    # This is a tricky problem to workaround, so just settle for selecting all
-    # visible slides and picking the last element.
-    current_slide = page.all('.recipe-fullscreen__slide', visible: true).last
-    within(current_slide) { expect(page).to have_content(text) }
+    # The current slide is the one sitting flush with the left edge of the
+    # (fixed, full-width) modal. Picking it by position is more reliable than
+    # by visibility: Capybara treats adjacent offscreen slides as "visible" too,
+    # and mid-transition the "last visible" slide may be the one leaving.
+    slide_id = page.evaluate_script(<<~JS)
+        Array.from(document.querySelectorAll('.recipe-fullscreen__slide'))
+          .find((slide) => Math.abs(slide.getBoundingClientRect().left) < 1)
+          ?.dataset.id
+      JS
+
+    within(".recipe-fullscreen__slide[data-id='#{slide_id}']") do
+      expect(page).to have_content(text)
+    end
+  end
+
+  # Waits for the slide transition (400ms CSS transform) to finish, instead of
+  # sleeping a fixed duration that can be too short on a slower machine like
+  # CI. Until it finishes, slides are mid-flight and further nav clicks are
+  # ignored (see `isTransitioning` in `recipe-fullscreen.js`).
+  #
+  # `getAnimations()` lists the wrapper's running CSS transitions. When it's
+  # empty, the slide is in its final position and `transitionend` has fired.
+  # This also works when a click doesn't move the slide (e.g. "next" on the last
+  # slide), since then no transition starts at all.
+  def wait_for_fullscreen_slide_transition
+    page.document.synchronize do
+      running =
+        page.evaluate_script(
+          "document.querySelector('.recipe-fullscreen__slide-wrapper')" \
+            '.getAnimations().length'
+        )
+
+      if running > 0
+        # `synchronize` retries on `ExpectationNotMet`
+        raise Capybara::ExpectationNotMet, 'slide transition still running'
+      end
+    end
   end
 end
