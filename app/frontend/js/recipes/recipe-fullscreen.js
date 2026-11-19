@@ -4,6 +4,8 @@
 
 let curSlideIdx = 0;
 let isTransitioning = false;
+let isOpen = false;
+let wakeLock = null;
 
 //
 // DOM References
@@ -54,6 +56,48 @@ function onRecipeFullscreenTrasitionEnd() {
 }
 
 //
+// Screen Wake Lock
+//
+
+// Keeps the screen from dimming/sleeping while cooking mode is open.
+// `navigator.wakeLock` only works in secure contexts (HTTPS or localhost).
+
+async function acquireWakeLock() {
+  if (!('wakeLock' in navigator) || wakeLock) {
+    return;
+  }
+
+  try {
+    wakeLock = await navigator.wakeLock.request('screen');
+
+    // The browser releases the lock on its own whenever the page is hidden
+    // (tab switch, app switch, device locked). Clear our reference so it can
+    // be re-acquired when the page becomes visible again.
+    wakeLock.addEventListener('release', () => {
+      wakeLock = null;
+    });
+  } catch (err) {
+    // Denied (e.g. battery saver, page not visible) - not worth surfacing
+    wakeLock = null;
+  }
+}
+
+function releaseWakeLock() {
+  if (!wakeLock) {
+    return;
+  }
+
+  wakeLock.release().catch(() => {});
+  wakeLock = null;
+}
+
+document.addEventListener('visibilitychange', () => {
+  if (isOpen && document.visibilityState === 'visible') {
+    acquireWakeLock();
+  }
+});
+
+//
 // Open/Close Modal
 //
 
@@ -68,6 +112,10 @@ function recipeFullscreenOpen() {
   // Open the modal
   fullScreen.classList.add('open');
   body.classList.add('recipe-fullscreen--open');
+
+  // Keep the screen on while cooking
+  isOpen = true;
+  acquireWakeLock();
 }
 
 function recipeFullscreenClose() {
@@ -81,6 +129,10 @@ function recipeFullscreenClose() {
 
   // Reset slides back to initial
   moveToSlide(0);
+
+  // Let the screen sleep normally again
+  isOpen = false;
+  releaseWakeLock();
 }
 
 export {
