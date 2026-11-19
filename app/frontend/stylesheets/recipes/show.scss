@@ -83,6 +83,23 @@
   }
 }
 
+// A set of ingredients sharing a `[tag]` prefix, marked with a vertical line
+.recipes-show__ingredient-group {
+  margin: 25px 0;
+  padding-left: 15px;
+  border-left: 3px solid $light-rose;
+
+  .recipes-show__ingredient {
+    margin: 15px 0 0 0;
+  }
+}
+
+.recipes-show__ingredient-group-name {
+  margin: 0;
+  color: $dark-gray;
+  font-size: 16px;
+}
+
 .recipes-show__instructions {
   padding-left: 30px;
 

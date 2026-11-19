@@ -39,11 +39,28 @@
     <section class="recipes-show__ingredients">
       <h2>Ingredients</h2>
 
-      <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
-      <div class='recipes-show__ingredient'>
-        <input type="checkbox" id="ingredient_<%= idx %>" name="ingredient_<%= idx %>" value="<%= ingredient %>">
-        <label for="ingredient_<%= idx %>"> <%= ingredient %></label>
+      <% IngredientGroupingService.new(@recipe.ingredients).call.each do |entry| %>
+
+      <%# Ingredients with a `[tag]` prefix are grouped under a named heading %>
+      <% if entry[:name] %>
+      <div class="recipes-show__ingredient-group" data-group="<%= entry[:name] %>">
+        <h3 class="recipes-show__ingredient-group-name"><%= entry[:name] %></h3>
+      <% end %>
+
+        <% entry[:items].each do |item| %>
+        <div class='recipes-show__ingredient'>
+          <input
+            type="checkbox" id="ingredient_<%= item[:id] %>"
+            name="ingredient_<%= item[:id] %>"
+            value="<%= item[:text] %>">
+          <label for="ingredient_<%= item[:id] %>"> <%= item[:text] %></label>
+        </div>
+        <% end %>
+
+      <% if entry[:name] %>
       </div>
+      <% end %>
+
       <% end %>
     </section>
 

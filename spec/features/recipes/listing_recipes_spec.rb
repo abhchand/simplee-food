@@ -227,8 +227,24 @@ RSpec.feature 'Listing Recipes', type: :feature, js: true do
   end
 
   def expect_displayed_recipes_to_be(recipes)
-    slugs = page.all('.recipes-index__item').map { |el| el['data-name'] }
-    expect(slugs).to eq(recipes.map(&:slug))
+    expected = recipes.map(&:slug)
+
+    # Searching, sorting, and paginating all re-render the list asynchronously,
+    # but `page.all` doesn't wait for that.
+    #
+    # Retry until the list matches.
+    page.document.synchronize do
+      slugs =
+        page
+          .all('.recipes-index__item', wait: false)
+          .map { |el| el['data-name'] }
+
+      if slugs != expected
+        # `synchronize` retries on `ExpectationNotMet`
+        raise Capybara::ExpectationNotMet,
+              "expected displayed recipes #{expected}, got #{slugs}"
+      end
+    end
   end
 
   def search_recipes_for(text)

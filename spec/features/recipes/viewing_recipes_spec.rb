@@ -55,6 +55,41 @@ RSpec.feature 'Viewing Recipes', type: :feature do
     ).to(true)
   end
 
+  it 'groups ingredients by `[tag]`', js: true do
+    recipe.update!(
+      ingredients: [
+        '[foo] apple',
+        'orange',
+        '[bar] banana',
+        '[Foo] pear',
+        'cactus'
+      ]
+    )
+    visit "/recipes/#{recipe.slug}"
+
+    # Expected ordering:
+    #   * 'foo' group (apple, pear) - placed where 'apple' was
+    #   * orange
+    #   * 'bar' group (banana)
+    #   * cactus
+    within('.recipes-show__ingredients') do
+      expect_ingredient_entries_to_be(
+        '.recipes-show__ingredient-group',
+        '.recipes-show__ingredient',
+        [%w[foo apple pear], 'orange', %w[bar banana], 'cactus']
+      )
+
+      # Tags are stripped from the labels
+      expect(page).to_not have_content('[')
+
+      # Checking an item within a group only checks that item
+      check('pear')
+      expect(page).to have_checked_field('pear')
+      expect(page).to have_unchecked_field('apple')
+      expect(page).to have_unchecked_field('orange')
+    end
+  end
+
   describe 'fullscreen mode', js: true do
     it 'user can view the recipe in fullscreen mode' do
       click_fullscreen_open
@@ -97,6 +132,23 @@ RSpec.feature 'Viewing Recipes', type: :feature do
       expect_fullscreen_slide_to_have('coconut')
 
       click_fullscreen_nav_exit
+    end
+
+    it 'groups ingredients in cooking mode' do
+      recipe.update!(ingredients: ['[foo] apple', 'orange', '[Foo] pear'])
+      visit "/recipes/#{recipe.slug}"
+
+      click_fullscreen_open
+
+      within('.recipe-fullscreen__slide--ingredients') do
+        expect_ingredient_entries_to_be(
+          '.ingredient-group',
+          '.ingredient',
+          [%w[foo apple pear], 'orange']
+        )
+
+        expect(page).to_not have_content('[')
+      end
     end
 
     it 'should reset to the first slide each time' do
@@ -143,6 +195,28 @@ RSpec.feature 'Viewing Recipes', type: :feature do
     within('.recipes-show__header-toolbar') { click_link('cooking mode') }
 
     expect(page).to have_selector('.recipe-fullscreen', visible: true)
+  end
+
+  # Verifies the rendered order of ingredient groups and ungrouped items.
+  #
+  # Each element of `expected` is either a plain string (an ungrouped
+  # ingredient) or an array of `[group_name, *ingredients]` (a group).
+  def expect_ingredient_entries_to_be(group_selector, item_selector, expected)
+    # Top-level entries are the groups plus any items *not* inside a group
+    entries =
+      page.all("#{group_selector}, #{item_selector}:not(#{group_selector} *)")
+
+    actual =
+      entries.map do |entry|
+        if entry.matches_css?(group_selector)
+          [entry.find('h3, h4').text] +
+            entry.all(item_selector).map { |i| i.find('label').text }
+        else
+          entry.find('label').text
+        end
+      end
+
+    expect(actual).to eq(expected)
   end
 
   def expect_fullscreen_slide_to_have(text)

@@ -88,6 +88,22 @@ body.recipe-fullscreen--open {
     }
   }
 
+  // A set of ingredients sharing a `[tag]` prefix, marked with a vertical line
+  .ingredient-group {
+    margin: 1rem 0;
+    padding-left: 1rem;
+    border-left: 3px solid $light-rose;
+
+    .ingredient {
+      margin: 0.75rem 0 0 0;
+    }
+  }
+
+  .ingredient-group-name {
+    margin: 0;
+    color: $dark-gray;
+  }
+
   // Use larger font for tablets
   @media (min-width: $breakpoint_tablet) {
     font-size: calc(1.5 * $font_size_sm);

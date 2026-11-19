@@ -6,11 +6,29 @@
     <%# First slide will be the ingredient list %>
     <li class="recipe-fullscreen__slide recipe-fullscreen__slide--ingredients" data-id="0">
       <h3><%= recipe.name %></h3>
-      <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
-      <div class='ingredient'>
-        <input type="checkbox" id="fullscreen_ingredient_<%= idx %>" name="fullscreen_ingredient_<%= idx %>" value="<%= ingredient %>">
-        <label for="fullscreen_ingredient_<%= idx %>"> <%= ingredient %></label>
+
+      <% IngredientGroupingService.new(recipe.ingredients).call.each do |entry| %>
+
+      <%# Ingredients with a `[tag]` prefix are grouped under a named heading %>
+      <% if entry[:name] %>
+      <div class="ingredient-group" data-group="<%= entry[:name] %>">
+        <h4 class="ingredient-group-name"><%= entry[:name] %></h4>
+      <% end %>
+
+        <% entry[:items].each do |item| %>
+        <div class='ingredient'>
+          <input type="checkbox"
+            id="fullscreen_ingredient_<%= item[:id] %>"
+            name="fullscreen_ingredient_<%= item[:id] %>"
+            value="<%= item[:text] %>">
+          <label for="fullscreen_ingredient_<%= item[:id] %>"> <%= item[:text] %></label>
+        </div>
+        <% end %>
+
+      <% if entry[:name] %>
       </div>
+      <% end %>
+
       <% end %>
     </li>
 

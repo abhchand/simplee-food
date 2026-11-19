@@ -112,7 +112,7 @@ RSpec.feature 'Editing Recipes', type: :feature do
   end
 
   describe 'ingredients', js: true do
-    it 'unless can add, update, and remove ingredients' do
+    it 'user can add, update, and remove ingredients' do
       # Initial list is %w[apple banana pear]
       #
       # We do the following:
@@ -131,6 +131,27 @@ RSpec.feature 'Editing Recipes', type: :feature do
         delete_ingredient(2)
 
         expect_ingredients_to_be(%w[cherry banana strawberry])
+      end
+    end
+
+    it 'user can save and edit grouped ingredients with a `[tag]`' do
+      within('#recipe-ingredients') do
+        fill_in('recipe[ingredients][0]', with: '[fruit] apple')
+      end
+
+      # The `[tag]` prefix is stored raw text in the DB
+      expect do
+        click_save!
+        expect(page).to have_current_path("/recipes/#{recipe.slug}")
+      end.to change { recipe.reload.ingredients }.to(
+        ['[fruit] apple', 'banana', 'pear']
+      )
+
+      # It is shown raw text when editing, even though it renders as a group
+      visit "/recipes/#{recipe.slug}/edit"
+
+      within('#recipe-ingredients') do
+        expect_ingredients_to_be(['[fruit] apple', 'banana', 'pear'])
       end
     end
 

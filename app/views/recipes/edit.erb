@@ -50,6 +50,7 @@
     <%# Edit Ingredients %>
     <div class="recipes-edit__field-block" id="recipe-ingredients">
       <h3>ingredients</h3>
+      <p>You can optionally <b>group ingredients</b> together by prefixing a group name in brackets (e.g. "[spices] Oregano", "[spices] Basil")</p>
       <ul class="recipes-edit__sortable-list">
         <% @recipe.ingredients.each_with_index do |ingredient, idx| %>
           <%#
