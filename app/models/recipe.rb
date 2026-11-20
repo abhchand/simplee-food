@@ -10,7 +10,8 @@ class Recipe < ActiveRecord::Base
   validate do |recipe|
     # source_url
     if recipe.source_url.present?
-      is_valid = recipe.source_url =~ /\A#{URI.regexp(%w[http https])}\z/
+      url_regexp = URI::RFC2396_PARSER.make_regexp(%w[http https])
+      is_valid = recipe.source_url =~ /\A#{url_regexp}\z/
       errors.add(:source_url, 'Invalid URL') if !is_valid
     end
   end

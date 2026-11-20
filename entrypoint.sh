@@ -4,20 +4,13 @@ echo "Installing/Checking ruby dependencies"
 bundle config set path /bundle
 bundle check || bundle install
 
-version=$(bundle exec rake db:version)
-
-if [[ $? -eq 0 ]] && [[ $version != "Current version: 0" ]]; then
-  echo "Database exists: running migrations"
-  bundle exec rake db:migrate
-else
-  echo "No database setup: running setup"
-  bundle exec rake db:create
-  bundle exec rake db:migrate
-  bundle exec rake simplee_food:create_initial_user
-fi
-
-# Make sure to bail out if db:setup or db:migrate failed
-if [[ $? != 0 ]]; then
+# Each step is safe to re-run on every boot:
+#   * `db:create` is a no-op if the database already exists
+#   * `db:migrate` only runs pending migrations
+#   * `create_initial_user` only creates the default user if no users exist
+echo "Setting up database"
+if ! bundle exec rake db:create db:migrate simplee_food:create_initial_user; then
+  echo "Database setup failed"
   exit 1
 fi
 

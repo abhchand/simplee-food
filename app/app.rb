@@ -18,7 +18,16 @@ APP_VERSION = Version.find!
 ## Application Configuration
 
 set :database,
-    { adapter: 'sqlite3', database: APP_ROOT.join('sqlite', SQLITE_FILE) }
+    {
+      adapter: 'sqlite3',
+      database: APP_ROOT.join('sqlite', SQLITE_FILE),
+      # ActiveRecord 7.1+ defaults SQLite to WAL mode, which keeps recent writes
+      # in separate `-wal`/`-shm` files. Use the classic rollback journal so
+      # all data stays in the one `.sqlite3` file that users back up by copying.
+      pragmas: {
+        journal_mode: :delete
+      }
+    }
 
 set :public_folder, APP_ROOT.join('public')
 

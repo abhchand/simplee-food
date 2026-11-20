@@ -18,7 +18,7 @@ class UrlValidationService
 
   def ip_allowed?
     host = uri.hostname
-    return false if host.nil?
+    return false if host.blank?
 
     # Remove brackets from IPv6 addresses
     host.gsub!(/^\[|\]$/, '')
@@ -48,7 +48,9 @@ class UrlValidationService
   end
 
   def valid_url?
-    URI::DEFAULT_PARSER.regexp[:ABS_URI] =~ uri.to_s &&
+    # Ruby 3.4 switched `URI::DEFAULT_PARSER` to the RFC 3986 parser, which has
+    # no `:ABS_URI` regexp. Use the RFC 2396 parser explicitly.
+    URI::RFC2396_PARSER.regexp[:ABS_URI] =~ uri.to_s &&
       %w[http https].include?(uri.scheme)
   rescue URI::InvalidURIError
     false
